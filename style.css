@@ -51,7 +51,6 @@ body {
     border-radius: 12px;
     margin-bottom: 20px;
     border: 1px solid var(--border-color);
-    direction: rtl;
 }
 
 .nav-btn {
@@ -183,7 +182,7 @@ body {
     font-size: 0.95rem;
 }
 
-/* کیبورد مجازی و شبیه‌سازی دست‌ها */
+/* کیبورد مجازی */
 .virtual-keyboard {
     background: linear-gradient(135deg, #2d314d 0%, #1e1e2e 100%);
     padding: 20px;
@@ -192,9 +191,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    max-width: 800px;
+    max-width: 750px;
     margin: 0 auto;
-    position: relative;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
@@ -230,26 +228,26 @@ body {
     width: 320px;
 }
 
-/* پنل راهنمای گرافیکی دست‌ها زیر کیبورد (مشابه RapidTyping) */
+/* راهنمای دست‌ها */
 .hands-helper-box {
     margin-top: 15px;
     background-color: #181825;
     border: 1px dashed var(--border-color);
     border-radius: 8px;
-    padding: 12px;
+    padding: 10px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .hand-icon {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 .hand-text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #a6adc8;
 }
 
