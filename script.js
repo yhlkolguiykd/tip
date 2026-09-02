@@ -1,4 +1,3 @@
-
 // ==========================================
 // دیتابیس ۵۰ درس استاندارد
 // ==========================================
@@ -16,7 +15,7 @@ const lessonsData = [
     { id: 11, title: "درس ۱۱: کلیدهای ف و ق", text: "ففف ققق فقف فلق قفل کیف مشق", fingerHint: "انتقال انگشت اشاره به بالا: ف (چپ)، ق (راست)", minWpm: 12, minAccuracy: 93 },
     { id: 12, title: "درس ۱۲: کلیدهای غ و ع", text: "غغغ ععع غعغ مرغ مرغک عقل علی عاقل", fingerHint: "انگشت اشاره و وسط به سمت بالا", minWpm: 13, minAccuracy: 93 },
     { id: 13, title: "درس ۱۳: کلیدهای ه و خ", text: "ههه خخخ هخه ماه خاه خانه شاخه نهان", fingerHint: "انگشت وسط و حلقه به سمت بالا", minWpm: 13, minAccuracy: 93 },
-    { id: 14, title: "درس ۱۴: کلیدهای ث و ح", text: "ثثث ححح ثحث اثر حدیث مثلث لوح ثبات", fingerHint: "انگشت حلقه و کوچک به سمت بالا", minWpm: 14, minAccuracy: 93 },
+    { id: 14, title: "درس ۱۴: کلیدهای ث و ح", text: "ثثث ححث ثحث اثر حدیث مثلث لوح ثبات", fingerHint: "انگشت حلقه و کوچک به سمت بالا", minWpm: 14, minAccuracy: 93 },
     { id: 15, title: "درس ۱۵: کلیدهای ص و ج", text: "صصص ججج صجص صندوق کاج صبح گنج", fingerHint: "حرکت انگشتان به سمت کلیدهای بالایی", minWpm: 14, minAccuracy: 94 },
     { id: 16, title: "درس ۱۶: کلیدهای ض و چ", text: "ضضض چچچ ضچض رضا چوب حوض چکش چمن", fingerHint: "انتقال انگشت کوچک چپ (ض) و راست (چ)", minWpm: 14, minAccuracy: 94 },
     { id: 17, title: "درس ۱۷: کلمات ترکیبی بالا و وسط", text: "صندوقچه قفل خانه مرغابی سخاوت", fingerHint: "ترکیب ردیف بالا و ردیف خانه", minWpm: 15, minAccuracy: 94 },
@@ -134,11 +133,13 @@ function renderCards() {
     const currentLesson = lessonsData[currentLessonIndex];
     const text = currentLesson.text;
 
+    // بارگذاری کارت‌ها به ترتیب صحیح برای زبان فارسی (راست به چپ طبیعی)
     for (let i = currentCharIndex; i < Math.min(currentCharIndex + 5, text.length); i++) {
         const card = document.createElement('div');
         let char = text[i];
         if (char === ' ') char = '␣';
 
+        // اولین کارت سمت راست، کارت فعال است
         card.className = `char-card ${i === currentCharIndex ? 'current' : ''}`;
         card.innerText = char;
         card.id = `char-card-${i}`;
