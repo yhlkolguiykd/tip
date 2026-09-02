@@ -58,7 +58,7 @@ body {
     padding: 10px 18px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 0.95srem;
+    font-size: 0.95rem;
     font-weight: bold;
     transition: 0.2s;
 }
@@ -220,57 +220,14 @@ body {
     width: 250px;
 }
 
-/* بخش تنظیمات و AI */
-.ai-box, .progress-card {
+/* پیشرفت */
+.progress-card {
     background-color: var(--card-bg);
     padding: 25px;
     border-radius: 12px;
     border: 1px solid var(--border-color);
 }
 
-.settings-group {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.settings-group input, .settings-group select {
-    flex: 1;
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 0.95rem;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
-    border: none;
-    padding: 0 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.btn-primary:hover {
-    opacity: 0.9;
-}
-
-.btn-danger {
-    background-color: var(--danger-color);
-    color: var(--bg-color);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-/* پیشرفت */
 .progress-stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -298,6 +255,17 @@ body {
     height: 100%;
     width: 0%;
     transition: width 0.4s ease;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
 @keyframes shake {
