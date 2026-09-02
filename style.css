@@ -218,14 +218,14 @@ body {
     transition: 0.08s;
 }
 
-/* رنگ‌بندی دقیق و فیکس شده بر اساس استاندارد تصویر فرستاده شده */
-.v-key.red { background-color: #e74c3c; color: #fff; }              /* انگشت کوچک چپ (قرمز) */
-.v-key.orange { background-color: #e67e22; color: #fff; }           /* انگشت حلقه چپ (نارنجی) */
-.v-key.light-green { background-color: #2ecc71; color: #fff; }      /* انگشت میانی چپ (سبز روشن) */
-.v-key.blue { background-color: #3498db; color: #fff; }             /* انگشت اشاره چپ (آبی) */
-.v-key.soft-blue { background-color: #5d6d7e; color: #fff; }        /* انگشت اشاره راست (طوسی/آبی ملایم) */
-.v-key.yellow { background-color: #f1c40f; color: #2c3e50; }        /* انگشت میانی راست (زرد با متن تیره) */
-.v-key.pale-green { background-color: #a3e4d7; color: #2c3e50; }    /* انگشت حلقه و کوچک راست (سبز کم‌رنگ) */
+/* پالت رنگی استاندارد مناطق حرکتی انگشتان کاملاً منطبق بر استاندارد اصلی */
+.v-key.red { background-color: #e74c3c; color: #fff; }              /* انگشت کوچک دست چپ */
+.v-key.orange { background-color: #e67e22; color: #fff; }           /* انگشت حلقه دست چپ */
+.v-key.light-green { background-color: #2ecc71; color: #fff; }      /* انگشت میانی دست چپ */
+.v-key.blue { background-color: #3498db; color: #fff; }             /* انگشت اشاره دست چپ */
+.v-key.soft-blue { background-color: #5d6d7e; color: #fff; }        /* انگشت اشاره دست راست */
+.v-key.yellow { background-color: #f1c40f; color: #2c3e50; }        /* انگشت میانی دست راست */
+.v-key.pale-green { background-color: #a3e4d7; color: #2c3e50; }    /* انگشت حلقه و کوچک دست راست */
 
 .v-key.active-key {
     background-color: #fff !important;
