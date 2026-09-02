@@ -11,7 +11,7 @@ const lessonsData = [
     { id: 6, title: "درس ۶: کلیدهای ا و ل", text: "ااا للل الم لاما اسم رسم کلام سلام", fingerHint: "حرکت کششی انگشت اشاره چپ (ا) و راست (ل)" },
     { id: 7, title: "درس ۷: کلید گ", text: "گگگ سگ سگک گلم نمگ برگ گندم سنگ", fingerHint: "حرکت کششی انگشت کوچک چپ (گ)" },
     { id: 8, title: "درس ۸: کلید Space (فاصله)", text: "ت ن م ک ب ی ش س ا ل گ سلام من", fingerHint: "فشار دادن کلید فاصله با انگشت شست راست یا چپ" },
-    { id: 9, title: "درس ۹: واژه‌سازی ردیf خانه", text: "سلام من به شما کلام سنگین بوی گل", fingerHint: "ترکیب کامل کلیدهای ردیف وسط" },
+    { id: 9, title: "درس ۹: واژه‌سازی ردیف خانه", text: "سلام من به شما کلام سنگین بوی گل", fingerHint: "ترکیب کامل کلیدهای ردیف وسط" },
     { id: 10, title: "درس ۱۰: آزمون ردیف خانه", text: "سنت لک لک بت کلم ماسک سگک نسیم", fingerHint: "آزمون تسلط کامل بر ردیف وسط" },
 
     // مرحله دوم: ردیف بالا (Top Row)
@@ -89,12 +89,10 @@ let completedLessons = JSON.parse(localStorage.getItem('typing_completed_lessons
 document.addEventListener('DOMContentLoaded', () => {
     renderLessonsGrid();
     updateProgressUI();
-    
-    // لیسنر کلیدهای تایپ شده
     window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener('resize', highlightCurrentKeyAndFinger);
 });
 
-// تعویض تب‌ها
 function switchTab(tabName) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
@@ -107,7 +105,6 @@ function switchTab(tabName) {
     if (activeBtn) activeBtn.classList.add('active');
 }
 
-// رندر گرید دروس در صفحه هوم
 function renderLessonsGrid() {
     const grid = document.getElementById('lessons-grid');
     grid.innerHTML = '';
@@ -126,7 +123,7 @@ function renderLessonsGrid() {
 }
 
 // ==========================================
-// ۴. منطق اجرای درس و تایپ
+// ۴. منطق اجرای درس و انیمیشن پویا
 // ==========================================
 function startLesson(index) {
     currentLessonIndex = index;
@@ -142,20 +139,18 @@ function startLesson(index) {
 
     switchTab('practice');
     renderCards();
-    highlightCurrentKeyAndFinger();
+    setTimeout(highlightCurrentKeyAndFinger, 50);
 }
 
-// رندر کارت‌های حروف
 function renderCards() {
     const container = document.getElementById('cards-container');
     container.innerHTML = '';
     const text = lessonsData[currentLessonIndex].text;
 
-    // نمایش ۵ حرف (جاری و بعدی‌ها)
     for (let i = currentCharIndex; i < Math.min(currentCharIndex + 5, text.length); i++) {
         const card = document.createElement('div');
         let char = text[i];
-        if (char === ' ') char = '␣'; // نمایش نمادین فاصله
+        if (char === ' ') char = '␣';
 
         card.className = `char-card ${i === currentCharIndex ? 'current' : ''}`;
         card.innerText = char;
@@ -166,40 +161,49 @@ function renderCards() {
     document.getElementById('hand-hint').innerText = `راهنما: ${lessonsData[currentLessonIndex].fingerHint}`;
 }
 
-// هایلایت کلید کیبورد و خط انگشت مربوطه
 function highlightCurrentKeyAndFinger() {
-    // پاکسازی هایلایت‌های قبلی
     document.querySelectorAll('.key').forEach(k => k.classList.remove('active'));
     document.querySelectorAll('.finger-line').forEach(f => f.classList.remove('active'));
 
-    if (currentCharIndex >= lessonsData[currentLessonIndex].text.length) return;
+    const currentText = lessonsData[currentLessonIndex].text;
+    if (currentCharIndex >= currentText.length) return;
 
-    const targetChar = lessonsData[currentLessonIndex].text[currentCharIndex];
-
-    // ۱. هایلایت کلید روی کیبورد
+    const targetChar = currentText[currentCharIndex];
     const targetKeyEl = document.querySelector(`.key[data-key="${targetChar}"]`);
-    if (targetKeyEl) targetKeyEl.classList.add('active');
+    
+    if (targetKeyEl) {
+        targetKeyEl.classList.add('active');
+        
+        const fingerId = charToFingerMap[targetChar];
+        if (fingerId) {
+            const fingerEl = document.getElementById(fingerId);
+            const wrapper = document.querySelector('.keyboard-wrapper').getBoundingClientRect();
+            const keyRect = targetKeyEl.getBoundingClientRect();
 
-    // ۲. هایلایت انگشت روی SVG
-    const fingerId = charToFingerMap[targetChar];
-    if (fingerId) {
-        const fingerEl = document.getElementById(fingerId);
-        if (fingerEl) fingerEl.classList.add('active');
+            if (wrapper.width === 0) return;
+
+            const targetX = keyRect.left - wrapper.left + (keyRect.width / 2);
+            const targetY = keyRect.top - wrapper.top + (keyRect.height / 2);
+
+            const startX = fingerId.startsWith('path-l') ? wrapper.width * 0.35 : wrapper.width * 0.65;
+            const startY = wrapper.height + 20;
+
+            const controlX = (startX + targetX) / 2;
+            const controlY = (startY + targetY) / 2 + 30;
+
+            fingerEl.setAttribute('d', `M ${startX} ${startY} Q ${controlX} ${controlY} ${targetX} ${targetY}`);
+            fingerEl.classList.add('active');
+        }
     }
 }
 
-// دریافت و پردازش کلیدهای کیبورد کاربر
 function handleKeyPress(e) {
-    // اگر در تب محیط تمرین نیستیم خروج
     if (!document.getElementById('practice-tab').classList.contains('active')) return;
-
-    // کلیدهای کنترلی متفرقه رو نادیده بگیر
     if (e.key === 'Shift' || e.key === 'Control' || e.key === 'Alt' || e.key === 'Tab') return;
 
     const currentText = lessonsData[currentLessonIndex].text;
     if (currentCharIndex >= currentText.length) return;
 
-    // شروع تایمر با اولین کلید
     if (!startTime) {
         startTime = new Date();
         timerInterval = setInterval(updateStats, 1000);
@@ -207,7 +211,6 @@ function handleKeyPress(e) {
 
     let pressedKey = e.key;
 
-    // استانداردسازی ورودی تایپ فارسی
     if (pressedKey === 'Spacebar' || pressedKey === ' ') pressedKey = ' ';
     if (pressedKey === 'ك') pressedKey = 'ک';
     if (pressedKey === 'ي') pressedKey = 'ی';
@@ -218,7 +221,6 @@ function handleKeyPress(e) {
     totalTyped++;
 
     if (pressedKey === targetChar) {
-        // تایپ درست
         if (currentCard) currentCard.className = 'char-card correct';
         currentCharIndex++;
 
@@ -229,7 +231,6 @@ function handleKeyPress(e) {
             highlightCurrentKeyAndFinger();
         }
     } else {
-        // تایپ اشتباه
         totalErrors++;
         if (currentCard) {
             currentCard.classList.add('incorrect');
@@ -254,12 +255,10 @@ function updateStats() {
     document.getElementById('time').innerText = 
         `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-    // محاسبه WPM (سرعت)
     const wordsTyped = totalTyped / 5;
     const wpm = minutes > 0 || seconds > 0 ? Math.round((wordsTyped / (timeDiffInSeconds || 1)) * 60) : 0;
     document.getElementById('wpm').innerText = wpm;
 
-    // محاسبه دقت
     const accuracy = totalTyped > 0 ? Math.max(0, Math.round(((totalTyped - totalErrors) / totalTyped) * 100)) : 100;
     document.getElementById('accuracy').innerText = accuracy;
 }
