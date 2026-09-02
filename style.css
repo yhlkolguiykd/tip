@@ -15,7 +15,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.5);
     text-align: center;
-    width: 650px;
+    width: 700px;
 }
 
 .stats {
@@ -28,20 +28,29 @@ body {
 }
 
 .display-box {
-    font-size: 2rem;
+    font-size: 2.2rem;
     background: #313244;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     margin-bottom: 25px;
     min-height: 50px;
     word-break: break-all;
+    font-family: 'Courier New', monospace; /* فونت مونو اسپیس برای نظم بهتر */
 }
 
-.char { position: relative; }
-.correct { color: #a6e3a1; }
-.incorrect { color: #f38ba8; background-color: #45475a; border-radius: 4px; }
-.current { border-bottom: 3px solid #f9e2af; }
+.char { position: relative; opacity: 0.7; }
+.correct { color: #a6e3a1; opacity: 1; }
+.incorrect { color: #f38ba8; background-color: #45475a; border-radius: 4px; opacity: 1; }
+.current { border-bottom: 3px solid #f9e2af; opacity: 1; font-weight: bold;}
+
+.keyboard-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
 
 .keyboard {
     display: flex;
@@ -58,16 +67,71 @@ body {
     border-radius: 6px;
     font-size: 1.1rem;
     min-width: 20px;
+    color: #bac2de;
     transition: all 0.1s;
+    border: 1px solid transparent;
 }
 
-.key.space { width: 250px; }
+.key.space { width: 280px; }
 
-/* کلیدی که باید تایپ بشه */
+/* کلیدهای پایه ردیف وسط */
+.home-key {
+    border: 1px solid #585b70;
+}
+
+/* هایلایت کلید هدف */
 .key.active {
     background: #f9e2af;
     color: #11111b;
     font-weight: bold;
-    transform: scale(1.1);
-    box-shadow: 0 0 10px #f9e2af;
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(249, 226, 175, 0.5);
+}
+
+/* --- استایل بخش راهنمای دست‌ها --- */
+.hands-guide {
+    display: flex;
+    gap: 100px;
+    margin-top: 20px;
+}
+
+.hand {
+    position: relative;
+    width: 150px;
+    height: 120px;
+    background: rgba(49, 50, 68, 0.5);
+    border-radius: 50px 50px 10px 10px;
+    border: 2px solid #585b70;
+}
+
+.finger, .thumb {
+    position: absolute;
+    background: #45475a;
+    border-radius: 10px;
+    transition: background 0.1s, transform 0.1s;
+}
+
+/* اندازه عمومی انگشت‌ها */
+.finger { width: 20px; height: 60px; top: -30px; }
+.thumb { width: 25px; height: 50px; top: 30px; }
+
+/* موقعیت افقی انگشت‌های دست چپ */
+.left-hand .pinky { left: 15px; }
+.left-hand .ring { left: 45px; top: -40px; height: 70px; }
+.left-hand .middle { left: 75px; top: -45px; height: 75px; }
+.left-hand .index { left: 105px; }
+.left-hand .thumb { left: 130px; transform: rotate(30deg); }
+
+/* موقعیت افقی انگشت‌های دست راست */
+.right-hand .thumb { right: 130px; transform: rotate(-30deg); }
+.right-hand .index { right: 105px; }
+.right-hand .middle { right: 75px; top: -45px; height: 75px; }
+.right-hand .ring { right: 45px; top: -40px; height: 70px; }
+.right-hand .pinky { right: 15px; }
+
+/* هایلایت کردن انگشت فعال */
+.finger.finger-active, .thumb.finger-active {
+    background: #a6e3a1; /* سبز */
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 0 10px rgba(166, 227, 161, 0.6);
 }
