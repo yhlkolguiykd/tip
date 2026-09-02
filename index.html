@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پروژه پرامپت‌کده: تایپ ده انگشتی ساده ⚡</title>
+    <title>پروژه پرامپت‌کده: سامانه کامل تایپ ده انگشتی ⚡</title>
     <style>
         :root {
             --bg-color: #0b0f17;
             --card-bg: #141c2e;
             --text-color: #f1f5f9;
             --primary-color: #38bdf8;
+            --accent-color: #4ade80;
             --danger-color: #f43f5e;
             --border-color: #1e293b;
         }
@@ -33,9 +34,25 @@
             padding: 20px 0;
         }
 
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
         .container {
             width: 92%;
-            max-width: 800px;
+            max-width: 820px;
         }
 
         .practice-box {
@@ -46,17 +63,19 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
+        /* نوار آمار و اطلاعات */
         .stats-bar {
             display: flex;
             justify-content: space-around;
             background: rgba(0,0,0,0.25);
-            padding: 10px;
+            padding: 12px;
             border-radius: 10px;
             margin-bottom: 20px;
             font-size: 0.9rem;
             font-weight: bold;
         }
 
+        /* کاردهای نمایش متن */
         .cards-container {
             display: flex;
             justify-content: center;
@@ -91,7 +110,15 @@
             background-color: rgba(244, 63, 94, 0.15);
         }
 
-        /* --- طراحی دست‌های ساده و مینیمال --- */
+        .hint-text {
+            text-align: center;
+            margin: 10px 0;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* بخش ویژوالایزر دست‌ها */
         .simple-hands-container {
             display: flex;
             justify-content: center;
@@ -115,7 +142,6 @@
             font-weight: bold;
         }
 
-        /* بخش انگشتان ساده */
         .simple-fingers {
             display: flex;
             justify-content: space-between;
@@ -152,7 +178,6 @@
             transition: 0.15s;
         }
 
-        /* حالت روشن شدن ساده و شیک */
         .s-finger.active, .s-thumb.active {
             background-color: var(--primary-color) !important;
             color: #0b0f17 !important;
@@ -162,67 +187,73 @@
             transform: translateY(-3px);
         }
 
-        .hint-text {
-            text-align: center;
-            margin: 10px 0;
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        /* کیبورد مجازی */
+        /* کیبورد مجازی کامل */
         .virtual-keyboard {
             background: #080c14;
-            padding: 12px;
+            padding: 14px;
             border-radius: 12px;
             border: 2px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            gap: 5px;
-            max-width: 720px;
+            gap: 6px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
         .keyboard-row {
             display: flex;
             justify-content: center;
-            gap: 4px;
+            gap: 5px;
             direction: ltr;
         }
 
         .v-key {
             background-color: #1b2438;
             color: #fff;
-            padding: 8px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
+            padding: 9px 11px;
+            border-radius: 6px;
+            font-size: 0.85rem;
             font-weight: bold;
-            min-width: 38px;
+            min-width: 40px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: 0.1s;
+        }
+
+        /* رنگی شدن کلید روی کیبورد موقع فشردن */
+        .v-key.active-key {
+            background-color: var(--accent-color) !important;
+            color: #0b0f17 !important;
+            transform: scale(0.95);
         }
 
         .space-key {
-            width: 260px !important;
+            width: 280px !important;
             background-color: #475569;
         }
     </style>
 </head>
 <body>
 
+    <header>
+        <h1>پروژه پرامپت‌کده: آموزش جامع تایپ ده انگشتی ⚡</h1>
+        <p>مجموعه کامل: تمرین هوشمند، راهنمای دست‌ها و کیبورد مجازی</p>
+    </header>
+
     <main class="container">
         <div class="practice-box">
+            <!-- بخش آمار -->
             <div class="stats-bar">
                 <div>⏱️ زمان: <span id="time">00:00</span></div>
                 <div>⚡ سرعت: <span id="wpm">0</span> WPM</div>
                 <div>🎯 دقت: <span id="accuracy">100</span>%</div>
             </div>
 
+            <!-- بخش کاردهای کلمات -->
             <div id="cards-container" class="cards-container"></div>
+            <div id="hint-text" class="hint-text">کلید بعدی رو فشار بده...</div>
 
-            <div id="hint-text" class="hint-text">حرف بعدی رو تایپ کن...</div>
-
-            <!-- نمای ساده دو دست (چپ و راست) -->
+            <!-- بخش دست‌های راهنما -->
             <div class="simple-hands-container">
                 <!-- دست چپ -->
                 <div class="simple-hand">
@@ -249,26 +280,54 @@
                 </div>
             </div>
 
-            <!-- کیبورد مجازی -->
+            <!-- کیبورد مجازی کامل استاندارد -->
             <div class="virtual-keyboard">
                 <div class="keyboard-row">
-                    <div class="v-key">ض</div><div class="v-key">ص</div><div class="v-key">ث</div><div class="v-key">ق</div><div class="v-key">ف</div><div class="v-key">غ</div><div class="v-key">ع</div><div class="v-key">ه</div><div class="v-key">خ</div><div class="v-key">ح</div><div class="v-key">ج</div><div class="v-key">چ</div>
+                    <div class="v-key" data-char="ض">ض</div>
+                    <div class="v-key" data-char="ص">ص</div>
+                    <div class="v-key" data-char="ث">ث</div>
+                    <div class="v-key" data-char="ق">ق</div>
+                    <div class="v-key" data-char="ف">ف</div>
+                    <div class="v-key" data-char="غ">غ</div>
+                    <div class="v-key" data-char="ع">ع</div>
+                    <div class="v-key" data-char="ه">ه</div>
+                    <div class="v-key" data-char="خ">خ</div>
+                    <div class="v-key" data-char="ح">ح</div>
+                    <div class="v-key" data-char="ج">ج</div>
+                    <div class="v-key" data-char="چ">چ</div>
                 </div>
                 <div class="keyboard-row">
-                    <div class="v-key">ش</div><div class="v-key">س</div><div class="v-key">ی</div><div class="v-key">ب</div><div class="v-key">ل</div><div class="v-key">ا</div><div class="v-key">ت</div><div class="v-key">ن</div><div class="v-key">م</div><div class="v-key">ک</div><div class="v-key">گ</div>
+                    <div class="v-key" data-char="ش">ش</div>
+                    <div class="v-key" data-char="س">س</div>
+                    <div class="v-key" data-char="ی">ی</div>
+                    <div class="v-key" data-char="ب">ب</div>
+                    <div class="v-key" data-char="ل">ل</div>
+                    <div class="v-key" data-char="ا">ا</div>
+                    <div class="v-key" data-char="ت">ت</div>
+                    <div class="v-key" data-char="ن">ن</div>
+                    <div class="v-key" data-char="م">م</div>
+                    <div class="v-key" data-char="ک">ک</div>
+                    <div class="v-key" data-char="گ">گ</div>
                 </div>
                 <div class="keyboard-row">
-                    <div class="v-key">ظ</div><div class="v-key">ط</div><div class="v-key">ز</div><div class="v-key">ر</div><div class="v-key">ذ</div><div class="v-key">د</div><div class="v-key">پ</div><div class="v-key">و</div>
+                    <div class="v-key" data-char="ظ">ظ</div>
+                    <div class="v-key" data-char="ط">ط</div>
+                    <div class="v-key" data-char="ز">ز</div>
+                    <div class="v-key" data-char="ر">ر</div>
+                    <div class="v-key" data-char="ذ">ذ</div>
+                    <div class="v-key" data-char="د">د</div>
+                    <div class="v-key" data-char="پ">پ</div>
+                    <div class="v-key" data-char="و">و</div>
                 </div>
                 <div class="keyboard-row">
-                    <div class="v-key space-key">فاصله (Space)</div>
+                    <div class="v-key space-key" data-char=" ">فاصله (Space)</div>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
-        const textToType = "سلام مهدی عزیز این تمرین تایپ با دست ساده است";
+        const textToType = "سلام مهدی جان پروژه پرامپت کده آماده است";
         let chars = textToType.split('');
         let currentIndex = 0;
         let errorsCount = 0;
@@ -276,7 +335,7 @@
         let timerInterval = null;
         let isStarted = false;
 
-        // نگاشت دقیق انگشتان ساده
+        // نگاشت دقیق انگشتان برای ویژوالایزر
         const fingerMap = {
             'ض': 'sf-l-pinky', 'ش': 'sf-l-pinky', 'ظ': 'sf-l-pinky',
             'ص': 'sf-l-ring', 'س': 'sf-l-ring', 'ط': 'sf-l-ring',
@@ -318,11 +377,9 @@
             let targetId = fingerMap[char];
             if (targetId) {
                 let element = document.getElementById(targetId);
-                if (element) {
-                    element.classList.add('active');
-                }
+                if (element) element.classList.add('active');
             }
-            document.getElementById('hint-text').innerText = `حرف بعدی: "${char === ' ' ? 'فاصله' : char}"`;
+            document.getElementById('hint-text').innerText = `حرف مورد انتظار: "${char === ' ' ? 'فاصله' : char}"`;
         }
 
         document.addEventListener('keydown', (e) => {
@@ -335,6 +392,13 @@
                 timerInterval = setInterval(updateTimer, 1000);
             }
 
+            // افکت فشردن کلید روی کیبورد مجازی
+            const keyEl = document.querySelector(`.v-key[data-char="${e.key}"]`);
+            if (keyEl) {
+                keyEl.classList.add('active-key');
+                setTimeout(() => keyEl.classList.remove('active-key'), 150);
+            }
+
             if (e.key === targetChar || (targetChar === ' ' && e.key === ' ')) {
                 currentIndex++;
                 let accuracy = Math.max(0, Math.round(((currentIndex - errorsCount) / currentIndex) * 100));
@@ -342,7 +406,7 @@
 
                 if (currentIndex >= chars.length) {
                     clearInterval(timerInterval);
-                    alert('🎉 دمت گرم داشم! تمرین به اتمام رسید.');
+                    alert('🎉 فوق‌العاده بود داشم! تمرین با موفقیت به پایان رسید.');
                     currentIndex = 0;
                     errorsCount = 0;
                 }
