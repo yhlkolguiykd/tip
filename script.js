@@ -1,131 +1,61 @@
-// درس‌های نمونه برای ردیف وسط
 const lessons = [
-    "ککک م ممکک ممکم",
+    // --- بخش ۱: کلیدهای پایه و اصلی (درس ۱ تا ۱۰) ---
     "تتت ننن تنتن نتنت",
-    "کمتن نمک تکان کتان",
-    "شسسیب لتام کگپو"
+    "ککک ممم کمکم مکمک",
+    "تکنم نمکت متکن کنتم",
+    "ببب للل بلبل لبلب",
+    "ییی سسس یسی سئیی",
+    "ششش سسس شسش سشس",
+    "شسیب لتام کگپو",
+    "گگگ چچچ گچگچ چگچگ",
+    "ففف ققق فقفق قفقف",
+    "غغغ ععع غعغع عغعغ",
+
+    // --- بخش ۲: ترکیب حروف و ساخت کلمات کوتاه (درس ۱۱ تا ۲۰) ---
+    "کمان متن نمک تکان کتان",
+    "سار دار اسرار سیب سیم",
+    "شیر شور شاد شام شاه",
+    "بار برف برگ باران بهار",
+    "کار کارمند کوه کارگاه",
+    "روز روزگار راز رود روی",
+    "دست داستان دوست دارا",
+    "مرد مردم مرام مرز",
+    "جان جهان جنگ جاری",
+    "دل دانا دانش داروش",
+
+    // --- بخش ۳: جملات کوتاه کاربردی (درس ۲۱ تا ۳۰) ---
+    "توانا بود هر که دانا بود",
+    "ز دانش دل پیر برنا بود",
+    "نمک نشناس و بی‌وفا نباشیم",
+    "تایپ سریع با تمرین به دست می‌آید",
+    "هر روز چند دقیقه تمرین کنید",
+    "زندگی کوتاه است قدر بدانیم",
+    "برنامه‌نویسی و طراحی وب جذاب است",
+    "تایپ ده انگشتی مهارت بزرگی است",
+    "سحرخیز باش تا کامروا شوی",
+    "با تلاش به همه اهداف می‌رسی",
+
+    // --- بخش ۴: متون سرعت‌گیری و پرکاربرد (درس ۳۱ تا ۴۰) ---
+    "دانش‌آموزان برای یادگیری مهارت‌های جدید تلاش می‌کنند",
+    "هوش مصنوعی ابزاری قدرتمند برای پیشرفت انسان است",
+    "اینترنت دنیا را به یک دهکده کوچک تبدیل کرده است",
+    "برای موفقیت باید برنامه‌ریزی دقیق و منظم داشت",
+    "ورزش مداوم سلامتی جسم و روح را تضمین می‌کند",
+    "کتابخوانی باعث افزایش آگاهی و رشد تفکر می‌شود",
+    "همکاری و کار گروهی نتایج بهتری به همراه دارد",
+    "تمرکز روی هدف اصلی کلید پیروزی در زندگی است",
+    "یادگیری ابزارهای جدید فرصت‌های شغلی می‌سازد",
+    "تلاش امروز شما آینده فردای شما را می‌سازد",
+
+    // --- بخش ۵: متون طولانی و چالش سرعت (درس ۴۱ تا ۵۰) ---
+    "تایپ ده انگشتی یکی از کاربردی‌ترین مهارت‌ها در دنیای دیجیتال است که سرعت شما را چند برابر می‌کند",
+    "با تمرین روزانه روی این اپلیکیشن می‌توانید بدون نگاه کردن به کیبورد با دقت بالا تایپ کنید",
+    "هوش مصنوعی و برنامه‌نویسی آینده جهان را می‌سازند و یادگیری آن‌ها مسیر موفقیت را هموار می‌کند",
+    "انسان‌های موفق کسانی هستند که از زمان خود بهترین استفاده را می‌برند و همیشه در حال یادگیری هستند",
+    "برای ساخت پروژه‌های بزرگ باید از قدم‌های کوچک شروع کرد و با صبر و پشتکار ادامه داد",
+    "شبکه‌های اجتماعی و ابزارهای ارتباطی دنیای امروز را به شدت تغییر داده و سریع‌تر کرده‌اند",
+    "کیفیت کدنویسی و طراحی ساده و کاربردی باعث می‌شود کاربران از نرم‌افزار شما لذت ببرند",
+    "توسعه‌دهندگان وب همیشه در حال به‌روزرسانی دانش خود هستند تا بهترین ابزارها را خلق کنند",
+    "امیدواریم این برنامه تمرینی به شما کمک کند تا به یک تایپیست حرفه‌ای و سریع تبدیل شوید",
+    "تبریک می‌گوییم شما تمام مراحل تمرین تایپ ده انگشتی را با موفقیت و سرعت بالا به پایان رساندید"
 ];
-
-// --- نقشه کلید به انگشت (بسیار مهم) ---
-// l=Left (چپ)، r=Right (راست)
-// p=Pinky (کوچک)، r=Ring (حلقه)، m=Middle (وسط)، i=Index (اشاره)، t=Thumb (شست)
-const keyToFingerMap = {
-    // دست چپ
-    'ض': 'l-pinky', 'ش': 'l-pinky', 'ظ': 'l-pinky',
-    'ص': 'l-ring',  'س': 'l-ring',  'ط': 'l-ring',
-    'ث': 'l-middle','ی': 'l-middle','ز': 'l-middle',
-    'ق': 'l-index', 'ب': 'l-index', 'ر': 'l-index',
-    'ف': 'l-index', 'ل': 'l-index', 'ذ': 'l-index', // کلیدهای فرعی دست چپ
-
-    // دست راست
-    'ع': 'r-index', 'ت': 'r-index', 'د': 'r-index',
-    'غ': 'r-index', 'ن': 'r-index', 'پ': 'r-index', // کلیدهای فرعی دست راست
-    'ه': 'r-middle','م': 'r-middle','و': 'r-middle',
-    'خ': 'r-ring',  'ک': 'r-ring',  '.': 'r-ring',
-    'ح': 'r-pinky', 'گ': 'r-pinky', '،': 'r-pinky',
-    'ج': 'r-pinky', 'چ': 'r-pinky',
-
-    // شست‌ها
-    ' ': 'r-thumb' // یا l-thumb، معمولاً شست راست برای اسپیس
-};
-
-let currentLesson = 0;
-let charIndex = 0;
-let mistakes = 0;
-let startTime = null;
-
-const textDisplay = document.getElementById('text-display');
-const wpmDisplay = document.getElementById('wpm');
-const accuracyDisplay = document.getElementById('accuracy');
-const lessonNumDisplay = document.getElementById('lesson-num');
-
-function loadLesson() {
-    textDisplay.innerHTML = '';
-    charIndex = 0;
-    mistakes = 0;
-    startTime = null;
-    lessonNumDisplay.innerText = currentLesson + 1;
-
-    const text = lessons[currentLesson];
-    text.split('').forEach((char, index) => {
-        const charSpan = document.createElement('span');
-        charSpan.innerText = char;
-        charSpan.classList.add('char');
-        if (index === 0) charSpan.classList.add('current');
-        textDisplay.appendChild(charSpan);
-    });
-
-    // آپدیت هایلایت کلید و انگشت برای اولین کاراکتر
-    updateVisualGuide(text[0]);
-}
-
-// تابع جدید: هم کلید و هم انگشت رو هایلایت می‌کنه
-function updateVisualGuide(char) {
-    // 1. هایلایت کلید روی کیبورد
-    document.querySelectorAll('.key').forEach(k => k.classList.remove('active'));
-    const targetKey = char === ' ' ? ' ' : char;
-    const keyElement = document.querySelector(`.key[data-key="${targetKey}"]`);
-    if (keyElement) keyElement.classList.add('active');
-
-    // 2. هایلایت انگشت روی گرافیک دست
-    document.querySelectorAll('.finger, .thumb').forEach(f => f.classList.remove('finger-active'));
-    
-    const fingerId = keyToFingerMap[char];
-    if (fingerId) {
-        const fingerElement = document.getElementById(fingerId);
-        if (fingerElement) fingerElement.classList.add('finger-active');
-    }
-}
-
-document.addEventListener('keydown', (e) => {
-    // جلوگیری از ثبت کلیدهای کنترلی مثل Shift یا Alt
-    if (e.metaKey || e.ctrlKey || e.altKey) return;
-
-    const text = lessons[currentLesson];
-    if (charIndex >= text.length) return;
-
-    if (!startTime) startTime = new Date();
-
-    const typedChar = e.key;
-    const currentChar = text[charIndex];
-    const charSpans = textDisplay.querySelectorAll('.char');
-
-    // جلوگیری از اسکرول با کلید Space
-    if (e.key === ' ') e.preventDefault();
-
-    if (typedChar === currentChar) {
-        charSpans[charIndex].classList.remove('current');
-        charSpans[charIndex].classList.add('correct');
-        charIndex++;
-
-        if (charIndex < text.length) {
-            charSpans[charIndex].classList.add('current');
-            // آپدیت برای کاراکتر بعدی
-            updateVisualGuide(text[charIndex]);
-        } else {
-            // پایان درس
-            setTimeout(() => {
-                alert('عالی بود! درس بعدی.');
-                currentLesson = (currentLesson + 1) % lessons.length;
-                loadLesson();
-            }, 100);
-        }
-    } else if (e.key.length === 1 && e.key !== 'Shift') { // فقط کلیدهای متنی و نادیده گرفتن Shift
-        charSpans[charIndex].classList.add('incorrect');
-        mistakes++;
-    }
-
-    // محاسبه آمار
-    if (startTime) {
-        const timeElapsed = (new Date() - startTime) / 60000; // به دقیقه
-        const typedChars = charIndex;
-        const wpm = Math.round((typedChars / 5) / timeElapsed) || 0;
-        const accuracy = Math.max(0, Math.round(((typedChars - mistakes) / (typedChars || 1)) * 100));
-        
-        wpmDisplay.innerText = wpm;
-        accuracyDisplay.innerText = accuracy;
-    }
-});
-
-// شروع اولین درس
-loadLesson();
