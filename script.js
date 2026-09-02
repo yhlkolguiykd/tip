@@ -1,65 +1,56 @@
 const lessons = [
-    "نمک متن تکان کتان", "کمان مکتوب تمک متین", "بلبل کابل بابل بتن", "سیب سیم بیس بیست",
-    "شیر شاد شام شاه", "گچ گام کلاه کباب", "فیلم قلم فرش قند", "غار عقل عشق علم",
-    "کاغذ باغ چراغ داغ", "صبح جامه طلا طناب", "سار دار اسرار سیب", "بار برف برگ باران",
-    "کار کارمند کوه کارگاه", "روز روزگار راز رود", "دست داستان دوست دارا", "مرد مردم مرام مرز",
-    "جان جهان جنگ جاری", "دل دانا دانش داروش", "سفره سرما سلام سبد", "درخت دریا دفتر دیوار",
-    "توانا بود هر که دانا بود", "ز دانش دل پیر برنا بود", "نمک نشناس و بی‌وفا نباشیم", "تایپ سریع با تمرین به دست می‌آید",
-    "هر روز چند دقیقه تمرین کنید", "زندگی کوتاه است قدر بدانیم", "برنامه‌نویسی و طراحی وب جذاب است", "تایپ ده انگشتی مهارت بزرگی است",
-    "سحرخیز باش تا کامروا شوی", "با تلاش به همه اهداف می‌رسی", "دانش‌آموزان برای یادگیری مهارت‌های جدید تلاش می‌کنند", "هوش مصنوعی ابزاری قدرتمند برای پیشرفت انسان است",
-    "اینترنت دنیا را به یک دهکده کوچک تبدیل کرده است", "برای موفقیت باید برنامه‌ریزی دقیق و منظم داشت", "ورزش مداوم سلامتی جسم و روح را تضمین می‌کند", "کتابخوانی باعث افزایش آگاهی و رشد تفکر می‌شود",
-    "همکاری و کار گروهی نتایج بهتری به همراه دارد", "تمرکز روی هدف اصلی کلید پیروزی در زندگی است", "یادگیری ابزارهای جدید فرصت‌های شغلی می‌سازد", "تلاش امروز شما آینده فردای شما را می‌سازد",
-    "تایپ ده انگشتی یکی از کاربردی‌ترین مهارت‌ها در دنیای دیجیتال است که سرعت شما را چند برابر می‌کند", "با تمرین روزانه روی این اپلیکیشن می‌توانید بدون نگاه کردن به کیبورد با دقت بالا تایپ کنید", "هوش مصنوعی و برنامه‌نویسی آینده جهان را می‌سازند و یادگیری آن‌ها مسیر موفقیت را هموار می‌کند", "انسان‌های موفق کسانی هستند که از زمان خود بهترین استفاده را می‌برند و همیشه در حال یادگیری هستند",
-    "برای ساخت پروژه‌های بزرگ باید از قدم‌های کوچک شروع کرد و با صبر و پشتکار ادامه داد", "شبکه‌های اجتماعی و ابزارهای ارتباطی دنیای امروز را به شدت تغییر داده و سریع‌تر کرده‌اند", "کیفیت کدنویسی و طراحی ساده و کاربردی باعث می‌شود کاربران از نرم‌افزار شما لذت ببرند", "توسعه‌دهندگان وب همیشه در حال به‌روزرسانی دانش خود هستند تا بهترین ابزارها را خلق کنند",
-    "امیدواریم این برنامه تمرینی به شما کمک کند تا به یک تایپیست حرفه‌ای و سریع تبدیل شوید", "تبریک می‌گوییم شما تمام مراحل تمرین تایپ ده انگشتی را با موفقیت و سرعت بالا به پایان رساندید"
+    "ث ث ث ه", "نمک متن تکان کتان", "کمان مکتوب تمک متین", "بلبل کابل بابل بتن",
+    "سیب سیم بیس بیست", "شیر شاد شام شاه", "گچ گام کلاه کباب", "فیلم قلم فرش قند",
+    "غار عقل عشق علم", "کاغذ باغ چراغ داغ", "صبح جامه طلا طناب", "سار دار اسرار سیب",
+    "بار برف برگ باران", "کار کارمند کوه کارگاه", "روز روزگار راز رود", "دست داستان دوست دارا"
 ];
 
-// نگاشت تمام حروف کیبورد به انگشت مشخص دست واقعی
 const fingerMapping = {
-    'ض': { id: 'l-pinky', name: 'انگشت کوچک دست چپ' },
-    'ص': { id: 'l-ring', name: 'انگشت حلقه دست چپ' },
-    'ث': { id: 'l-middle', name: 'انگشت وسط دست چپ' },
-    'ق': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
-    'ف': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
+    'ض': { id: 'path-l-pinky', name: 'انگشت کوچک دست چپ' },
+    'ص': { id: 'path-l-ring', name: 'انگشت حلقه دست چپ' },
+    'ث': { id: 'path-l-middle', name: 'انگشت وسط دست چپ' },
+    'ق': { id: 'path-l-index', name: 'انگشت اشاره دست چپ' },
+    'ف': { id: 'path-l-index', name: 'انگشت اشاره دست چپ' },
 
-    'ش': { id: 'l-pinky', name: 'انگشت کوچک دست چپ' },
-    'س': { id: 'l-ring', name: 'انگشت حلقه دست چپ' },
-    'ی': { id: 'l-middle', name: 'انگشت وسط دست چپ' },
-    'ب': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
-    'ل': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
+    'ش': { id: 'path-l-pinky', name: 'انگشت کوچک دست چپ' },
+    'س': { id: 'path-l-ring', name: 'انگشت حلقه دست چپ' },
+    'ی': { id: 'path-l-middle', name: 'انگشت وسط دست چپ' },
+    'ب': { id: 'path-l-index', name: 'انگشت اشاره دست چپ' },
+    'ل': { id: 'path-l-index', name: 'انگشت اشاره دست چپ' },
 
-    'ظ': { id: 'l-pinky', name: 'انگشت کوچک دست چپ' },
-    'ط': { id: 'l-ring', name: 'انگشت حلقه دست چپ' },
-    'ز': { id: 'l-middle', name: 'انگشت وسط دست چپ' },
-    'ر': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
-    'ذ': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
+    'ظ': { id: 'path-l-pinky', name: 'انگشت کوچک دست چپ' },
+    'ط': { id: 'path-l-ring', name: 'انگشت حلقه دست چپ' },
+    'ز': { id: 'path-l-middle', name: 'انگشت وسط دست چپ' },
+    'ر': { id: 'path-l-index', name: 'انگشت اشاره دست چپ' },
+    'ذ': { id: 'path-l-index', name: 'انگشت اشاره دست چپ' },
 
-    'غ': { id: 'r-index', name: 'انگشت اشاره دست راست' },
-    'ع': { id: 'r-index', name: 'انگشت اشاره دست راست' },
-    'ه': { id: 'r-middle', name: 'انگشت وسط دست راست' },
-    'خ': { id: 'r-ring', name: 'انگشت حلقه دست راست' },
-    'ح': { id: 'r-pinky', name: 'انگشت کوچک دست راست' },
-    'ج': { id: 'r-pinky', name: 'انگشت کوچک دست راست' },
-    'چ': { id: 'r-pinky', name: 'انگشت کوچک دست راست' },
+    'غ': { id: 'path-r-index', name: 'انگشت اشاره دست راست' },
+    'ع': { id: 'path-r-index', name: 'انگشت اشاره دست راست' },
+    'ه': { id: 'path-r-middle', name: 'انگشت وسط دست راست' },
+    'خ': { id: 'path-r-ring', name: 'انگشت حلقه دست راست' },
+    'ح': { id: 'path-r-pinky', name: 'انگشت کوچک دست راست' },
+    'ج': { id: 'path-r-pinky', name: 'انگشت کوچک دست راست' },
+    'چ': { id: 'path-r-pinky', name: 'انگشت کوچک دست راست' },
 
-    'ا': { id: 'r-index', name: 'انگشت اشاره دست راست' },
-    'ت': { id: 'r-index', name: 'انگشت اشاره دست راست' },
-    'ن': { id: 'r-middle', name: 'انگشت وسط دست راست' },
-    'م': { id: 'r-ring', name: 'انگشت حلقه دست راست' },
-    'ک': { id: 'r-pinky', name: 'انگشت کوچک دست راست' },
-    'گ': { id: 'r-pinky', name: 'انگشت کوچک دست راست' },
+    'ا': { id: 'path-r-index', name: 'انگشت اشاره دست راست' },
+    'ت': { id: 'path-r-index', name: 'انگشت اشاره دست راست' },
+    'ن': { id: 'path-r-middle', name: 'انگشت وسط دست راست' },
+    'م': { id: 'path-r-ring', name: 'انگشت حلقه دست راست' },
+    'ک': { id: 'path-r-pinky', name: 'انگشت کوچک دست راست' },
+    'گ': { id: 'path-r-pinky', name: 'انگشت کوچک دست راست' },
 
-    'د': { id: 'r-index', name: 'انگشت اشاره دست راست' },
-    'پ': { id: 'r-index', name: 'انگشت اشاره دست راست' },
-    'و': { id: 'r-middle', name: 'انگشت وسط دست راست' },
+    'د': { id: 'path-r-index', name: 'انگشت اشاره دست راست' },
+    'پ': { id: 'path-r-index', name: 'انگشت اشاره دست راست' },
+    'و': { id: 'path-r-middle', name: 'انگشت وسط دست راست' },
 
-    ' ': { id: 'r-thumb', name: 'انگشت شست' }
+    ' ': { id: 'path-r-thumb', name: 'انگشت شست' }
 };
 
 let currentLesson = 0;
 let charIndex = 0;
 let mistakes = 0;
 let startTime = null;
+let timerInterval = null;
 let completedLessons = JSON.parse(localStorage.getItem('typing_completed') || '[]');
 
 function switchTab(tabName) {
@@ -89,10 +80,7 @@ function renderGrid() {
         const card = document.createElement('div');
         card.className = `lesson-card ${isDone ? 'completed' : ''}`;
         card.onclick = () => selectLesson(index);
-        card.innerHTML = `
-            <div>درس ${index + 1}</div>
-            ${isDone ? '<span class="badge">✓ پاس شد</span>' : ''}
-        `;
+        card.innerHTML = `<div>درس ${index + 1}</div>`;
         grid.appendChild(card);
     });
 }
@@ -112,7 +100,7 @@ function updateProgressUI() {
 }
 
 function resetProgress() {
-    if (confirm('آیا می‌خواهی تمام مراحل پاک بشن؟')) {
+    if (confirm('پاک کردن مراحل؟')) {
         completedLessons = [];
         localStorage.removeItem('typing_completed');
         updateProgressUI();
@@ -121,42 +109,79 @@ function resetProgress() {
 }
 
 function loadLesson() {
-    const textDisplay = document.getElementById('text-display');
-    if (!textDisplay) return;
-    
-    textDisplay.innerHTML = '';
+    const container = document.getElementById('cards-container');
+    if (!container) return;
+
+    container.innerHTML = '';
     charIndex = 0;
     mistakes = 0;
     startTime = null;
-    document.getElementById('lesson-num').innerText = currentLesson + 1;
+    clearInterval(timerInterval);
+    document.getElementById('time').innerText = "00:00";
 
     const text = lessons[currentLesson];
     text.split('').forEach((char, index) => {
-        const charSpan = document.createElement('span');
-        charSpan.innerText = char;
-        charSpan.classList.add('char');
-        if (index === 0) charSpan.classList.add('current');
-        textDisplay.appendChild(charSpan);
+        const card = document.createElement('div');
+        card.className = 'char-card';
+        card.innerText = char === ' ' ? '␣' : char;
+        if (index === 0) card.classList.add('current');
+        container.appendChild(card);
     });
 
-    updateVisualGuide(text[0]);
+    updateGuide(text[0]);
 }
 
-// فعال کردن هم‌زمان کلید روی کیبورد و انگشت مربوطه روی دست واقعی
-function updateVisualGuide(char) {
+function startTimer() {
+    startTime = new Date();
+    timerInterval = setInterval(() => {
+        const seconds = Math.floor((new Date() - startTime) / 1000);
+        const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+        const s = String(seconds % 60).padStart(2, '0');
+        document.getElementById('time').innerText = `${m}:${s}`;
+    }, 1000);
+}
+
+function updateGuide(char) {
     document.querySelectorAll('.key').forEach(k => k.classList.remove('active'));
-    document.querySelectorAll('.finger-zone').forEach(f => f.classList.remove('active'));
+    document.querySelectorAll('.finger-line').forEach(f => f.classList.remove('active'));
 
     const keyChar = char === ' ' ? ' ' : char;
     const keyElement = document.querySelector(`.key[data-key="${keyChar}"]`);
-    if (keyElement) keyElement.classList.add('active');
+    if (keyElement) {
+        keyElement.classList.add('active');
+        alignFingerToKey(char, keyElement);
+    }
 
     const info = fingerMapping[char];
     if (info) {
-        const fingerElement = document.getElementById(info.id);
-        if (fingerElement) fingerElement.classList.add('active');
-        document.getElementById('hand-hint').innerText = `حرف «${char}» ⬅ ${info.name}`;
+        const line = document.getElementById(info.id);
+        if (line) line.classList.add('active');
+        document.getElementById('hand-hint').innerText = `حرف «${char}» ⬅ با ${info.name}`;
     }
+}
+
+// تنظیم دقیق مقصد انیمیشن خط انگشت روی کیبورد
+function alignFingerToKey(char, keyElement) {
+    const info = fingerMapping[char];
+    if (!info) return;
+
+    const line = document.getElementById(info.id);
+    if (!line) return;
+
+    const keyboardWrapper = document.querySelector('.keyboard-wrapper');
+    const keyRect = keyElement.getBoundingClientRect();
+    const wrapRect = keyboardWrapper.getBoundingClientRect();
+
+    const targetX = (keyRect.left - wrapRect.left + keyRect.width / 2) * (700 / wrapRect.width);
+    const targetY = (keyRect.top - wrapRect.top + keyRect.height / 2) * (350 / wrapRect.height);
+
+    const d = line.getAttribute('d');
+    const parts = d.split(' ');
+    
+    // جا به جایی انتهای خط به مرکز کلید هدف
+    parts[parts.length - 2] = targetX.toFixed(0);
+    parts[parts.length - 1] = targetY.toFixed(0);
+    line.setAttribute('d', parts.join(' '));
 }
 
 document.addEventListener('keydown', (e) => {
@@ -167,41 +192,42 @@ document.addEventListener('keydown', (e) => {
     const text = lessons[currentLesson];
     if (charIndex >= text.length) return;
 
-    if (!startTime) startTime = new Date();
+    if (!startTime) startTimer();
 
     const typedChar = e.key;
     const currentChar = text[charIndex];
-    const charSpans = document.getElementById('text-display').querySelectorAll('.char');
+    const cards = document.querySelectorAll('.char-card');
 
     if (e.key === ' ') e.preventDefault();
 
     if (typedChar === currentChar) {
-        charSpans[charIndex].classList.remove('current');
-        charSpans[charIndex].classList.add('correct');
+        cards[charIndex].classList.remove('current');
+        cards[charIndex].classList.add('correct');
         charIndex++;
 
         if (charIndex < text.length) {
-            charSpans[charIndex].classList.add('current');
-            updateVisualGuide(text[charIndex]);
+            cards[charIndex].classList.add('current');
+            updateGuide(text[charIndex]);
         } else {
+            clearInterval(timerInterval);
             if (!completedLessons.includes(currentLesson)) {
                 completedLessons.push(currentLesson);
                 localStorage.setItem('typing_completed', JSON.stringify(completedLessons));
             }
             setTimeout(() => {
-                alert(`درس ${currentLesson + 1} کامل شد!`);
+                alert(`آفرین! درس ${currentLesson + 1} کامل شد.`);
                 currentLesson = (currentLesson + 1) % lessons.length;
                 loadLesson();
             }, 100);
         }
     } else if (e.key.length === 1 && e.key !== 'Shift') {
-        charSpans[charIndex].classList.add('incorrect');
+        cards[charIndex].classList.add('incorrect');
         mistakes++;
     }
 
     if (startTime) {
         const timeElapsed = (new Date() - startTime) / 60000;
-        const wpm = Math.round((charIndex / 5) / timeElapsed) || 0;
+        const wpm = Math.round((charIndex / 5) / (timeElapsed || 0.01)) || 0;
         const accuracy = Math.max(0, Math.round(((charIndex - mistakes) / (charIndex || 1)) * 100));
         
         document.getElementById('wpm').innerText = wpm;
