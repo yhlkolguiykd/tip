@@ -1,3 +1,4 @@
+
 // ==========================================
 // دیتابیس ۵۰ درس استاندارد
 // ==========================================
@@ -67,11 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderLessonsGrid();
     updateProgressUI();
     window.addEventListener('keydown', handleKeyPress);
-    
-    const savedKey = localStorage.getItem('custom_ai_api_key');
-    const savedProvider = localStorage.getItem('custom_ai_provider');
-    if (savedKey) document.getElementById('userApiKey').value = savedKey;
-    if (savedProvider) document.getElementById('aiProvider').value = savedProvider;
 });
 
 function switchTab(tabName) {
@@ -278,111 +274,5 @@ function resetProgress() {
         renderLessonsGrid();
         updateProgressUI();
         switchTab('lessons');
-    }
-}
-
-function saveUserApiKey() {
-    const key = document.getElementById('userApiKey').value.trim();
-    const provider = document.getElementById('aiProvider').value;
-    if (key) {
-        localStorage.setItem('custom_ai_api_key', key);
-        localStorage.setItem('custom_ai_provider', provider);
-        alert('تنظیمات API با موفقیت ذخیره شد! 🔥');
-    } else {
-        localStorage.removeItem('custom_ai_api_key');
-        localStorage.removeItem('custom_ai_provider');
-        alert('کلید پاک شد.');
-    }
-}
-
-async function handleGenerateTopic() {
-    const topic = document.getElementById('aiTopicInput').value.trim();
-    const apiKey = localStorage.getItem('custom_ai_api_key');
-    const provider = localStorage.getItem('custom_ai_provider') || 'google';
-
-    if (!apiKey) {
-        alert('داشم لطفاً اول کلید API خود را در بخش تنظیمات بالا وارد کنید.');
-        return;
-    }
-
-    if (!topic) {
-        alert('لطفاً یک موضوع وارد کنید.');
-        return;
-    }
-
-    alert('در حال ارتباط با هوش مصنوعی...');
-
-    let apiUrl = "";
-    let requestBody = {};
-    let headers = { "Content-Type": "application/json" };
-    const promptText = `یک متن تمرینی کوتاه فارسی (حدود ۲۰ کلمه) درباره موضوع "${topic}" بنویس. فقط خود متن را بفرست و هیچ توضیح اضافی ننویس.`;
-
-    if (provider === 'google') {
-        apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-        requestBody = {
-            contents: [{
-                parts: [{ text: promptText }]
-            }]
-        };
-    } else {
-        headers["Authorization"] = `Bearer ${apiKey}`;
-        let modelName = "";
-        
-        if (provider === 'openrouter') {
-            apiUrl = "https://openrouter.ai/api/v1/chat/completions";
-            modelName = "meta-llama/llama-3-8b-instruct:free";
-        } else if (provider === 'groq') {
-            apiUrl = "https://api.groq.com/openai/v1/chat/completions";
-            modelName = "llama3-8b-8192";
-        } else if (provider === 'deepseek') {
-            apiUrl = "https://api.deepseek.com/chat/completions";
-            modelName = "deepseek-chat";
-        }
-
-        requestBody = {
-            model: modelName,
-            messages: [{ role: "user", content: promptText }]
-        };
-    }
-
-    try {
-        const res = await fetch(apiUrl, {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(requestBody)
-        });
-
-        if (!res.ok) {
-            const errData = await res.json();
-            console.error("API Error Details:", errData);
-            alert(`خطا از طرف سرور (کد ${res.status}): کلید API یا دسترسی را بررسی کنید.`);
-            return;
-        }
-
-        const data = await res.json();
-        let aiText = null;
-
-        if (provider === 'google') {
-            aiText = data.candidates && data.candidates[0].content.parts[0].text ? data.candidates[0].content.parts[0].text.trim() : null;
-        } else {
-            aiText = data.choices && data.choices[0] ? data.choices[0].message.content.trim() : null;
-        }
-
-        if (aiText) {
-            lessonsData.push({
-                id: lessonsData.length + 1,
-                title: `متن هوش مصنوعی: ${topic}`,
-                text: aiText,
-                fingerHint: "تمرین آزاد هوشمند",
-                minWpm: 15,
-                minAccuracy: 90
-            });
-            startLesson(lessonsData.length - 1);
-        } else {
-            alert('پاسخی از هوش مصنوعی دریافت نشد ساختار خروجی تغییر کرده است.');
-        }
-    } catch (err) {
-        console.error("Fetch Error:", err);
-        alert('خطا در برقراری ارتباط! احتمالاً خطای CORS مرورگر است یا اینترنت قطع است. کلید Groq یا OpenRouter را امتحان کن.');
     }
 }
