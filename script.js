@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgressUI();
     window.addEventListener('keydown', handleKeyPress);
     
-    // بارگذاری تنظیمات ذخیره شده
     const savedKey = localStorage.getItem('custom_ai_api_key');
     const savedProvider = localStorage.getItem('custom_ai_provider');
     if (savedKey) document.getElementById('userApiKey').value = savedKey;
@@ -170,7 +169,6 @@ function handleKeyPress(e) {
     if (pressedKey === 'ك') pressedKey = 'ک';
     if (pressedKey === 'ي') pressedKey = 'ی';
 
-    // روشن کردن کلید روی کیبورد مجازی
     document.querySelectorAll('.v-key').forEach(k => {
         if (k.getAttribute('data-key') === pressedKey) {
             k.classList.add('active-key');
@@ -283,7 +281,6 @@ function resetProgress() {
     }
 }
 
-// ذخیره تنظیمات API
 function saveUserApiKey() {
     const key = document.getElementById('userApiKey').value.trim();
     const provider = document.getElementById('aiProvider').value;
@@ -298,11 +295,10 @@ function saveUserApiKey() {
     }
 }
 
-// تولید متن با پشتیبانی از چند سرویس (OpenRouter, Groq, DeepSeek)
 async function handleGenerateTopic() {
     const topic = document.getElementById('aiTopicInput').value.trim();
     const apiKey = localStorage.getItem('custom_ai_api_key');
-    const provider = localStorage.getItem('custom_ai_provider') || 'openrouter';
+    const provider = localStorage.getItem('custom_ai_provider') || 'google';
 
     if (!apiKey) {
         alert('داشم لطفاً اول کلید API خود را در بخش تنظیمات بالا وارد کنید.');
@@ -317,36 +313,53 @@ async function handleGenerateTopic() {
     alert('در حال ارتباط با هوش مصنوعی...');
 
     let apiUrl = "";
-    let modelName = "";
-    let headers = {
-        "Authorization": `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
-    };
+    let requestBody = {};
+    let headers = { "Content-Type": "application/json" };
+    const promptText = `یک متن تمرینی کوتاه فارسی (حدود ۲۰ کلمه) درباره موضوع "${topic}" بنویس. فقط خود متن را بفرست و هیچ توضیح اضافی ننویس.`;
 
-    // تنظیم آدرس و مدل بسته به انتخاب کاربر
-    if (provider === 'openrouter') {
-        apiUrl = "https://openrouter.ai/api/v1/chat/completions";
-        modelName = "meta-llama/llama-3-8b-instruct:free";
-    } else if (provider === 'groq') {
-        apiUrl = "https://api.groq.com/openai/v1/chat/completions";
-        modelName = "llama3-8b-8192";
-    } else if (provider === 'deepseek') {
-        apiUrl = "https://api.deepseek.com/chat/completions";
-        modelName = "deepseek-chat";
+    if (provider === 'google') {
+        apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        requestBody = {
+            contents: [{
+                parts: [{ text: promptText }]
+            }]
+        };
+    } else {
+        headers["Authorization"] = `Bearer ${apiKey}`;
+        let modelName = "";
+        
+        if (provider === 'openrouter') {
+            apiUrl = "https://openrouter.ai/api/v1/chat/completions";
+            modelName = "meta-llama/llama-3-8b-instruct:free";
+        } else if (provider === 'groq') {
+            apiUrl = "https://api.groq.com/openai/v1/chat/completions";
+            modelName = "llama3-8b-8192";
+        } else if (provider === 'deepseek') {
+            apiUrl = "https://api.deepseek.com/chat/completions";
+            modelName = "deepseek-chat";
+        }
+
+        requestBody = {
+            model: modelName,
+            messages: [{ role: "user", content: promptText }]
+        };
     }
 
     try {
         const res = await fetch(apiUrl, {
             method: "POST",
             headers: headers,
-            body: JSON.stringify({
-                model: modelName,
-                messages: [{ role: "user", content: `یک متن تمرینی کوتاه فارسی (حدود ۲۰ کلمه) درباره موضوع "${topic}" بنویس. فقط خود متن را بفرست و هیچ توضیح اضافی ننویس.` }]
-            })
+            body: JSON.stringify(requestBody)
         });
 
         const data = await res.json();
-        const aiText = data.choices && data.choices[0] ? data.choices[0].message.content.trim() : null;
+        let aiText = null;
+
+        if (provider === 'google') {
+            aiText = data.candidates && data.candidates[0].content.parts[0].text ? data.candidates[0].content.parts[0].text.trim() : null;
+        } else {
+            aiText = data.choices && data.choices[0] ? data.choices[0].message.content.trim() : null;
+        }
 
         if (aiText) {
             lessonsData.push({
@@ -359,7 +372,7 @@ async function handleGenerateTopic() {
             });
             startLesson(lessonsData.length - 1);
         } else {
-            alert('خطا در دریافت پاسخ از هوش مصنوعی. کلید یا مدل را بررسی کنید.');
+            alert('خطا در دریافت پاسخ از هوش مصنوعی. کلید API را بررسی کنید.');
         }
     } catch (err) {
         console.error(err);
