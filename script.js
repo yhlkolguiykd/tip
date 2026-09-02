@@ -2,7 +2,6 @@
 // ۱. دیتابیس ۵۰ درس استاندارد تایپ ده انگشتی
 // ==========================================
 const lessonsData = [
-    // مرحله اول: ردیف خانه (Home Row)
     { id: 1, title: "درس ۱: کلیدهای ت و ن", text: "تتت ننن تنت نتن تتن نتت تتا ننت", fingerHint: "انگشت اشاره راست (ت) | انگشت اشاره چپ (ن)" },
     { id: 2, title: "درس ۲: کلیدهای م و ک", text: "ممم ککک مکک ک مم تکم نمک کمت مکن", fingerHint: "انگشت وسط راست (م) | انگشت وسط چپ (ک)" },
     { id: 3, title: "درس ۳: کلیدهای ب و ی", text: "ببب ییی بیی یبی ببت نین مبی کیب", fingerHint: "انگشت حلقه راست (ب) | انگشت حلقه چپ (ی)" },
@@ -13,8 +12,6 @@ const lessonsData = [
     { id: 8, title: "درس ۸: کلید Space (فاصله)", text: "ت ن م ک ب ی ش س ا ل گ سلام من", fingerHint: "فشار دادن کلید فاصله با انگشت شست راست یا چپ" },
     { id: 9, title: "درس ۹: واژه‌سازی ردیف خانه", text: "سلام من به شما کلام سنگین بوی گل", fingerHint: "ترکیب کامل کلیدهای ردیف وسط" },
     { id: 10, title: "درس ۱۰: آزمون ردیف خانه", text: "سنت لک لک بت کلم ماسک سگک نسیم", fingerHint: "آزمون تسلط کامل بر ردیف وسط" },
-
-    // مرحله دوم: ردیف بالا (Top Row)
     { id: 11, title: "درس ۱۱: کلیدهای ف و ق", text: "ففف ققق فقف فلق قفل کیف مشق", fingerHint: "انتقال انگشت اشاره به بالا: ف (چپ)، ق (راست)" },
     { id: 12, title: "درس ۱۲: کلیدهای غ و ع", text: "غغغ ععع غعغ مرغ مرغک عقل علی عاقل", fingerHint: "انگشت اشاره و وسط به سمت بالا" },
     { id: 13, title: "درس ۱۳: کلیدهای ه و خ", text: "ههه خخخ هخه ماه خاه خانه شاخه نهان", fingerHint: "انگشت وسط و حلقه به سمت بالا" },
@@ -25,8 +22,6 @@ const lessonsData = [
     { id: 18, title: "درس ۱۸: جمله‌سازی کوتاه ۱", text: "علی به خانه رفت مرغابی در حوض است", fingerHint: "تمرکز بر روان تایپ کردن" },
     { id: 19, title: "درس ۱۹: جمله‌سازی کوتاه ۲", text: "رضا قفل صندوق را باز کرد", fingerHint: "دقت بالای ۹۵ درصد" },
     { id: 20, title: "درس ۲۰: آزمون ردیف بالا", text: "صبح زود خورشید طلوع کرد و بیدار شدیم", fingerHint: "آزمون تسلط بر ردیف بالا و وسط" },
-
-    // مرحله سوم: ردیف پایین (Bottom Row)
     { id: 21, title: "درس ۲۱: کلیدهای ر و ز", text: "ررر ززز رزرز روز روزه رز راز زاری", fingerHint: "انتقال انگشت اشاره به پایین: ر (چپ)، ز (راست)" },
     { id: 22, title: "درس ۲۲: کلیدهای ذ و د", text: "ذذذ ددد ذدذ ذرذ ذرّه درخت ذره بین", fingerHint: "انتقال انگشت به پایین و چپ/راست" },
     { id: 23, title: "درس ۲۳: کلیدهای ط و ظ", text: "ططط ظظظ طظط طوطی خط حافظ ظفر حیاط", fingerHint: "انگشت حلقه به سمت پایین" },
@@ -37,8 +32,6 @@ const lessonsData = [
     { id: 28, title: "درس ۲۸: جملات متداول ۲", text: "ورزش کردن باعث سلامتی روح و جسم است", fingerHint: "حفظ ریتم منظم تایپ" },
     { id: 29, title: "درس ۲۹: تمرین سرعت ردیف پایین", text: "ظفر با دقت به خطوط دفتر نگاه کرد", fingerHint: "افزایش سرعت تایپ" },
     { id: 30, title: "درس ۳۰: آزمون جامع کیبورد", text: "پژوهشگران در آزمایشگاه موفق به کشف جدیدی شدند", fingerHint: "ارزیابی کلی تسلط بر حروف" },
-
-    // مرحله چهارم: واژه‌سازی، جمله‌سازی و متون کاربردی (۳۱ تا ۵۰)
     { id: 31, title: "درس ۳۱: کلمات پرتکرار ۱", text: "این است که برای با از به در کجاست", fingerHint: "تایپ سریع کلمات کوتاه پرکاربرد" },
     { id: 32, title: "درس ۳۲: کلمات پرتکرار ۲", text: "آنها همه چیز را درباره برنامه‌نویسی می‌دانند", fingerHint: "افزایش سرعت در کلمات بلند" },
     { id: 33, title: "درس ۳۳: متن متوالی ۱", text: "تایپ ده انگشتی مهارتی است که با تمرین به دست می‌آید", fingerHint: "نگاه فقط به صفحه نمایش" },
@@ -61,20 +54,17 @@ const lessonsData = [
     { id: 50, title: "درس ۵۰: غول مرحله آخر (فارغ‌التحصیلی)", text: "تبریک می‌گویم شما اکنون به یک تایپیست حرفه‌ای ده انگشتی تبدیل شده‌اید و بر کیبورد تسلط کامل دارید", fingerHint: "تمرین نهایی دوره" }
 ];
 
-// نقشه اتصال حروف به شناسه مسیرهای SVG انگشتان
+// نقشه اتصال حروف به انگشت‌های دست چپ و راست
 const charToFingerMap = {
-    'ض': 'path-l-pinky', 'ص': 'path-l-ring', 'ث': 'path-l-middle', 'ق': 'path-l-index', 'ف': 'path-l-index',
-    'غ': 'path-r-index', 'ع': 'path-r-index', 'ه': 'path-r-middle', 'خ': 'path-r-ring', 'ح': 'path-r-pinky', 'ج': 'path-r-pinky', 'چ': 'path-r-pinky',
-    'ش': 'path-l-pinky', 'س': 'path-l-ring', 'ی': 'path-l-middle', 'ب': 'path-l-index', 'ل': 'path-l-index',
-    'ا': 'path-r-index', 'ت': 'path-r-index', 'ن': 'path-r-middle', 'م': 'path-r-ring', 'ک': 'path-r-pinky', 'گ': 'path-r-pinky',
-    'ظ': 'path-l-pinky', 'ط': 'path-l-ring', 'ز': 'path-l-middle', 'ر': 'path-l-index', 'ذ': 'path-l-index',
-    'د': 'path-r-index', 'پ': 'path-r-middle', 'و': 'path-r-ring',
-    ' ': 'path-r-thumb'
+    'ض': 'finger-l-pinky', 'ص': 'finger-l-ring', 'ث': 'finger-l-middle', 'ق': 'finger-l-index', 'ف': 'finger-l-index',
+    'غ': 'finger-r-index', 'ع': 'finger-r-index', 'ه': 'finger-r-middle', 'خ': 'finger-r-ring', 'ح': 'finger-r-pinky', 'ج': 'finger-r-pinky', 'چ': 'finger-r-pinky',
+    'ش': 'finger-l-pinky', 'س': 'finger-l-ring', 'ی': 'finger-l-middle', 'ب': 'finger-l-index', 'ل': 'finger-l-index',
+    'ا': 'finger-r-index', 'ت': 'finger-r-index', 'ن': 'finger-r-middle', 'م': 'finger-r-ring', 'ک': 'finger-r-pinky', 'گ': 'finger-r-pinky',
+    'ظ': 'finger-l-pinky', 'ط': 'finger-l-ring', 'ز': 'finger-l-middle', 'ر': 'finger-l-index', 'ذ': 'finger-l-index',
+    'د': 'finger-r-index', 'پ': 'finger-r-middle', 'و': 'finger-r-ring',
+    ' ': 'finger-r-thumb'
 };
 
-// ==========================================
-// ۲. وضعیت برنامه (State)
-// ==========================================
 let currentLessonIndex = 0;
 let currentCharIndex = 0;
 let startTime = null;
@@ -83,14 +73,10 @@ let totalTyped = 0;
 let totalErrors = 0;
 let completedLessons = JSON.parse(localStorage.getItem('typing_completed_lessons')) || [];
 
-// ==========================================
-// ۳. راه‌اندازی اولیه
-// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     renderLessonsGrid();
     updateProgressUI();
     window.addEventListener('keydown', handleKeyPress);
-    window.addEventListener('resize', highlightCurrentKeyAndFinger);
 });
 
 function switchTab(tabName) {
@@ -122,9 +108,6 @@ function renderLessonsGrid() {
     });
 }
 
-// ==========================================
-// ۴. منطق اجرای درس و انیمیشن پویا
-// ==========================================
 function startLesson(index) {
     currentLessonIndex = index;
     currentCharIndex = 0;
@@ -139,7 +122,7 @@ function startLesson(index) {
 
     switchTab('practice');
     renderCards();
-    setTimeout(highlightCurrentKeyAndFinger, 50);
+    highlightCurrentKeyAndFinger();
 }
 
 function renderCards() {
@@ -163,7 +146,7 @@ function renderCards() {
 
 function highlightCurrentKeyAndFinger() {
     document.querySelectorAll('.key').forEach(k => k.classList.remove('active'));
-    document.querySelectorAll('.finger-line').forEach(f => f.classList.remove('active'));
+    document.querySelectorAll('.finger-node').forEach(f => f.classList.remove('active'));
 
     const currentText = lessonsData[currentLessonIndex].text;
     if (currentCharIndex >= currentText.length) return;
@@ -177,22 +160,7 @@ function highlightCurrentKeyAndFinger() {
         const fingerId = charToFingerMap[targetChar];
         if (fingerId) {
             const fingerEl = document.getElementById(fingerId);
-            const wrapper = document.querySelector('.keyboard-wrapper').getBoundingClientRect();
-            const keyRect = targetKeyEl.getBoundingClientRect();
-
-            if (wrapper.width === 0) return;
-
-            const targetX = keyRect.left - wrapper.left + (keyRect.width / 2);
-            const targetY = keyRect.top - wrapper.top + (keyRect.height / 2);
-
-            const startX = fingerId.startsWith('path-l') ? wrapper.width * 0.35 : wrapper.width * 0.65;
-            const startY = wrapper.height + 20;
-
-            const controlX = (startX + targetX) / 2;
-            const controlY = (startY + targetY) / 2 + 30;
-
-            fingerEl.setAttribute('d', `M ${startX} ${startY} Q ${controlX} ${controlY} ${targetX} ${targetY}`);
-            fingerEl.classList.add('active');
+            if (fingerEl) fingerEl.classList.add('active');
         }
     }
 }
@@ -241,9 +209,6 @@ function handleKeyPress(e) {
     updateStats();
 }
 
-// ==========================================
-// ۵. محاسبه آمار و اتمام درس
-// ==========================================
 function updateStats() {
     if (!startTime) return;
 
@@ -284,9 +249,6 @@ function finishLesson() {
     }
 }
 
-// ==========================================
-// ۶. مدیریت پیشرفت و ریست
-// ==========================================
 function updateProgressUI() {
     const total = lessonsData.length;
     const completed = completedLessons.length;
