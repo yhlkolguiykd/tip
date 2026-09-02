@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>آموزش تایپ ده انگشتی فارسی</title>
+    <title>تمرین تایپ ده انگشتی</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <!-- منوی بالای سایت -->
+        <!-- منوی اصلی -->
         <nav class="nav-bar">
-            <button class="nav-btn active" onclick="switchTab('home')">خانه و مراحل</button>
+            <button class="nav-btn active" onclick="switchTab('home')">صفحه اصلی و مراحل</button>
             <button class="nav-btn" onclick="switchTab('practice')">محیط تمرین</button>
             <button class="nav-btn" onclick="switchTab('progress')">پیشرفت من</button>
         </nav>
 
-        <!-- ۱. صفحه اصلی و لیست مراحل -->
+        <!-- ۱. صفحه هوم (لیست کامل مراحل) -->
         <div id="home-tab" class="tab-content active">
-            <h1>انتخاب مرحله تمرین</h1>
-            <p class="subtitle">یکی از ۵۰ مرحله زیر را برای شروع تایپ انتخاب کنید:</p>
+            <h1>مراحل تمرین تایپ</h1>
+            <p class="subtitle">برای شروع، روی یکی از مراحل زیر کلیک کن:</p>
             <div class="lessons-grid" id="lessons-grid"></div>
         </div>
 
-        <!-- ۲. محیط اصلی تمرین -->
+        <!-- ۲. محیط تمرین -->
         <div id="practice-tab" class="tab-content">
             <div class="stats">
                 <div>سرعت: <span id="wpm">0</span> WPM</div>
@@ -49,14 +49,14 @@
                 </div>
 
                 <div class="hands-guide">
-                    <div class="hand left-hand" id="left-hand">
+                    <div class="hand left-hand">
                         <div class="finger pinky" id="l-pinky"></div>
                         <div class="finger ring" id="l-ring"></div>
                         <div class="finger middle" id="l-middle"></div>
                         <div class="finger index" id="l-index"></div>
                         <div class="thumb" id="l-thumb"></div>
                     </div>
-                    <div class="hand right-hand" id="right-hand">
+                    <div class="hand right-hand">
                         <div class="thumb" id="r-thumb"></div>
                         <div class="finger index" id="r-index"></div>
                         <div class="finger middle" id="r-middle"></div>
@@ -67,18 +67,18 @@
             </div>
         </div>
 
-        <!-- ۳. بخش گزارش پیشرفت -->
+        <!-- ۳. صفحه پیشرفت -->
         <div id="progress-tab" class="tab-content">
-            <h1>کارنامه پیشرفت شما</h1>
+            <h1>گزارش پیشرفت</h1>
             <div class="progress-card">
                 <div class="progress-bar-container">
                     <div class="progress-bar" id="progress-bar"></div>
                 </div>
-                <p class="progress-text" id="progress-text">۰٪ از دوره تکمیل شده است</p>
+                <p class="progress-text" id="progress-text">۰٪ تکمیل شده</p>
                 <div class="stats-summary">
-                    <div>دروس تکمیل شده: <span id="completed-count">0</span> / 50</div>
+                    دروس تکمیل‌شده: <span id="completed-count">0</span> از ۵۰
                 </div>
-                <button class="reset-btn" onclick="resetProgress()">ریست کردن پیشرفت</button>
+                <button class="reset-btn" onclick="resetProgress()">شروع مجدد دوره</button>
             </div>
         </div>
     </div>
