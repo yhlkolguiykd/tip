@@ -182,7 +182,7 @@ body {
     font-size: 0.95rem;
 }
 
-/* کیبورد مجازی و اصلاح قطعی ساختار افقی */
+/* کیبورد مجازی و ساختار افقی */
 .virtual-keyboard {
     background: #11111b;
     padding: 20px;
@@ -218,12 +218,12 @@ body {
     transition: 0.08s;
 }
 
-/* رنگ‌بندی دقیق انگشتان مشابه RapidTyping */
-.v-key.pink { background-color: #d35400; }  /* نارنجی/صورتی */
-.v-key.blue { background-color: #2980b9; }  /* آبی */
-.v-key.green { background-color: #27ae60; } /* سبز */
-.v-key.yellow { background-color: #d4ac0d; }/* زرد */
-.v-key.purple { background-color: #8e44ad; }/* بنفش */
+/* رنگ‌بندی استاندارد انگشتان */
+.v-key.pink { background-color: #e74c3c; }   /* انگشت کوچک (قرمز/صورتی) */
+.v-key.blue { background-color: #3498db; }   /* انگشت حلقه (آبی) */
+.v-key.green { background-color: #2ecc71; }  /* انگشت میانی (سبز) */
+.v-key.yellow { background-color: #f1c40f; color: #2c3e50; } /* انگشت اشاره (زرد با خوانایی بالا) */
+.v-key.purple { background-color: #9b59b6; } /* دکمه‌های خاص/میانی (بنفش) */
 
 .v-key.active-key {
     background-color: #fff !important;
