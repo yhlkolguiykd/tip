@@ -3,137 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>کلاس آموزش تایپ ده انگشتی</title>
+    <title>آموزش تایپ ده انگشتی هوشمند</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="app-container">
-        <!-- تب‌های بالای صفحه -->
-        <nav class="nav-bar">
-            <button class="nav-btn active" onclick="switchTab('home')">خانه و دروس</button>
-            <button class="nav-btn" onclick="switchTab('practice')">محیط تمرین</button>
-            <button class="nav-btn" onclick="switchTab('progress')">پیشرفت و آمار</button>
-        </nav>
+        <!-- منوی ناوبری بالا -->
+        <header class="app-header">
+            <h1>⌨️ آموزش تایپ ده انگشتی</h1>
+            <nav class="nav-buttons">
+                <button class="nav-btn active" onclick="switchTab('lessons')">درس‌ها</button>
+                <button class="nav-btn" onclick="switchTab('practice')">تمرین</button>
+                <button class="nav-btn" onclick="switchTab('ai-practice')">تمرین هوشمند AI 🤖</button>
+                <button class="nav-btn" onclick="switchTab('progress')">پیشرفت من</button>
+            </nav>
+        </header>
 
-        <!-- بخش اصلی: لیست دروس -->
-        <div id="home-tab" class="tab-content active">
-            <h2>لیست دروس آموزش تایپ</h2>
-            <div class="lessons-grid" id="lessons-grid"></div>
-        </div>
+        <!-- بخش تب‌ها -->
+        <main class="content-body">
 
-        <!-- بخش تمرین -->
-        <div id="practice-tab" class="tab-content">
-            <div class="stats-bar">
-                <div class="stat-item">زمان: <span id="time">00:00</span></div>
-                <div class="stat-item">سرعت: <span id="wpm">0</span> <small style="font-size: 0.8rem; color:#a6adc8;">کلمه در دقیقه</small></div>
-                <div class="stat-item">دقت: <span id="accuracy">100</span>٪</div>
-            </div>
+            <!-- تب ۱: لیست دروس -->
+            <section id="lessons-tab" class="tab-content active">
+                <h2>انتخاب درس (۵۰ مرحله استاندارد)</h2>
+                <div class="lessons-grid" id="lessons-grid">
+                    <!-- دروس با جاوااسکریپت لود میشن -->
+                </div>
+            </section>
 
-            <div class="cards-container" id="cards-container"></div>
-            <div class="hand-hint" id="hand-hint">راهنما: -</div>
+            <!-- تب ۲: صفحه تمرین -->
+            <section id="practice-tab" class="tab-content">
+                <div class="stats-bar">
+                    <div>زمان: <span id="time">00:00</span></div>
+                    <div>سرعت: <span id="wpm">0</span> WPM</div>
+                    <div>دقت: <span id="accuracy">100</span>٪</div>
+                </div>
 
-            <!-- کیبورد و دست‌های گرافیکی -->
-            <div class="keyboard-wrapper">
-                <div class="keyboard" id="keyboard">
-                    <div class="row">
-                        <div class="key" data-key="ض">ض</div>
-                        <div class="key" data-key="ص">ص</div>
-                        <div class="key" data-key="ث">ث</div>
-                        <div class="key" data-key="ق">ق</div>
-                        <div class="key" data-key="ف">ف</div>
-                        <div class="key" data-key="غ">غ</div>
-                        <div class="key" data-key="ع">ع</div>
-                        <div class="key" data-key="ه">ه</div>
-                        <div class="key" data-key="خ">خ</div>
-                        <div class="key" data-key="ح">ح</div>
-                        <div class="key" data-key="ج">ج</div>
-                        <div class="key" data-key="چ">چ</div>
-                    </div>
-                    <div class="row">
-                        <div class="key home-key" data-key="ش">ش</div>
-                        <div class="key home-key" data-key="س">س</div>
-                        <div class="key home-key" data-key="ی">ی</div>
-                        <div class="key home-key" data-key="ب">ب</div>
-                        <div class="key" data-key="ل">ل</div>
-                        <div class="key" data-key="ا">ا</div>
-                        <div class="key home-key" data-key="ت">ت</div>
-                        <div class="key home-key" data-key="ن">ن</div>
-                        <div class="key home-key" data-key="م">م</div>
-                        <div class="key home-key" data-key="ک">ک</div>
-                        <div class="key" data-key="گ">گ</div>
-                    </div>
-                    <div class="row">
-                        <div class="key" data-key="ظ">ظ</div>
-                        <div class="key" data-key="ط">ط</div>
-                        <div class="key" data-key="ز">ز</div>
-                        <div class="key" data-key="ر">ر</div>
-                        <div class="key" data-key="ذ">ذ</div>
-                        <div class="key" data-key="د">د</div>
-                        <div class="key" data-key="پ">پ</div>
-                        <div class="key" data-key="و">و</div>
-                    </div>
-                    <div class="row">
-                        <div class="key space" data-key=" ">فاصله (Space)</div>
+                <div class="typing-box">
+                    <div id="cards-container" class="cards-container">
+                        <!-- کارت‌های کاراکتر اینجا میان -->
                     </div>
                 </div>
 
-                <!-- نمایش گرافیکی دست چپ و راست -->
-                <div class="hands-container">
-                    <div class="hand-svg-wrapper left-hand">
-                        <svg viewBox="0 0 200 220" class="hand-svg">
-                            <path class="palm" d="M 40 130 C 40 100, 60 90, 100 90 C 140 90, 160 100, 160 130 C 160 180, 140 210, 100 210 C 60 210, 40 180, 40 130 Z" />
-                            <rect id="finger-l-pinky" class="finger-node" x="42" y="35" width="16" height="60" rx="8" />
-                            <rect id="finger-l-ring" class="finger-node" x="65" y="15" width="18" height="80" rx="9" />
-                            <rect id="finger-l-middle" class="finger-node" x="90" y="5" width="20" height="90" rx="10" />
-                            <rect id="finger-l-index" class="finger-node" x="117" y="20" width="18" height="75" rx="9" />
-                            <rect id="finger-l-thumb" class="finger-node" x="145" y="100" width="18" height="55" rx="9" transform="rotate(-35 150 125)" />
-                        </svg>
-                        <span class="hand-label">دست چپ</span>
-                    </div>
+                <div class="keyboard-visual">
+                    <!-- راهنمای انگشتان و کیبورد -->
+                    <div id="hand-hint" class="hand-hint">راهنما: دکمه‌ها را با انگشتان صحیح فشار دهید</div>
+                </div>
+            </section>
 
-                    <div class="hand-svg-wrapper right-hand">
-                        <svg viewBox="0 0 200 220" class="hand-svg">
-                            <path class="palm" d="M 40 130 C 40 100, 60 90, 100 90 C 140 90, 160 100, 160 130 C 160 180, 140 210, 100 210 C 60 210, 40 180, 40 130 Z" />
-                            <rect id="finger-r-thumb" class="finger-node" x="37" y="100" width="18" height="55" rx="9" transform="rotate(35 45 125)" />
-                            <rect id="finger-r-index" class="finger-node" x="65" y="20" width="18" height="75" rx="9" />
-                            <rect id="finger-r-middle" class="finger-node" x="90" y="5" width="20" height="90" rx="10" />
-                            <rect id="finger-r-ring" class="finger-node" x="117" y="15" width="18" height="80" rx="9" />
-                            <rect id="finger-r-pinky" class="finger-node" x="142" y="35" width="16" height="60" rx="8" />
-                        </svg>
-                        <span class="hand-label">دست راست</span>
+            <!-- تب ۳: تمرین هوشمند AI و تنظیمات -->
+            <section id="ai-practice-tab" class="tab-content">
+                <h2>هوش مصنوعی تمرین‌ساز</h2>
+                <p class="section-desc">موضوع دلخواهت رو وارد کن تا هوش مصنوعی برات متن تمرینی بسازه یا از بخش تنظیمات کلیدت رو وارد کن.</p>
+
+                <!-- تنظیمات کلید API (اختیاری برای کاربران حرفه‌ای) -->
+                <div class="settings-card">
+                    <h3>🔑 تنظیمات کلید API اختصاصی (اختیاری)</h3>
+                    <p>اگر کلید OpenRouter دارید برای استفاده بی‌نهایت وارد کنید، در غیر این صورت خالی بگذارید.</p>
+                    <div class="input-group">
+                        <input type="password" id="userApiKey" placeholder="sk-or-v1-..." />
+                        <button onclick="saveUserApiKey()">ذخیره کلید</button>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- بخش پیشرفت کارآمد و پر جزئیات -->
-        <div id="progress-tab" class="tab-content">
-            <h2>کارنامه و میزان پیشرفت شما</h2>
-            <div class="progress-box">
+                <!-- تولید متن با موضوع دلخواه -->
+                <div class="ai-generator-card">
+                    <h3>✍️ تولید متن تمرینی با موضوع دلخواه</h3>
+                    <div class="input-group">
+                        <input type="text" id="aiTopicInput" placeholder="مثلاً: تکنولوژی، برنامه‌نویسی، فضا..." />
+                        <button onclick="handleGenerateTopic()">ساخت متن با AI</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- تب ۴: پیشرفت من -->
+            <section id="progress-tab" class="tab-content">
+                <h2>آمار و عملکرد شما</h2>
+                <div class="progress-stats-box">
+                    <div class="stat-card">
+                        <h3>دروس تکمیل شده</h3>
+                        <p id="completed-count">0 از 50</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>کل کلیدهای فشرده شده</h3>
+                        <p id="total-keys-typed">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>سطح فعلی</h3>
+                        <p id="user-level" style="color: #a6e3a1;">مبتدی 🥉</p>
+                    </div>
+                </div>
                 <div class="progress-bar-container">
-                    <div class="progress-bar" id="progress-bar"></div>
+                    <div id="progress-bar" class="progress-bar"></div>
                 </div>
-                <p id="progress-text" style="font-weight: bold; color: #89b4fa;">۰٪ تکمیل شده</p>
-                
-                <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 10px;">
-                    <div style="background: #181825; padding: 15px; border-radius: 8px; text-align: center;">
-                        <small style="color: #a6adc8;">دروس تکمیل شده</small>
-                        <h3 id="completed-count" style="margin-top: 5px; color: #a6e3a1;">0 از ۵۰</h3>
-                    </div>
-                    <div style="background: #181825; padding: 15px; border-radius: 8px; text-align: center;">
-                        <small style="color: #a6adc8;">سطح مهارت شما</small>
-                        <h3 id="user-level" style="margin-top: 5px; color: #f9e2af;">مبتدی 🥉</h3>
-                    </div>
-                    <div style="background: #181825; padding: 15px; border-radius: 8px; text-align: center;">
-                        <small style="color: #a6adc8;">کل کلیدهای تایپ‌شده</small>
-                        <h3 id="total-keys-typed" style="margin-top: 5px; color: #89b4fa;">0</h3>
-                    </div>
-                </div>
+                <p id="progress-text" style="text-align: center; margin-top: 10px;">0٪ تکمیل شده</p>
 
-                <button class="reset-btn" onclick="resetProgress()" style="margin-top: 10px;">ریست کردن تمام پیشرفت‌ها</button>
-            </div>
-        </div>
+                <button class="reset-btn" onclick="resetProgress()">ریست کردن پیشرفت‌ها</button>
+            </section>
+
+        </main>
     </div>
 
     <script src="script.js"></script>
