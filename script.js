@@ -318,7 +318,8 @@ async function handleGenerateTopic() {
     const promptText = `یک متن تمرینی کوتاه فارسی (حدود ۲۰ کلمه) درباره موضوع "${topic}" بنویس. فقط خود متن را بفرست و هیچ توضیح اضافی ننویس.`;
 
     if (provider === 'google') {
-        apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        // استفاده از مدل استاندارد و به‌روز جمنای
+        apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
         requestBody = {
             contents: [{
                 parts: [{ text: promptText }]
