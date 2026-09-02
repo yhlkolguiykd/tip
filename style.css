@@ -168,9 +168,44 @@ body {
 .hand-hint {
     text-align: center;
     background: #1e1e2e;
-    padding: 12px;
+    padding: 10px;
     border-radius: 8px;
     color: #a6adc8;
+}
+
+/* کیبورد مجازی */
+.virtual-keyboard {
+    background: #11111b;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 1px solid #313244;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.v-key {
+    background: #313244;
+    color: #cdd6f4;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    min-width: 32px;
+    text-align: center;
+    transition: 0.1s;
+}
+
+.v-key.active-key {
+    background: #89b4fa;
+    color: #11111b;
+    transform: scale(1.05);
 }
 
 /* بخش هوش مصنوعی و تنظیمات */
@@ -200,7 +235,6 @@ body {
 }
 
 .input-group input {
-    flex: 1;
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #45475a;
