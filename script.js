@@ -14,46 +14,46 @@ const lessons = [
     "امیدواریم این برنامه تمرینی به شما کمک کند تا به یک تایپیست حرفه‌ای و سریع تبدیل شوید", "تبریک می‌گوییم شما تمام مراحل تمرین تایپ ده انگشتی را با موفقیت و سرعت بالا به پایان رساندید"
 ];
 
-// نگاشت کلیدها به انگشت‌ها + جایگاه خانه اولیه (Home Row)
+// نگاشت تمام حروف کیبورد به انگشت مشخص دست واقعی
 const fingerMapping = {
-    'ض': { id: 'l-pinky', home: 'ش', name: 'انگشت کوچک دست چپ' },
-    'ص': { id: 'l-ring', home: 'س', name: 'انگشت حلقه دست چپ' },
-    'ث': { id: 'l-middle', home: 'ی', name: 'انگشت وسط دست چپ' },
-    'ق': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
-    'ف': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
+    'ض': { id: 'l-pinky', name: 'انگشت کوچک دست چپ' },
+    'ص': { id: 'l-ring', name: 'انگشت حلقه دست چپ' },
+    'ث': { id: 'l-middle', name: 'انگشت وسط دست چپ' },
+    'ق': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
+    'ف': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
 
-    'ش': { id: 'l-pinky', home: 'ش', name: 'انگشت کوچک دست چپ' },
-    'س': { id: 'l-ring', home: 'س', name: 'انگشت حلقه دست چپ' },
-    'ی': { id: 'l-middle', home: 'ی', name: 'انگشت وسط دست چپ' },
-    'ب': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
-    'ل': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
+    'ش': { id: 'l-pinky', name: 'انگشت کوچک دست چپ' },
+    'س': { id: 'l-ring', name: 'انگشت حلقه دست چپ' },
+    'ی': { id: 'l-middle', name: 'انگشت وسط دست چپ' },
+    'ب': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
+    'ل': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
 
-    'ظ': { id: 'l-pinky', home: 'ش', name: 'انگشت کوچک دست چپ' },
-    'ط': { id: 'l-ring', home: 'س', name: 'انگشت حلقه دست چپ' },
-    'ز': { id: 'l-middle', home: 'ی', name: 'انگشت وسط دست چپ' },
-    'ر': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
-    'ذ': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
+    'ظ': { id: 'l-pinky', name: 'انگشت کوچک دست چپ' },
+    'ط': { id: 'l-ring', name: 'انگشت حلقه دست چپ' },
+    'ز': { id: 'l-middle', name: 'انگشت وسط دست چپ' },
+    'ر': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
+    'ذ': { id: 'l-index', name: 'انگشت اشاره دست چپ' },
 
-    'غ': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
-    'ع': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
-    'ه': { id: 'r-middle', home: 'ن', name: 'انگشت وسط دست راست' },
-    'خ': { id: 'r-ring', home: 'م', name: 'انگشت حلقه دست راست' },
-    'ح': { id: 'r-pinky', home: 'ک', name: 'انگشت کوچک دست راست' },
-    'ج': { id: 'r-pinky', home: 'ک', name: 'انگشت کوچک دست راست' },
-    'چ': { id: 'r-pinky', home: 'ک', name: 'انگشت کوچک دست راست' },
+    'غ': { id: 'r-index', name: 'انگشت اشاره دست راست' },
+    'ع': { id: 'r-index', name: 'انگشت اشاره دست راست' },
+    'ه': { id: 'r-middle', name: 'انگشت وسط دست راست' },
+    'خ': { id: 'r-ring', name: 'انگشت حلقه دست راست' },
+    'ح': { id: 'r-pinky', name: 'انگشت کوچک دست راست' },
+    'ج': { id: 'r-pinky', name: 'انگشت کوچک دست راست' },
+    'چ': { id: 'r-pinky', name: 'انگشت کوچک دست راست' },
 
-    'ا': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
-    'ت': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
-    'ن': { id: 'r-middle', home: 'ن', name: 'انگشت وسط دست راست' },
-    'م': { id: 'r-ring', home: 'م', name: 'انگشت حلقه دست راست' },
-    'ک': { id: 'r-pinky', home: 'ک', name: 'انگشت کوچک دست راست' },
-    'گ': { id: 'r-pinky', home: 'ک', name: 'انگشت کوچک دست راست' },
+    'ا': { id: 'r-index', name: 'انگشت اشاره دست راست' },
+    'ت': { id: 'r-index', name: 'انگشت اشاره دست راست' },
+    'ن': { id: 'r-middle', name: 'انگشت وسط دست راست' },
+    'م': { id: 'r-ring', name: 'انگشت حلقه دست راست' },
+    'ک': { id: 'r-pinky', name: 'انگشت کوچک دست راست' },
+    'گ': { id: 'r-pinky', name: 'انگشت کوچک دست راست' },
 
-    'د': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
-    'پ': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
-    'و': { id: 'r-middle', home: 'ن', name: 'انگشت وسط دست راست' },
+    'د': { id: 'r-index', name: 'انگشت اشاره دست راست' },
+    'پ': { id: 'r-index', name: 'انگشت اشاره دست راست' },
+    'و': { id: 'r-middle', name: 'انگشت وسط دست راست' },
 
-    ' ': { id: 'r-thumb', home: ' ', name: 'انگشت شست' }
+    ' ': { id: 'r-thumb', name: 'انگشت شست' }
 };
 
 let currentLesson = 0;
@@ -78,7 +78,6 @@ function switchTab(tabName) {
 
     if (tabName === 'home') renderGrid();
     if (tabName === 'progress') updateProgressUI();
-    if (tabName === 'practice') setTimeout(resetFingersToHome, 100);
 }
 
 function renderGrid() {
@@ -140,49 +139,13 @@ function loadLesson() {
         textDisplay.appendChild(charSpan);
     });
 
-    resetFingersToHome();
     updateVisualGuide(text[0]);
 }
 
-// قرار دادن تمام انگشت‌ها در کلیدهای پایه (Home Row)
-function resetFingersToHome() {
-    const homePositions = {
-        'l-pinky': 'ش', 'l-ring': 'س', 'l-middle': 'ی', 'l-index': 'ب', 'l-thumb': ' ',
-        'r-thumb': ' ', 'r-index': 'ت', 'r-middle': 'ن', 'r-ring': 'م', 'r-pinky': 'ک'
-    };
-
-    Object.keys(homePositions).forEach(fingerId => {
-        moveFingerToKey(fingerId, homePositions[fingerId], false);
-    });
-}
-
-// حرکت نرم انگشت به سمت کلید هدف
-function moveFingerToKey(fingerId, keyChar, isActive = false) {
-    const fingerElement = document.getElementById(fingerId);
-    const keyElement = document.querySelector(`.key[data-key="${keyChar}"]`);
-    
-    if (!fingerElement || !keyElement) return;
-
-    const keyboardContainer = document.querySelector('.keyboard-container');
-    const keyRect = keyElement.getBoundingClientRect();
-    const containerRect = keyboardContainer.getBoundingClientRect();
-
-    const x = keyRect.left - containerRect.left + (keyRect.width / 2) - 18;
-    const y = keyRect.top - containerRect.top + (keyRect.height / 2) - 18;
-
-    fingerElement.style.left = `${x}px`;
-    fingerElement.style.top = `${y}px`;
-
-    if (isActive) {
-        fingerElement.classList.add('active');
-    } else {
-        fingerElement.classList.remove('active');
-    }
-}
-
+// فعال کردن هم‌زمان کلید روی کیبورد و انگشت مربوطه روی دست واقعی
 function updateVisualGuide(char) {
     document.querySelectorAll('.key').forEach(k => k.classList.remove('active'));
-    document.querySelectorAll('.finger-dot').forEach(f => f.classList.remove('active'));
+    document.querySelectorAll('.finger-zone').forEach(f => f.classList.remove('active'));
 
     const keyChar = char === ' ' ? ' ' : char;
     const keyElement = document.querySelector(`.key[data-key="${keyChar}"]`);
@@ -190,9 +153,9 @@ function updateVisualGuide(char) {
 
     const info = fingerMapping[char];
     if (info) {
-        resetFingersToHome();
-        moveFingerToKey(info.id, keyChar, true);
-        document.getElementById('hand-hint').innerText = `حرف «${char}» -> با ${info.name}`;
+        const fingerElement = document.getElementById(info.id);
+        if (fingerElement) fingerElement.classList.add('active');
+        document.getElementById('hand-hint').innerText = `حرف «${char}» ⬅ ${info.name}`;
     }
 }
 
