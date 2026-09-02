@@ -25,14 +25,16 @@
         <!-- ۲. محیط تمرین -->
         <div id="practice-tab" class="tab-content">
             <div class="stats">
+                <div>زمان: <span id="time">00:00</span></div>
                 <div>سرعت: <span id="wpm">0</span> WPM</div>
                 <div>دقت: <span id="accuracy">100</span>%</div>
-                <div>درس: <span id="lesson-num">1</span> از ۵۰</div>
             </div>
 
-            <div class="display-box" id="text-display"></div>
+            <!-- کارت‌های حروف (مشابه تایپو) -->
+            <div class="cards-container" id="cards-container"></div>
 
-            <div class="keyboard-container">
+            <!-- کیبورد با لایه دست متحرک -->
+            <div class="keyboard-wrapper">
                 <div class="keyboard" id="keyboard">
                     <div class="row">
                         <div class="key" data-key="ض">ض</div><div class="key" data-key="ص">ص</div><div class="key" data-key="ث">ث</div><div class="key" data-key="ق">ق</div><div class="key" data-key="ف">ف</div><div class="key" data-key="غ">غ</div><div class="key" data-key="ع">ع</div><div class="key" data-key="ه">ه</div><div class="key" data-key="خ">خ</div><div class="key" data-key="ح">ح</div><div class="key" data-key="ج">ج</div><div class="key" data-key="چ">چ</div>
@@ -48,39 +50,28 @@
                     </div>
                 </div>
 
-                <!-- دست واقعی و واقعی‌نما -->
-                <div class="real-hands-wrapper">
+                <!-- دست‌های شفاف واقع در لایه روی کیبورد -->
+                <svg class="hands-overlay-svg" viewBox="0 0 700 350">
                     <!-- دست چپ -->
-                    <div class="hand-svg-container left-hand-svg">
-                        <svg viewBox="0 0 200 220" class="hand-svg">
-                            <path class="hand-base" d="M30 200 C30 150 40 130 50 120 C40 80 45 40 55 30 C65 20 75 35 75 70 C75 35 85 15 95 15 C105 15 110 35 110 70 C110 30 120 20 130 20 C140 20 145 40 145 75 C145 45 155 40 162 45 C170 50 168 80 165 110 C180 120 185 135 180 150 C170 180 150 200 120 210 Z" fill="#2a2b3d" stroke="#525470" stroke-width="3"/>
-                            <!-- انگشتان چپ -->
-                            <rect id="l-pinky" class="finger-zone" x="48" y="25" width="22" height="60" rx="11" />
-                            <rect id="l-ring" class="finger-zone" x="83" y="10" width="22" height="70" rx="11" />
-                            <rect id="l-middle" class="finger-zone" x="118" y="15" width="22" height="70" rx="11" />
-                            <rect id="l-index" class="finger-zone" x="148" y="35" width="22" height="60" rx="11" />
-                            <rect id="l-thumb" class="finger-zone" x="155" y="115" width="26" height="45" rx="13" transform="rotate(-30 165 135)" />
-                        </svg>
-                        <span class="hand-label">دست چپ</span>
-                    </div>
-
+                    <g class="hand-group">
+                        <path id="path-l-pinky" class="finger-line" d="M 180 340 L 180 180 Q 180 140 180 120" />
+                        <path id="path-l-ring" class="finger-line" d="M 230 340 L 230 180 Q 230 140 230 120" />
+                        <path id="path-l-middle" class="finger-line" d="M 280 340 L 280 180 Q 280 140 280 120" />
+                        <path id="path-l-index" class="finger-line" d="M 330 340 L 330 180 Q 330 140 330 120" />
+                        <path id="path-l-thumb" class="finger-line" d="M 360 340 L 360 250 M 360 250 L 320 230" />
+                    </g>
                     <!-- دست راست -->
-                    <div class="hand-svg-container right-hand-svg">
-                        <svg viewBox="0 0 200 220" class="hand-svg">
-                            <path class="hand-base" d="M170 200 C170 150 160 130 150 120 C160 80 155 40 145 30 C135 20 125 35 125 70 C125 35 115 15 105 15 C95 15 90 35 90 70 C90 30 80 20 70 20 C60 20 55 40 55 75 C55 45 45 40 38 45 C30 50 32 80 35 110 C20 120 15 135 20 150 C30 180 50 200 80 210 Z" fill="#2a2b3d" stroke="#525470" stroke-width="3"/>
-                            <!-- انگشتان راست -->
-                            <rect id="r-thumb" class="finger-zone" x="18" y="115" width="26" height="45" rx="13" transform="rotate(30 30 135)" />
-                            <rect id="r-index" class="finger-zone" x="30" y="35" width="22" height="60" rx="11" />
-                            <rect id="r-middle" class="finger-zone" x="60" y="15" width="22" height="70" rx="11" />
-                            <rect id="r-ring" class="finger-zone" x="95" y="10" width="22" height="70" rx="11" />
-                            <rect id="r-pinky" class="finger-zone" x="130" y="25" width="22" height="60" rx="11" />
-                        </svg>
-                        <span class="hand-label">دست راست</span>
-                    </div>
-                </div>
+                    <g class="hand-group">
+                        <path id="path-r-thumb" class="finger-line" d="M 380 340 L 380 250 M 380 250 L 420 230" />
+                        <path id="path-r-index" class="finger-line" d="M 410 340 L 410 180 Q 410 140 410 120" />
+                        <path id="path-r-middle" class="finger-line" d="M 460 340 L 460 180 Q 460 140 460 120" />
+                        <path id="path-r-ring" class="finger-line" d="M 510 340 L 510 180 Q 510 140 510 120" />
+                        <path id="path-r-pinky" class="finger-line" d="M 560 340 L 560 180 Q 560 140 560 120" />
+                    </g>
+                </svg>
             </div>
 
-            <div class="hand-hint" id="hand-hint">دست‌ها را مطابق تصویر روی کیبورد قرار بده</div>
+            <div class="hand-hint" id="hand-hint">انگشت اشاره راست روی «ت» و چپ روی «ب»</div>
         </div>
 
         <!-- ۳. صفحه پیشرفت -->
