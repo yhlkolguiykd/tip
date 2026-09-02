@@ -48,23 +48,39 @@
                     </div>
                 </div>
 
-                <!-- لایه انگشت‌های انیمیشنی روی کیبورد -->
-                <div class="hands-overlay">
-                    <div class="finger-dot" id="l-pinky"><span>کوچک</span></div>
-                    <div class="finger-dot" id="l-ring"><span>حلقه</span></div>
-                    <div class="finger-dot" id="l-middle"><span>وسط</span></div>
-                    <div class="finger-dot" id="l-index"><span>اشاره</span></div>
-                    <div class="finger-dot" id="l-thumb"><span>شست</span></div>
+                <!-- دست واقعی و واقعی‌نما -->
+                <div class="real-hands-wrapper">
+                    <!-- دست چپ -->
+                    <div class="hand-svg-container left-hand-svg">
+                        <svg viewBox="0 0 200 220" class="hand-svg">
+                            <path class="hand-base" d="M30 200 C30 150 40 130 50 120 C40 80 45 40 55 30 C65 20 75 35 75 70 C75 35 85 15 95 15 C105 15 110 35 110 70 C110 30 120 20 130 20 C140 20 145 40 145 75 C145 45 155 40 162 45 C170 50 168 80 165 110 C180 120 185 135 180 150 C170 180 150 200 120 210 Z" fill="#2a2b3d" stroke="#525470" stroke-width="3"/>
+                            <!-- انگشتان چپ -->
+                            <rect id="l-pinky" class="finger-zone" x="48" y="25" width="22" height="60" rx="11" />
+                            <rect id="l-ring" class="finger-zone" x="83" y="10" width="22" height="70" rx="11" />
+                            <rect id="l-middle" class="finger-zone" x="118" y="15" width="22" height="70" rx="11" />
+                            <rect id="l-index" class="finger-zone" x="148" y="35" width="22" height="60" rx="11" />
+                            <rect id="l-thumb" class="finger-zone" x="155" y="115" width="26" height="45" rx="13" transform="rotate(-30 165 135)" />
+                        </svg>
+                        <span class="hand-label">دست چپ</span>
+                    </div>
 
-                    <div class="finger-dot" id="r-thumb"><span>شست</span></div>
-                    <div class="finger-dot" id="r-index"><span>اشاره</span></div>
-                    <div class="finger-dot" id="r-middle"><span>وسط</span></div>
-                    <div class="finger-dot" id="r-ring"><span>حلقه</span></div>
-                    <div class="finger-dot" id="r-pinky"><span>کوچک</span></div>
+                    <!-- دست راست -->
+                    <div class="hand-svg-container right-hand-svg">
+                        <svg viewBox="0 0 200 220" class="hand-svg">
+                            <path class="hand-base" d="M170 200 C170 150 160 130 150 120 C160 80 155 40 145 30 C135 20 125 35 125 70 C125 35 115 15 105 15 C95 15 90 35 90 70 C90 30 80 20 70 20 C60 20 55 40 55 75 C55 45 45 40 38 45 C30 50 32 80 35 110 C20 120 15 135 20 150 C30 180 50 200 80 210 Z" fill="#2a2b3d" stroke="#525470" stroke-width="3"/>
+                            <!-- انگشتان راست -->
+                            <rect id="r-thumb" class="finger-zone" x="18" y="115" width="26" height="45" rx="13" transform="rotate(30 30 135)" />
+                            <rect id="r-index" class="finger-zone" x="30" y="35" width="22" height="60" rx="11" />
+                            <rect id="r-middle" class="finger-zone" x="60" y="15" width="22" height="70" rx="11" />
+                            <rect id="r-ring" class="finger-zone" x="95" y="10" width="22" height="70" rx="11" />
+                            <rect id="r-pinky" class="finger-zone" x="130" y="25" width="22" height="60" rx="11" />
+                        </svg>
+                        <span class="hand-label">دست راست</span>
+                    </div>
                 </div>
             </div>
-            
-            <div class="hand-hint" id="hand-hint">انگشت اشاره چپ روی «ب» و راست روی «ت» قرار می‌گیرد</div>
+
+            <div class="hand-hint" id="hand-hint">دست‌ها را مطابق تصویر روی کیبورد قرار بده</div>
         </div>
 
         <!-- ۳. صفحه پیشرفت -->
