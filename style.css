@@ -121,7 +121,7 @@ body {
     cursor: not-allowed;
 }
 
-/* محیط تمرین - اصلاح جهت کارت‌ها از راست به چپ */
+/* محیط تمرین - فیکس کامل جهت نمایش کارتها */
 .stats-bar {
     display: flex;
     justify-content: space-around;
@@ -135,7 +135,7 @@ body {
 
 .cards-container {
     display: flex;
-    flex-direction: row-reverse; /* برای اینکه کارتها درست و از راست به چپ بچینن */
+    flex-direction: row; /* بازگشت به حالت استاندارد تا کلمات درست خوانده شوند */
     justify-content: center;
     gap: 10px;
     margin: 40px 0;
@@ -200,7 +200,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 6px;
-    direction: ltr; /* کیبورد فیزیکی استاندارد از چپ به راست راحت‌تره ولی کلیدها فارسی‌اند */
+    direction: ltr;
 }
 
 .v-key {
