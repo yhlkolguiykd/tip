@@ -352,6 +352,13 @@ async function handleGenerateTopic() {
             body: JSON.stringify(requestBody)
         });
 
+        if (!res.ok) {
+            const errData = await res.json();
+            console.error("API Error Details:", errData);
+            alert(`خطا از طرف سرور (کد ${res.status}): کلید API یا دسترسی را بررسی کنید.`);
+            return;
+        }
+
         const data = await res.json();
         let aiText = null;
 
@@ -372,10 +379,10 @@ async function handleGenerateTopic() {
             });
             startLesson(lessonsData.length - 1);
         } else {
-            alert('خطا در دریافت پاسخ از هوش مصنوعی. کلید API را بررسی کنید.');
+            alert('پاسخی از هوش مصنوعی دریافت نشد ساختار خروجی تغییر کرده است.');
         }
     } catch (err) {
-        console.error(err);
-        alert('خطا در برقراری ارتباط با سرور هوش مصنوعی!');
+        console.error("Fetch Error:", err);
+        alert('خطا در برقراری ارتباط! احتمالاً خطای CORS مرورگر است یا اینترنت قطع است. کلید Groq یا OpenRouter را امتحان کن.');
     }
 }
