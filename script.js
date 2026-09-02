@@ -1,11 +1,11 @@
 // ==========================================
-// دیتابیس ۵۰ درس استاندارد با حدعقل سرعت و دقت
+// دیتابیس ۵۰ درس استاندارد
 // ==========================================
 const lessonsData = [
     { id: 1, title: "درس ۱: کلیدهای ت و ن", text: "تتت ننن تنت نتن تتن نتت تتا ننت", fingerHint: "انگشت اشاره راست (ت) | انگشت اشاره چپ (ن)", minWpm: 8, minAccuracy: 90 },
     { id: 2, title: "درس ۲: کلیدهای م و ک", text: "ممم ککک مکک ک مم تکم نمک کمت مکن", fingerHint: "انگشت وسط راست (م) | انگشت وسط چپ (ک)", minWpm: 8, minAccuracy: 90 },
     { id: 3, title: "درس ۳: کلیدهای ب و ی", text: "ببب ییی بیی یبی ببت نین مبی کیب", fingerHint: "انگشت حلقه راست (ب) | انگشت حلقه چپ (ی)", minWpm: 9, minAccuracy: 90 },
-    { id: 4, title: "درس ۴: کلیدهای ش و س", text: "ششش سسس شسش سشش شبس یشس شمک سنت", fingerHint: "انگشت کوچک راست (ش) | انگشت کوچک چپ (س)", minWpm: 9, minAccuracy: 92 },
+    { id: 4, title: "درس ۴: کلیدهای ش و س", text: "ششش سسش شسش سشش شبس یشس شمک سنت", fingerHint: "انگشت کوچک راست (ش) | انگشت کوچک چپ (س)", minWpm: 9, minAccuracy: 92 },
     { id: 5, title: "درس ۵: ترکیبی ردیف خانه اصلی", text: "تسنب نمکک بستم کمین سیم شیک منبت", fingerHint: "تمرکز روی تمام انگشتان ردیف خانه", minWpm: 10, minAccuracy: 92 },
     { id: 6, title: "درس ۶: کلیدهای ا و ل", text: "ااا للل الم لاما اسم رسم کلام سلام", fingerHint: "حرکت کششی انگشت اشاره چپ (ا) و راست (ل)", minWpm: 10, minAccuracy: 92 },
     { id: 7, title: "درس ۷: کلید گ", text: "گگگ سگ سگک گلم نمگ برگ گندم سنگ", fingerHint: "حرکت کششی انگشت کوچک چپ (گ)", minWpm: 10, minAccuracy: 92 },
@@ -68,11 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgressUI();
     window.addEventListener('keydown', handleKeyPress);
     
-    // بارگذاری کلید ذخیره شده
-    const savedKey = localStorage.getItem('custom_openrouter_api_key');
-    if (savedKey) {
-        document.getElementById('userApiKey').value = savedKey;
-    }
+    // بارگذاری تنظیمات ذخیره شده
+    const savedKey = localStorage.getItem('custom_ai_api_key');
+    const savedProvider = localStorage.getItem('custom_ai_provider');
+    if (savedKey) document.getElementById('userApiKey').value = savedKey;
+    if (savedProvider) document.getElementById('aiProvider').value = savedProvider;
 });
 
 function switchTab(tabName) {
@@ -169,6 +169,14 @@ function handleKeyPress(e) {
     if (pressedKey === 'Spacebar' || pressedKey === ' ') pressedKey = ' ';
     if (pressedKey === 'ك') pressedKey = 'ک';
     if (pressedKey === 'ي') pressedKey = 'ی';
+
+    // روشن کردن کلید روی کیبورد مجازی
+    document.querySelectorAll('.v-key').forEach(k => {
+        if (k.getAttribute('data-key') === pressedKey) {
+            k.classList.add('active-key');
+            setTimeout(() => k.classList.remove('active-key'), 150);
+        }
+    });
 
     const targetChar = currentText[currentCharIndex];
     const currentCard = document.getElementById(`char-card-${currentCharIndex}`);
@@ -275,25 +283,29 @@ function resetProgress() {
     }
 }
 
-// ذخیره کلید API حرفه‌ای
+// ذخیره تنظیمات API
 function saveUserApiKey() {
     const key = document.getElementById('userApiKey').value.trim();
+    const provider = document.getElementById('aiProvider').value;
     if (key) {
-        localStorage.setItem('custom_openrouter_api_key', key);
-        alert('کلید API اختصاصی ذخیره شد! 🔥');
+        localStorage.setItem('custom_ai_api_key', key);
+        localStorage.setItem('custom_ai_provider', provider);
+        alert('تنظیمات API با موفقیت ذخیره شد! 🔥');
     } else {
-        localStorage.removeItem('custom_openrouter_api_key');
+        localStorage.removeItem('custom_ai_api_key');
+        localStorage.removeItem('custom_ai_provider');
         alert('کلید پاک شد.');
     }
 }
 
-// ساخت متن تمرینی با هوش مصنوعی (برای کاربران حرفه‌ای دارای کلید)
+// تولید متن با پشتیبانی از چند سرویس (OpenRouter, Groq, DeepSeek)
 async function handleGenerateTopic() {
     const topic = document.getElementById('aiTopicInput').value.trim();
-    const apiKey = localStorage.getItem('custom_openrouter_api_key');
+    const apiKey = localStorage.getItem('custom_ai_api_key');
+    const provider = localStorage.getItem('custom_ai_provider') || 'openrouter';
 
     if (!apiKey) {
-        alert('داشم لطفاً اول کلید API اختصاصی خود را در بخش بالا وارد کنید تا بتوانید از هوش مصنوعی متن بگیرید.');
+        alert('داشم لطفاً اول کلید API خود را در بخش تنظیمات بالا وارد کنید.');
         return;
     }
 
@@ -304,25 +316,39 @@ async function handleGenerateTopic() {
 
     alert('در حال ارتباط با هوش مصنوعی...');
 
+    let apiUrl = "";
+    let modelName = "";
+    let headers = {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json"
+    };
+
+    // تنظیم آدرس و مدل بسته به انتخاب کاربر
+    if (provider === 'openrouter') {
+        apiUrl = "https://openrouter.ai/api/v1/chat/completions";
+        modelName = "meta-llama/llama-3-8b-instruct:free";
+    } else if (provider === 'groq') {
+        apiUrl = "https://api.groq.com/openai/v1/chat/completions";
+        modelName = "llama3-8b-8192";
+    } else if (provider === 'deepseek') {
+        apiUrl = "https://api.deepseek.com/chat/completions";
+        modelName = "deepseek-chat";
+    }
+
     try {
-        const response = "https://openrouter.ai/api/v1/chat/completions";
-        const res = await fetch(response, {
+        const res = await fetch(apiUrl, {
             method: "POST",
-            headers: {
-                "Authorization": `Bearer ${apiKey}`,
-                "Content-Type": "application/json"
-            },
+            headers: headers,
             body: JSON.stringify({
-                model: "meta-llama/llama-3-8b-instruct:free",
-                messages: [{ role: "user", content: `یک متن تمرینی کوتاه فارسی (حدود ۲۰ کلمه) درباره موضوع "${topic}" بنویس. فقط خود متن را بفرست.` }]
+                model: modelName,
+                messages: [{ role: "user", content: `یک متن تمرینی کوتاه فارسی (حدود ۲۰ کلمه) درباره موضوع "${topic}" بنویس. فقط خود متن را بفرست و هیچ توضیح اضافی ننویس.` }]
             })
         });
 
         const data = await res.json();
-        const aiText = data.choices[0]?.message?.content?.trim();
+        const aiText = data.choices && data.choices[0] ? data.choices[0].message.content.trim() : null;
 
         if (aiText) {
-            // اضافه کردن به عنوان یک درس موقت و شروع تمرین
             lessonsData.push({
                 id: lessonsData.length + 1,
                 title: `متن هوش مصنوعی: ${topic}`,
@@ -332,8 +358,11 @@ async function handleGenerateTopic() {
                 minAccuracy: 90
             });
             startLesson(lessonsData.length - 1);
+        } else {
+            alert('خطا در دریافت پاسخ از هوش مصنوعی. کلید یا مدل را بررسی کنید.');
         }
     } catch (err) {
-        alert('خطا در دریافت متن از هوش مصنوعی!');
+        console.error(err);
+        alert('خطا در برقراری ارتباط با سرور هوش مصنوعی!');
     }
 }
