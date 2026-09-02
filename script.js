@@ -1,4 +1,3 @@
-// ۵۰ مرحله کامل و کاربردی
 const lessons = [
     "نمک متن تکان کتان", "کمان مکتوب تمک متین", "بلبل کابل بابل بتن", "سیب سیم بیس بیست",
     "شیر شاد شام شاه", "گچ گام کلاه کباب", "فیلم قلم فرش قند", "غار عقل عشق علم",
@@ -27,26 +26,34 @@ let currentLesson = 0;
 let charIndex = 0;
 let mistakes = 0;
 let startTime = null;
-
-// دریافت اطلاعات پیشرفت واقعی از حافظه مرورگر
 let completedLessons = JSON.parse(localStorage.getItem('typing_completed') || '[]');
 
-function switchTab(tabName, btnElement) {
-    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
-    
-    document.getElementById(`${tabName}-tab`).classList.add('active');
-    if(btnElement) btnElement.classList.add('active');
+// سوئیچ بین تب‌های هوم، تمرین و پیشرفت
+function switchTab(tabName) {
+    const tabs = ['home', 'practice', 'progress'];
+    tabs.forEach((tab, index) => {
+        const content = document.getElementById(`${tab}-tab`);
+        const btn = document.querySelectorAll('.nav-btn')[index];
+        
+        if (tab === tabName) {
+            content.classList.add('active');
+            btn.classList.add('active');
+        } else {
+            content.classList.remove('active');
+            btn.classList.remove('active');
+        }
+    });
 
     if (tabName === 'home') renderGrid();
     if (tabName === 'progress') updateProgressUI();
 }
 
-// ساخت لیست کارت‌های ۵۰ مرحله
+// نمایش ۵۰ کارت مرحله در صفحه هوم
 function renderGrid() {
     const grid = document.getElementById('lessons-grid');
     if (!grid) return;
     grid.innerHTML = '';
+    
     lessons.forEach((_, index) => {
         const isDone = completedLessons.includes(index);
         const card = document.createElement('div');
@@ -60,30 +67,26 @@ function renderGrid() {
     });
 }
 
+// انتخاب مرحله از صفحه هوم و رفتن به تمرین
 function selectLesson(index) {
     currentLesson = index;
-    const practiceBtn = document.querySelectorAll('.nav-btn')[1];
-    switchTab('practice', practiceBtn);
+    switchTab('practice');
     loadLesson();
 }
 
-// به روز رسانی بخش کارنامه پیشرفت
+// آپدیت درصد پیشرفت
 function updateProgressUI() {
     const count = completedLessons.length;
     const percent = Math.round((count / lessons.length) * 100);
     
-    const progressBar = document.getElementById('progress-bar');
-    const progressText = document.getElementById('progress-text');
-    const completedCount = document.getElementById('completed-count');
-
-    if (progressBar) progressBar.style.width = `${percent}%`;
-    if (progressText) progressText.innerText = `${percent}٪ از مسیر تمرین تکمیل شده است`;
-    if (completedCount) completedCount.innerText = count;
+    document.getElementById('progress-bar').style.width = `${percent}%`;
+    document.getElementById('progress-text').innerText = `${percent}٪ تکمیل شده است`;
+    document.getElementById('completed-count').innerText = count;
 }
 
-// پاک کردن پیشرفت ثبت شده
+// ریست پیشرفت
 function resetProgress() {
-    if (confirm('آیا می‌خواهی تمام مراحل ثبت‌شده پاک بشن و از اول شروع کنی؟')) {
+    if (confirm('آیا می‌خواهی تمام مراحل پاک بشن؟')) {
         completedLessons = [];
         localStorage.removeItem('typing_completed');
         updateProgressUI();
@@ -127,7 +130,7 @@ function updateVisualGuide(char) {
     }
 }
 
-// مدیریت کیبورد و ثبت واقعی پایان درس
+// تایپ و ثبت مرحله
 document.addEventListener('keydown', (e) => {
     const practiceTab = document.getElementById('practice-tab');
     if (!practiceTab || !practiceTab.classList.contains('active')) return;
@@ -153,13 +156,12 @@ document.addEventListener('keydown', (e) => {
             charSpans[charIndex].classList.add('current');
             updateVisualGuide(text[charIndex]);
         } else {
-            // ذخیره واقعی مرحله پاس شده در مرورگر
             if (!completedLessons.includes(currentLesson)) {
                 completedLessons.push(currentLesson);
                 localStorage.setItem('typing_completed', JSON.stringify(completedLessons));
             }
             setTimeout(() => {
-                alert(`آفرین داشم! درس ${currentLesson + 1} با موفقیت پاس شد.`);
+                alert(`درس ${currentLesson + 1} کامل شد!`);
                 currentLesson = (currentLesson + 1) % lessons.length;
                 loadLesson();
             }, 100);
@@ -179,6 +181,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// اجرای اول‌باره برنامه
+// اجرای اول‌باره
 renderGrid();
 loadLesson();
