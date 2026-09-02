@@ -49,12 +49,11 @@ const lessonsData = [
     { id: 45, title: "درس ۴۵: تمرین استقامت ۲", text: "یادگیری مهارت‌های جدید به ما کمک می‌کند در زندگی موفق‌تر باشیم", fingerHint: "ارزیابی ثبات سرعت" },
     { id: 46, title: "درس ۴۶: متون طولانی ۱", text: "زندگی مانند دوچرخه‌سواری است برای حفظ تعادل باید به حرکت ادامه داد", fingerHint: "تایپ یکنواخت و بدون استرس" },
     { id: 47, title: "درس ۴۷: متون طولانی ۲", text: "بهترین زمان برای کاشتن یک درخت بیست سال پیش بود دومین زمان مناسب همین الان است", fingerHint: "افزایش تمرکز" },
-    { id: 48, title: "درس ۴۸: آزمون سرعت پیشرفته", text: "تایپ سریع و دقیق به شما اجازه می‌دهد افکار خود را بدون وقفه ثبت کنید", fingerHint: "هدف: سرعت ۳۰+ WPM" },
+    { id: 48, title: "درس ۴۸: آزمون سرعت پیشرفته", text: "تایپ سریع و دقیق به شما اجازه می‌دهد افکار خود را بدون وقفه ثبت کنید", fingerHint: "هدف: سرعت ۳۰+ کلمه در دقیقه" },
     { id: 49, title: "درس ۴۹: آزمون دقت پیشرفته", text: "با تمرین مداوم و روزانه جای تمام حروف بدون نگاه کردن ملکه ذهن می‌شود", fingerHint: "هدف: دقت ۹۸٪+" },
     { id: 50, title: "درس ۵۰: غول مرحله آخر (فارغ‌التحصیلی)", text: "تبریک می‌گویم شما اکنون به یک تایپیست حرفه‌ای ده انگشتی تبدیل شده‌اید و بر کیبورد تسلط کامل دارید", fingerHint: "تمرین نهایی دوره" }
 ];
 
-// نقشه اتصال حروف به انگشت‌های دست چپ و راست
 const charToFingerMap = {
     'ض': 'finger-l-pinky', 'ص': 'finger-l-ring', 'ث': 'finger-l-middle', 'ق': 'finger-l-index', 'ف': 'finger-l-index',
     'غ': 'finger-r-index', 'ع': 'finger-r-index', 'ه': 'finger-r-middle', 'خ': 'finger-r-ring', 'ح': 'finger-r-pinky', 'ج': 'finger-r-pinky', 'چ': 'finger-r-pinky',
@@ -72,6 +71,7 @@ let timerInterval = null;
 let totalTyped = 0;
 let totalErrors = 0;
 let completedLessons = JSON.parse(localStorage.getItem('typing_completed_lessons')) || [];
+let overallKeysTyped = parseInt(localStorage.getItem('typing_total_keys')) || 0;
 
 document.addEventListener('DOMContentLoaded', () => {
     renderLessonsGrid();
@@ -187,6 +187,8 @@ function handleKeyPress(e) {
     const currentCard = document.getElementById(`char-card-${currentCharIndex}`);
 
     totalTyped++;
+    overallKeysTyped++;
+    localStorage.setItem('typing_total_keys', overallKeysTyped);
 
     if (pressedKey === targetChar) {
         if (currentCard) currentCard.className = 'char-card correct';
@@ -240,7 +242,7 @@ function finishLesson() {
     renderLessonsGrid();
     updateProgressUI();
 
-    alert(`آفرین داشم! درس ${lessonId} با موفقیت تمام شد.\nدقت شما: ${document.getElementById('accuracy').innerText}٪`);
+    alert(`آفرین داشم! درس ${lessonId} با موفقیت تمام شد.\nسرعت شما: ${document.getElementById('wpm').innerText} کلمه در دقیقه\nدقت شما: ${document.getElementById('accuracy').innerText}٪`);
 
     if (currentLessonIndex + 1 < lessonsData.length) {
         startLesson(currentLessonIndex + 1);
@@ -256,13 +258,29 @@ function updateProgressUI() {
 
     document.getElementById('progress-bar').style.width = `${percentage}%`;
     document.getElementById('progress-text').innerText = `${percentage}٪ تکمیل شده`;
-    document.getElementById('completed-count').innerText = completed;
+    document.getElementById('completed-count').innerText = `${completed} از ${total}`;
+    document.getElementById('total-keys-typed').innerText = overallKeysTyped.toLocaleString('fa-IR');
+
+    // محاسبه سطح کاربری
+    const levelEl = document.getElementById('user-level');
+    if (completed >= 40) {
+        levelEl.innerText = "استاد تایپ 🥇";
+        levelEl.style.color = "#f9e2af";
+    } else if (completed >= 20) {
+        levelEl.innerText = "متوسط 🥈";
+        levelEl.style.color = "#89b4fa";
+    } else {
+        levelEl.innerText = "مبتدی 🥉";
+        levelEl.style.color = "#a6e3a1";
+    }
 }
 
 function resetProgress() {
     if (confirm('داشم مطمئنی میخوای تمام سوابق و پیشرفتت ریست بشه؟')) {
         completedLessons = [];
+        overallKeysTyped = 0;
         localStorage.removeItem('typing_completed_lessons');
+        localStorage.removeItem('typing_total_keys');
         renderLessonsGrid();
         updateProgressUI();
         switchTab('home');
