@@ -6,13 +6,6 @@
     --accent-color: #a6e3a1;
     --danger-color: #f38ba8;
     --border-color: #45475a;
-
-    /* رنگ‌بندی انگشت‌های کیبورد مشابه RapidTyping */
-    --pink-finger: #e67e22;   /* انگشت کوچک */
-    --blue-finger: #3498db;   /* انگشت حلقه */
-    --green-finger: #2ecc71;  /* انگشت میانی */
-    --yellow-finger: #f1c40f; /* انگشت اشاره */
-    --orange-finger: #e67e22; /* اعداد و کلیدهای کناری */
 }
 
 * {
@@ -189,25 +182,26 @@ body {
     font-size: 0.95rem;
 }
 
-/* کیبورد مجازی */
+/* کیبورد مجازی و اصلاح قطعی ساختار افقی */
 .virtual-keyboard {
     background: #11111b;
     padding: 20px;
     border-radius: 14px;
     border: 2px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
     max-width: 800px;
     margin: 0 auto;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .keyboard-row {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    direction: ltr;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    direction: ltr !important;
 }
 
 .v-key {
@@ -224,12 +218,12 @@ body {
     transition: 0.08s;
 }
 
-/* رنگ‌بندی دقیق کلیدها بر اساس انگشتان در RapidTyping */
-.v-key.pink { background-color: #d35400; }  /* صورتی / نارنجی پررنگ */
+/* رنگ‌بندی دقیق انگشتان مشابه RapidTyping */
+.v-key.pink { background-color: #d35400; }  /* نارنجی/صورتی */
 .v-key.blue { background-color: #2980b9; }  /* آبی */
 .v-key.green { background-color: #27ae60; } /* سبز */
 .v-key.yellow { background-color: #d4ac0d; }/* زرد */
-.v-key.purple { background-color: #8e44ad; }/* بنفش / وسط */
+.v-key.purple { background-color: #8e44ad; }/* بنفش */
 
 .v-key.active-key {
     background-color: #fff !important;
@@ -239,8 +233,31 @@ body {
 }
 
 .space-key {
-    width: 320px;
+    width: 320px !important;
     background-color: #34495e;
+}
+
+/* راهنمای دست‌ها */
+.hands-helper-box {
+    margin-top: 15px;
+    background-color: #181825;
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.hand-icon {
+    font-size: 1.4rem;
+}
+
+.hand-text {
+    font-size: 0.85rem;
+    color: #a6adc8;
 }
 
 /* پیشرفت */
