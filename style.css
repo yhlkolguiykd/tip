@@ -218,17 +218,18 @@ body {
     transition: 0.08s;
 }
 
-/* پالت دقیقاً ۱۰ رنگ عکسی که فرستادی (تک‌تک برای ۱۰ انگشت) */
+/* پالت رنگی فیکس‌شده نهایی بر اساس تصویر اصلی */
 .v-key.red { background-color: #e74c3c; color: #fff; }          /* انگشت کوچک دست چپ */
 .v-key.orange { background-color: #e67e22; color: #fff; }       /* انگشت حلقه دست چپ */
 .v-key.light-green { background-color: #2ecc71; color: #fff; }  /* انگشت میانی دست چپ */
 .v-key.blue { background-color: #3498db; color: #fff; }         /* انگشت اشاره دست چپ (ستون اول) */
 .v-key.dark-blue { background-color: #2980b9; color: #fff; }    /* انگشت اشاره دست چپ (ستون دوم) */
 .v-key.soft-blue { background-color: #5dade2; color: #fff; }    /* انگشت اشاره دست راست (ستون اول) */
-.v-key.sky-blue { background-color: #85c1e9; color: #2c3e50; }  /* انگشت اشاره دست راست (ستون دوم) */
-.v-key.yellow { background-color: #f1c40f; color: #2c3e50; }    /* انگشت میانی دست راست */
+.v-key.sky-blue { background-color: #85c1e9; color: #2c3e50; }  /* انگشت اشاره دست راست (ستون دوم - آبی کمرنگ) */
+.v-key.yellow { background-color: #f1c40f; color: #2c3e50; }    /* انگشت میانی دست راست (بلافاصله بعد از آبی کمرنگ) */
 .v-key.pale-green { background-color: #a3e4d7; color: #2c3e50; }/* انگشت حلقه دست راست */
 .v-key.green { background-color: #52be80; color: #fff; }        /* انگشت کوچک دست راست */
+.v-key.gray { background-color: #7f8c8d; color: #fff; }         /* کلید خاکستری/پ */
 
 .v-key.active-key {
     background-color: #fff !important;
