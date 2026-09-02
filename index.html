@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>آموزش تایپ ده انگشتی پیشرفته</title>
+    <title>آموزش تایپ ده انگشتی سایبرپانک 🚀</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- هدر بالای صفحه -->
     <header class="app-header">
-        <h1>آموزش تایپ ده انگشتی حرفه‌ای 🚀</h1>
-        <p>مسیر تسلط کامل بر کیبورد با ۵۰ درس استاندارد</p>
+        <h1>پروژه پرامپت‌کده: تایپ حرفه‌ای ⚡</h1>
+        <p>مسیر تسلط مطلق بر کیبورد با استاندارد ۱۰ انگشتی</p>
     </header>
 
     <!-- نوار ناوبری (تب‌ها) -->
     <nav class="app-nav">
-        <button class="nav-btn active" onclick="switchTab('lessons')">📚 فهرست درس‌ها</button>
-        <button class="nav-btn" onclick="switchTab('practice')">⌨️ محیط تمرین</button>
-        <button class="nav-btn" onclick="switchTab('progress')">📊 پیشرفت و آمار</button>
+        <button class="nav-btn active" onclick="switchTab('lessons')">📚 نقشه راه درس‌ها</button>
+        <button class="nav-btn" onclick="switchTab('practice')">⌨️ آرنای تمرین</button>
+        <button class="nav-btn" onclick="switchTab('progress')">📊 آمار و افتخارات</button>
     </nav>
 
     <main class="container">
 
         <!-- تب اول: فهرست درس‌ها -->
         <section id="lessons-tab" class="tab-content active">
-            <h2>انتخاب درس</h2>
+            <h2>انتخاب مرحله تمرین</h2>
             <div id="lessons-grid" class="lessons-grid">
                 <!-- درس‌ها با جاوااسکریپت اینجا ساخته میشن -->
             </div>
@@ -34,9 +34,9 @@
         <!-- تب دوم: محیط تمرین تایپ -->
         <section id="practice-tab" class="tab-content">
             <div class="stats-bar">
-                <div class="stat-box">زمان: <span id="time">00:00</span></div>
-                <div class="stat-box">سرعت: <span id="wpm">0</span> WPM</div>
-                <div class="stat-box">دقت: <span id="accuracy">100</span>%</div>
+                <div class="stat-box">⏱️ زمان: <span id="time">00:00</span></div>
+                <div class="stat-box">⚡ سرعت: <span id="wpm">0</span> WPM</div>
+                <div class="stat-box">🎯 دقت: <span id="accuracy">100</span>%</div>
             </div>
 
             <!-- کارتهای متن تمرین -->
@@ -45,6 +45,28 @@
             </div>
 
             <p id="hand-hint" class="hand-hint">راهنمای انگشتان: آماده شروع...</p>
+
+            <!-- نمایشگر خفن و گرافیکی دست‌ها و راهنمای انگشتان -->
+            <div class="hands-visualizer-container">
+                <div class="hand-box left-hand" id="visual-left-hand">
+                    <span class="hand-title">دست چپ 🦾</span>
+                    <div class="fingers-row">
+                        <div class="finger-indicator" data-finger="pinky" title="انگشت کوچک">کوچک</div>
+                        <div class="finger-indicator" data-finger="ring" title="انگشت حلقه">حلقه</div>
+                        <div class="finger-indicator" data-finger="middle" title="انگشت میانی">میانی</div>
+                        <div class="finger-indicator" data-finger="index" title="انگشت اشاره">اشاره</div>
+                    </div>
+                </div>
+                <div class="hand-box right-hand" id="visual-right-hand">
+                    <span class="hand-title">دست راست 🦾</span>
+                    <div class="fingers-row">
+                        <div class="finger-indicator" data-finger="index-r" title="انگشت اشاره">اشاره</div>
+                        <div class="finger-indicator" data-finger="middle-r" title="انگشت میانی">میانی</div>
+                        <div class="finger-indicator" data-finger="ring-r" title="انگشت حلقه">حلقه</div>
+                        <div class="finger-indicator" data-finger="pinky-r" title="انگشت کوچک">کوچک</div>
+                    </div>
+                </div>
+            </div>
 
             <!-- کیبورد مجازی رنگی اصلاح‌شده و دقیق -->
             <div class="virtual-keyboard">
@@ -92,19 +114,13 @@
                 <div class="keyboard-row">
                     <div class="v-key space-key" data-key=" ">فاصله (Space)</div>
                 </div>
-
-                <!-- راهنمای دست‌ها زیر کیبورد -->
-                <div class="hands-helper-box">
-                    <span class="hand-icon">🤲</span>
-                    <span class="hand-text">هنگام تایپ، انگشتان خود را روی ردیف خانه قرار دهید و از ۱۰ انگشت استفاده کنید.</span>
-                </div>
             </div>
         </section>
 
         <!-- تب سوم: پیشرفت و آمار -->
         <section id="progress-tab" class="tab-content">
             <div class="progress-card">
-                <h2>آمار کلی عملکرد شما</h2>
+                <h2>پروفایل و آمار پیشرفته</h2>
                 <div class="progress-stats-grid">
                     <div class="p-stat">
                         <h3>درصد پیشرفت کل</h3>
@@ -122,8 +138,8 @@
                         <p id="total-keys-typed" style="font-size: 1.5rem; font-weight: bold; color: #89b4fa;">۰</p>
                     </div>
                     <div class="p-stat">
-                        <h3>رتبه فعلی شما</h3>
-                        <p id="user-level" style="font-size: 1.5rem; font-weight: bold; color: #f9e2af;">مبتدی 🥉</p>
+                        <h3>رتبه سایبری شما</h3>
+                        <p id="user-level" style="font-size: 1.5rem; font-weight: bold; color: #f9e2af;">کارآموز 🥉</p>
                     </div>
                 </div>
                 <button class="btn-danger" onclick="resetProgress()">ریست کردن تمام سوابق</button>
