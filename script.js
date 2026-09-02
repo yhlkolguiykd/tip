@@ -1,8 +1,7 @@
 // ==========================================
-// ۱. دیتابیس ۵۰ درس استاندارد به همراه حدعقل‌های علمی و اختصاصی
+// دیتابیس ۵۰ درس استاندارد با حدعقل سرعت و دقت
 // ==========================================
 const lessonsData = [
-    // --- فاز ۱: آشنایی با ردیف خانه (تمرکز روی دقت و جا افتادن انگشتان) ---
     { id: 1, title: "درس ۱: کلیدهای ت و ن", text: "تتت ننن تنت نتن تتن نتت تتا ننت", fingerHint: "انگشت اشاره راست (ت) | انگشت اشاره چپ (ن)", minWpm: 8, minAccuracy: 90 },
     { id: 2, title: "درس ۲: کلیدهای م و ک", text: "ممم ککک مکک ک مم تکم نمک کمت مکن", fingerHint: "انگشت وسط راست (م) | انگشت وسط چپ (ک)", minWpm: 8, minAccuracy: 90 },
     { id: 3, title: "درس ۳: کلیدهای ب و ی", text: "ببب ییی بیی یبی ببت نین مبی کیب", fingerHint: "انگشت حلقه راست (ب) | انگشت حلقه چپ (ی)", minWpm: 9, minAccuracy: 90 },
@@ -13,8 +12,6 @@ const lessonsData = [
     { id: 8, title: "درس ۸: کلید Space (فاصله)", text: "ت ن م ک ب ی ش س ا ل گ سلام من", fingerHint: "فشار دادن کلید فاصله با انگشت شست", minWpm: 11, minAccuracy: 92 },
     { id: 9, title: "درس ۹: واژه‌سازی ردیف خانه", text: "سلام من به شما کلام سنگین بوی گل", fingerHint: "ترکیب کامل کلیدهای ردیف وسط", minWpm: 12, minAccuracy: 92 },
     { id: 10, title: "درس ۱۰: آزمون ردیف خانه", text: "سنت لک لک بت کلم ماسک سگک نسیم", fingerHint: "آزمون تسلط کامل بر ردیف وسط", minWpm: 12, minAccuracy: 93 },
-
-    // --- فاز ۲: ردیف بالا (افزایش تدریجی سرعت و دقت) ---
     { id: 11, title: "درس ۱۱: کلیدهای ف و ق", text: "ففف ققق فقف فلق قفل کیف مشق", fingerHint: "انتقال انگشت اشاره به بالا: ف (چپ)، ق (راست)", minWpm: 12, minAccuracy: 93 },
     { id: 12, title: "درس ۱۲: کلیدهای غ و ع", text: "غغغ ععع غعغ مرغ مرغک عقل علی عاقل", fingerHint: "انگشت اشاره و وسط به سمت بالا", minWpm: 13, minAccuracy: 93 },
     { id: 13, title: "درس ۱۳: کلیدهای ه و خ", text: "ههه خخخ هخه ماه خاه خانه شاخه نهان", fingerHint: "انگشت وسط و حلقه به سمت بالا", minWpm: 13, minAccuracy: 93 },
@@ -25,8 +22,6 @@ const lessonsData = [
     { id: 18, title: "درس ۱۸: جمله‌سازی کوتاه ۱", text: "علی به خانه رفت مرغابی در حوض است", fingerHint: "تمرکز بر روان تایپ کردن", minWpm: 15, minAccuracy: 94 },
     { id: 19, title: "درس ۱۹: جمله‌سازی کوتاه ۲", text: "رضا قفل صندوق را باز کرد", fingerHint: "دقت بالا مد نظر است", minWpm: 16, minAccuracy: 95 },
     { id: 20, title: "درس ۲۰: آزمون ردیف بالا", text: "صبح زود خورشید طلوع کرد و بیدار شدیم", fingerHint: "آزمون تسلط بر ردیف بالا و وسط", minWpm: 16, minAccuracy: 95 },
-
-    // --- فاز ۳: ردیف پایین (تسلط بر حافظه عضلانی کامل) ---
     { id: 21, title: "درس ۲۱: کلیدهای ر و ز", text: "ررر ززز رزرز روز روزه رز راز زاری", fingerHint: "انتقال انگشت اشاره به پایین: ر (چپ)، ز (راست)", minWpm: 16, minAccuracy: 95 },
     { id: 22, title: "درس ۲۲: کلیدهای ذ و د", text: "ذذذ ددد ذدذ ذرذ ذرّه درخت ذره بین", fingerHint: "انتقال انگشت به پایین و چپ/راست", minWpm: 16, minAccuracy: 95 },
     { id: 23, title: "درس ۲۳: کلیدهای ط و ظ", text: "ططط ظظظ طظط طوطی خط حافظ ظفر حیاط", fingerHint: "انگشت حلقه به سمت پایین", minWpm: 17, minAccuracy: 95 },
@@ -37,8 +32,6 @@ const lessonsData = [
     { id: 28, title: "درس ۲۸: جملات متداول ۲", text: "ورزش کردن باعث سلامتی روح و جسم است", fingerHint: "حفظ ریتم منظم تایپ", minWpm: 19, minAccuracy: 95 },
     { id: 29, title: "درس ۲۹: تمرین سرعت ردیف پایین", text: "ظفر با دقت به خطوط دفتر نگاه کرد", fingerHint: "افزایش سرعت تایپ", minWpm: 20, minAccuracy: 95 },
     { id: 30, title: "درس ۳۰: آزمون جامع کیبورد", text: "پژوهشگران در آزمایشگاه موفق به کشف جدیدی شدند", fingerHint: "ارزیابی کلی تسلط بر حروف", minWpm: 20, minAccuracy: 96 },
-
-    // --- فاز ۴: افزایش سرعت و استقامت تایپ ---
     { id: 31, title: "درس ۳۱: کلمات پرتکرار ۱", text: "این است که برای با از به در کجاست", fingerHint: "تایپ سریع کلمات کوتاه پرکاربرد", minWpm: 21, minAccuracy: 96 },
     { id: 32, title: "درس ۳۲: کلمات پرتکرار ۲", text: "آنها همه چیز را درباره برنامه‌نویسی می‌دانند", fingerHint: "افزایش سرعت در کلمات بلند", minWpm: 21, minAccuracy: 96 },
     { id: 33, title: "درس ۳۳: متن متوالی ۱", text: "تایپ ده انگشتی مهارتی است که با تمرین به دست می‌آید", fingerHint: "نگاه فقط به صفحه نمایش", minWpm: 22, minAccuracy: 96 },
@@ -49,8 +42,6 @@ const lessonsData = [
     { id: 38, title: "درس ۳۸: افزایش سرعت ۲", text: "برنامه‌نویسان با تایپ سریع در وقت خود صرفه‌جویی می‌کنند", fingerHint: "ریتم یکنواخت ضربه زدن", minWpm: 24, minAccuracy: 96 },
     { id: 39, title: "درس ۳۹: ضرب‌المثل‌های فارسی ۱", text: "کار نیکو کردن از پر کردن است", fingerHint: "تایپ متون آشنا", minWpm: 25, minAccuracy: 96 },
     { id: 40, title: "درس ۴۰: ضرب‌المثل‌های فارسی ۲", text: "جوجه را آخر پاییز می‌شمارند", fingerHint: "رعایت فاصله‌ها", minWpm: 25, minAccuracy: 96 },
-
-    // --- فاز ۵: آزمون‌های حرفه‌ای و فارغ‌التحصیلی ---
     { id: 41, title: "درس ۴۱: متون ادبی کوتاه", text: "بنی آدم اعضای یکدیگرند که در آفرینش ز یک گوهرند", fingerHint: "تایپ شعر و متون موزون", minWpm: 25, minAccuracy: 97 },
     { id: 42, title: "درس ۴۲: متون علمی کوتاه", text: "هوش مصنوعی دنیا را با سرعت در حال تغییر دادن است", fingerHint: "تایپ واژگان جدید", minWpm: 26, minAccuracy: 97 },
     { id: 43, title: "درس ۴۳: فناوری و کامپیوتر", text: "اینترنت ارتباطات بین مردم جهان را بسیار آسان کرده است", fingerHint: "تسلط بر تایپ اصطلاحات", minWpm: 26, minAccuracy: 97 },
@@ -62,16 +53,6 @@ const lessonsData = [
     { id: 49, title: "درس ۴۹: آزمون دقت پیشرفته", text: "با تمرین مداوم و روزانه جای تمام حروف بدون نگاه کردن ملکه ذهن می‌شود", fingerHint: "هدف: دقت ۹۸٪+", minWpm: 30, minAccuracy: 98 },
     { id: 50, title: "درس ۵۰: غول مرحله آخر (فارغ‌التحصیلی)", text: "تبریک می‌گویم شما اکنون به یک تایپیست حرفه‌ای ده انگشتی تبدیل شده‌اید و بر کیبورد تسلط کامل دارید", fingerHint: "تمرین نهایی دوره", minWpm: 30, minAccuracy: 98 }
 ];
-
-const charToFingerMap = {
-    'ض': 'finger-l-pinky', 'ص': 'finger-l-ring', 'ث': 'finger-l-middle', 'ق': 'finger-l-index', 'ف': 'finger-l-index',
-    'غ': 'finger-r-index', 'ع': 'finger-r-index', 'ه': 'finger-r-middle', 'خ': 'finger-r-ring', 'ح': 'finger-r-pinky', 'ج': 'finger-r-pinky', 'چ': 'finger-r-pinky',
-    'ش': 'finger-l-pinky', 'س': 'finger-l-ring', 'ی': 'finger-l-middle', 'ب': 'finger-l-index', 'ل': 'finger-l-index',
-    'ا': 'finger-r-index', 'ت': 'finger-r-index', 'ن': 'finger-r-middle', 'م': 'finger-r-ring', 'ک': 'finger-r-pinky', 'گ': 'finger-r-pinky',
-    'ظ': 'finger-l-pinky', 'ط': 'finger-l-ring', 'ز': 'finger-l-middle', 'ر': 'finger-l-index', 'ذ': 'finger-l-index',
-    'د': 'finger-r-index', 'پ': 'finger-r-middle', 'و': 'finger-r-ring',
-    ' ': 'finger-r-thumb'
-};
 
 let currentLessonIndex = 0;
 let currentCharIndex = 0;
@@ -86,6 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
     renderLessonsGrid();
     updateProgressUI();
     window.addEventListener('keydown', handleKeyPress);
+    
+    // بارگذاری کلید ذخیره شده
+    const savedKey = localStorage.getItem('custom_openrouter_api_key');
+    if (savedKey) {
+        document.getElementById('userApiKey').value = savedKey;
+    }
 });
 
 function switchTab(tabName) {
@@ -117,13 +104,13 @@ function renderLessonsGrid() {
 
         card.innerHTML = `
             <strong>درس ${lesson.id}</strong>
-            <small style="font-size:0.75rem; color:${!isUnlocked ? '#f38ba8' : '#a6adc8'};">${statusText}</small>
+            <small style="font-size:0.75rem; color:${!isUnlocked ? '#f38ba8' : '#a6adc8'}; display:block; margin-top:5px;">${statusText}</small>
         `;
 
         if (isUnlocked) {
             card.onclick = () => startLesson(index);
         } else {
-            card.onclick = () => alert(`داشم برای باز کردن این مرحله، باید درس ${lessonsData[index - 1].id} رو با سرعت حداقل ${lessonsData[index - 1].minWpm} WPM و دقت ${lessonsData[index - 1].minAccuracy}٪ پاس کنی!`);
+            card.onclick = () => alert(`داشم اول باید درس ${lessonsData[index - 1].id} رو با سرعت حداقل ${lessonsData[index - 1].minWpm} WPM و دقت ${lessonsData[index - 1].minAccuracy}٪ پاس کنی!`);
         }
 
         grid.appendChild(card);
@@ -144,7 +131,6 @@ function startLesson(index) {
 
     switchTab('practice');
     renderCards();
-    highlightCurrentKeyAndFinger();
 }
 
 function renderCards() {
@@ -164,28 +150,7 @@ function renderCards() {
         container.appendChild(card);
     }
 
-    document.getElementById('hand-hint').innerText = `راهنما: ${currentLesson.fingerHint} | شرط قبول: سرعت ${currentLesson.minWpm}+ WPM و دقت ${currentLesson.minAccuracy}+٪`;
-}
-
-function highlightCurrentKeyAndFinger() {
-    document.querySelectorAll('.key').forEach(k => k.classList.remove('active'));
-    document.querySelectorAll('.finger-node').forEach(f => f.classList.remove('active'));
-
-    const currentText = lessonsData[currentLessonIndex].text;
-    if (currentCharIndex >= currentText.length) return;
-
-    const targetChar = currentText[currentCharIndex];
-    const targetKeyEl = document.querySelector(`.key[data-key="${targetChar}"]`);
-    
-    if (targetKeyEl) {
-        targetKeyEl.classList.add('active');
-        
-        const fingerId = charToFingerMap[targetChar];
-        if (fingerId) {
-            const fingerEl = document.getElementById(fingerId);
-            if (fingerEl) fingerEl.classList.add('active');
-        }
-    }
+    document.getElementById('hand-hint').innerText = `راهنما: ${currentLesson.fingerHint} | حد نصاب: سرعت ${currentLesson.minWpm}+ WPM و دقت ${currentLesson.minAccuracy}+٪`;
 }
 
 function handleKeyPress(e) {
@@ -201,7 +166,6 @@ function handleKeyPress(e) {
     }
 
     let pressedKey = e.key;
-
     if (pressedKey === 'Spacebar' || pressedKey === ' ') pressedKey = ' ';
     if (pressedKey === 'ك') pressedKey = 'ک';
     if (pressedKey === 'ي') pressedKey = 'ی';
@@ -221,7 +185,6 @@ function handleKeyPress(e) {
             finishLesson();
         } else {
             renderCards();
-            highlightCurrentKeyAndFinger();
         }
     } else {
         totalErrors++;
@@ -260,7 +223,6 @@ function finishLesson() {
     const { wpm, accuracy } = updateStats();
     const lesson = lessonsData[currentLessonIndex];
 
-    // ارزیابی طبق شرایط اختصاصی همون درس
     const isPassed = wpm >= lesson.minWpm && accuracy >= lesson.minAccuracy;
 
     if (isPassed) {
@@ -272,7 +234,7 @@ function finishLesson() {
         renderLessonsGrid();
         updateProgressUI();
 
-        alert(`🔥 عالی بود داشم! درس ${lesson.id} رو پاس کردی.\n\nنتایج شما:\nسرعت: ${wpm} WPM (حداقل لازم: ${lesson.minWpm})\nدقت: ${accuracy}٪ (حداقل لازم: ${lesson.minAccuracy}٪)\n\nدرس بعدی برات باز شد!`);
+        alert(`🔥 عالی بود داشم! درس ${lesson.id} رو پاس کردی.\nسرعت: ${wpm} WPM | دقت: ${accuracy}٪`);
 
         if (currentLessonIndex + 1 < lessonsData.length) {
             startLesson(currentLessonIndex + 1);
@@ -280,7 +242,7 @@ function finishLesson() {
             switchTab('progress');
         }
     } else {
-        alert(`❌ داشم هنوز به حد نصاب این درس نرسیدی!\n\nنتایج شما:\nسرعت: ${wpm} WPM (حداقل استاندارد: ${lesson.minWpm})\nدقت: ${accuracy}٪ (حداقل استاندارد: ${lesson.minAccuracy}٪)\n\nدوباره همین درس رو بزن تا تمرکزت روی انگشت‌ها بیشتر بشه.`);
+        alert(`❌ هنوز به حد نصاب نرسیدی!\nسرعت شما: ${wpm} (حداقل: ${lesson.minWpm})\nدقت شما: ${accuracy}٪ (حداقل: ${lesson.minAccuracy}٪)`);
         startLesson(currentLessonIndex);
     }
 }
@@ -296,26 +258,82 @@ function updateProgressUI() {
     document.getElementById('total-keys-typed').innerText = overallKeysTyped.toLocaleString('fa-IR');
 
     const levelEl = document.getElementById('user-level');
-    if (completed >= 40) {
-        levelEl.innerText = "استاد تایپ 🥇";
-        levelEl.style.color = "#f9e2af";
-    } else if (completed >= 20) {
-        levelEl.innerText = "متوسط 🥈";
-        levelEl.style.color = "#89b4fa";
-    } else {
-        levelEl.innerText = "مبتدی 🥉";
-        levelEl.style.color = "#a6e3a1";
-    }
+    if (completed >= 40) levelEl.innerText = "استاد تایپ 🥇";
+    else if (completed >= 20) levelEl.innerText = "متوسط 🥈";
+    else levelEl.innerText = "مبتدی 🥉";
 }
 
 function resetProgress() {
-    if (confirm('داشم مطمئنی میخوای تمام سوابق و پیشرفتت ریست بشه؟')) {
+    if (confirm('داشم مطمئنی میخوای سوابقت ریست بشه؟')) {
         completedLessons = [];
         overallKeysTyped = 0;
         localStorage.removeItem('typing_completed_lessons');
         localStorage.removeItem('typing_total_keys');
         renderLessonsGrid();
         updateProgressUI();
-        switchTab('home');
+        switchTab('lessons');
+    }
+}
+
+// ذخیره کلید API حرفه‌ای
+function saveUserApiKey() {
+    const key = document.getElementById('userApiKey').value.trim();
+    if (key) {
+        localStorage.setItem('custom_openrouter_api_key', key);
+        alert('کلید API اختصاصی ذخیره شد! 🔥');
+    } else {
+        localStorage.removeItem('custom_openrouter_api_key');
+        alert('کلید پاک شد.');
+    }
+}
+
+// ساخت متن تمرینی با هوش مصنوعی (برای کاربران حرفه‌ای دارای کلید)
+async function handleGenerateTopic() {
+    const topic = document.getElementById('aiTopicInput').value.trim();
+    const apiKey = localStorage.getItem('custom_openrouter_api_key');
+
+    if (!apiKey) {
+        alert('داشم لطفاً اول کلید API اختصاصی خود را در بخش بالا وارد کنید تا بتوانید از هوش مصنوعی متن بگیرید.');
+        return;
+    }
+
+    if (!topic) {
+        alert('لطفاً یک موضوع وارد کنید.');
+        return;
+    }
+
+    alert('در حال ارتباط با هوش مصنوعی...');
+
+    try {
+        const response = "https://openrouter.ai/api/v1/chat/completions";
+        const res = await fetch(response, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${apiKey}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: "meta-llama/llama-3-8b-instruct:free",
+                messages: [{ role: "user", content: `یک متن تمرینی کوتاه فارسی (حدود ۲۰ کلمه) درباره موضوع "${topic}" بنویس. فقط خود متن را بفرست.` }]
+            })
+        });
+
+        const data = await res.json();
+        const aiText = data.choices[0]?.message?.content?.trim();
+
+        if (aiText) {
+            // اضافه کردن به عنوان یک درس موقت و شروع تمرین
+            lessonsData.push({
+                id: lessonsData.length + 1,
+                title: `متن هوش مصنوعی: ${topic}`,
+                text: aiText,
+                fingerHint: "تمرین آزاد هوشمند",
+                minWpm: 15,
+                minAccuracy: 90
+            });
+            startLesson(lessonsData.length - 1);
+        }
+    } catch (err) {
+        alert('خطا در دریافت متن از هوش مصنوعی!');
     }
 }
