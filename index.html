@@ -15,7 +15,7 @@
             <button class="nav-btn" onclick="switchTab('progress')">پیشرفت من</button>
         </nav>
 
-        <!-- ۱. صفحه هوم (لیست کامل مراحل) -->
+        <!-- ۱. صفحه هوم -->
         <div id="home-tab" class="tab-content active">
             <h1>مراحل تمرین تایپ</h1>
             <p class="subtitle">برای شروع، روی یکی از مراحل زیر کلیک کن:</p>
@@ -32,7 +32,7 @@
 
             <div class="display-box" id="text-display"></div>
 
-            <div class="keyboard-section">
+            <div class="keyboard-container">
                 <div class="keyboard" id="keyboard">
                     <div class="row">
                         <div class="key" data-key="ض">ض</div><div class="key" data-key="ص">ص</div><div class="key" data-key="ث">ث</div><div class="key" data-key="ق">ق</div><div class="key" data-key="ف">ف</div><div class="key" data-key="غ">غ</div><div class="key" data-key="ع">ع</div><div class="key" data-key="ه">ه</div><div class="key" data-key="خ">خ</div><div class="key" data-key="ح">ح</div><div class="key" data-key="ج">ج</div><div class="key" data-key="چ">چ</div>
@@ -48,23 +48,23 @@
                     </div>
                 </div>
 
-                <div class="hands-guide">
-                    <div class="hand left-hand">
-                        <div class="finger pinky" id="l-pinky"></div>
-                        <div class="finger ring" id="l-ring"></div>
-                        <div class="finger middle" id="l-middle"></div>
-                        <div class="finger index" id="l-index"></div>
-                        <div class="thumb" id="l-thumb"></div>
-                    </div>
-                    <div class="hand right-hand">
-                        <div class="thumb" id="r-thumb"></div>
-                        <div class="finger index" id="r-index"></div>
-                        <div class="finger middle" id="r-middle"></div>
-                        <div class="finger ring" id="r-ring"></div>
-                        <div class="finger pinky" id="r-pinky"></div>
-                    </div>
+                <!-- لایه انگشت‌های انیمیشنی روی کیبورد -->
+                <div class="hands-overlay">
+                    <div class="finger-dot" id="l-pinky"><span>کوچک</span></div>
+                    <div class="finger-dot" id="l-ring"><span>حلقه</span></div>
+                    <div class="finger-dot" id="l-middle"><span>وسط</span></div>
+                    <div class="finger-dot" id="l-index"><span>اشاره</span></div>
+                    <div class="finger-dot" id="l-thumb"><span>شست</span></div>
+
+                    <div class="finger-dot" id="r-thumb"><span>شست</span></div>
+                    <div class="finger-dot" id="r-index"><span>اشاره</span></div>
+                    <div class="finger-dot" id="r-middle"><span>وسط</span></div>
+                    <div class="finger-dot" id="r-ring"><span>حلقه</span></div>
+                    <div class="finger-dot" id="r-pinky"><span>کوچک</span></div>
                 </div>
             </div>
+            
+            <div class="hand-hint" id="hand-hint">انگشت اشاره چپ روی «ب» و راست روی «ت» قرار می‌گیرد</div>
         </div>
 
         <!-- ۳. صفحه پیشرفت -->
