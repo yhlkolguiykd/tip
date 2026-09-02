@@ -1,4 +1,52 @@
-<!-- کیبورد مجازی رنگی مشابه RapidTyping -->
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آموزش تایپ ده انگشتی پیشرفته</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- هدر بالای صفحه -->
+    <header class="app-header">
+        <h1>آموزش تایپ ده انگشتی حرفه‌ای 🚀</h1>
+        <p>مسیر تسلط کامل بر کیبورد با ۵۰ درس استاندارد</p>
+    </header>
+
+    <!-- نوار ناوبری (تب‌ها) -->
+    <nav class="app-nav">
+        <button class="nav-btn active" onclick="switchTab('lessons')">📚 فهرست درس‌ها</button>
+        <button class="nav-btn" onclick="switchTab('practice')">⌨️ محیط تمرین</button>
+        <button class="nav-btn" onclick="switchTab('progress')">📊 پیشرفت و آمار</button>
+    </nav>
+
+    <main class="container">
+
+        <!-- تب اول: فهرست درس‌ها -->
+        <section id="lessons-tab" class="tab-content active">
+            <h2>انتخاب درس</h2>
+            <div id="lessons-grid" class="lessons-grid">
+                <!-- درس‌ها با جاوااسکریپت اینجا ساخته میشن -->
+            </div>
+        </section>
+
+        <!-- تب دوم: محیط تمرین تایپ -->
+        <section id="practice-tab" class="tab-content">
+            <div class="stats-bar">
+                <div class="stat-box">زمان: <span id="time">00:00</span></div>
+                <div class="stat-box">سرعت: <span id="wpm">0</span> WPM</div>
+                <div class="stat-box">دقت: <span id="accuracy">100</span>%</div>
+            </div>
+
+            <!-- کارتهای متن تمرین -->
+            <div id="cards-container" class="cards-container">
+                <!-- کارتها پویا بارگذاری میشن -->
+            </div>
+
+            <p id="hand-hint" class="hand-hint">راهنمای انگشتان: آماده شروع...</p>
+
+            <!-- کیبورد مجازی رنگی مشابه RapidTyping -->
             <div class="virtual-keyboard">
                 <div class="keyboard-row">
                     <div class="v-key pink" data-key="ض">ض</div>
@@ -9,7 +57,7 @@
                     <div class="v-key purple" data-key="غ">غ</div>
                     <div class="v-key purple" data-key="ع">ع</div>
                     <div class="v-key yellow" data-key="ه">ه</div>
-                    <div class="v-key yellow" data-key="green" data-key="خ">خ</div>
+                    <div class="v-key yellow" data-key="خ">خ</div>
                     <div class="v-key green" data-key="ح">ح</div>
                     <div class="v-key blue" data-key="ج">ج</div>
                     <div class="v-key pink" data-key="چ">چ</div>
@@ -40,4 +88,46 @@
                 <div class="keyboard-row">
                     <div class="v-key space-key" data-key=" ">فاصله (Space)</div>
                 </div>
+
+                <!-- راهنمای دست‌ها زیر کیبورد -->
+                <div class="hands-helper-box">
+                    <span class="hand-icon">🤲</span>
+                    <span class="hand-text">هنگام تایپ، انگشتان خود را روی ردیف خانه قرار دهید و از ۱۰ انگشت استفاده کنید.</span>
+                </div>
             </div>
+        </section>
+
+        <!-- تب سوم: پیشرفت و آمار -->
+        <section id="progress-tab" class="tab-content">
+            <div class="progress-card">
+                <h2>آمار کلی عملکرد شما</h2>
+                <div class="progress-stats-grid">
+                    <div class="p-stat">
+                        <h3>درصد پیشرفت کل</h3>
+                        <div class="progress-bar-bg">
+                            <div id="progress-bar" class="progress-bar-fill" style="width: 0%;"></div>
+                        </div>
+                        <span id="progress-text">0% تکمیل شده</span>
+                    </div>
+                    <div class="p-stat">
+                        <h3>درس‌های پاس‌شده</h3>
+                        <p id="completed-count" style="font-size: 1.5rem; font-weight: bold; color: #a6e3a1;">۰ از ۵۰</p>
+                    </div>
+                    <div class="p-stat">
+                        <h3>کل کلیدهای فشرده شده</h3>
+                        <p id="total-keys-typed" style="font-size: 1.5rem; font-weight: bold; color: #89b4fa;">۰</p>
+                    </div>
+                    <div class="p-stat">
+                        <h3>رتبه فعلی شما</h3>
+                        <p id="user-level" style="font-size: 1.5rem; font-weight: bold; color: #f9e2af;">مبتدی 🥉</p>
+                    </div>
+                </div>
+                <button class="btn-danger" onclick="resetProgress()">ریست کردن تمام سوابق</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
