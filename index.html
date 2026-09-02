@@ -3,119 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>آموزش تایپ ده انگشتی هوشمند</title>
+    <title>آموزش تایپ ده انگشتی پیشرفته</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="app-container">
-        <!-- منوی ناوبری بالا -->
-        <header class="app-header">
-            <h1>⌨️ آموزش تایپ ده انگشتی هوشمند</h1>
-            <nav class="nav-buttons">
-                <button class="nav-btn active" onclick="switchTab('lessons')">درس‌ها</button>
-                <button class="nav-btn" onclick="switchTab('practice')">تمرین</button>
-                <button class="nav-btn" onclick="switchTab('ai-practice')">تمرین هوشمند AI 🤖</button>
-                <button class="nav-btn" onclick="switchTab('progress')">پیشرفت من</button>
-            </nav>
-        </header>
+    <!-- هدر بالای صفحه -->
+    <header class="app-header">
+        <h1>آموزش تایپ ده انگشتی حرفه‌ای 🚀</h1>
+        <p>مسیر تسلط کامل بر کیبورد با ۵۰ درس استاندارد و هوش مصنوعی</p>
+    </header>
 
-        <!-- بخش تب‌ها -->
-        <main class="content-body">
+    <!-- نوار ناوبری (تب‌ها) -->
+    <nav class="app-nav">
+        <button class="nav-btn active" onclick="switchTab('lessons')">📚 فهرست درس‌ها</button>
+        <button class="nav-btn" onclick="switchTab('practice')">⌨️ محیط تمرین</button>
+        <button class="nav-btn" onclick="switchTab('ai')">🤖 تمرین هوشمند AI</button>
+        <button class="nav-btn" onclick="switchTab('progress')">📊 پیشرفت و آمار</button>
+    </nav>
 
-            <!-- تب ۱: لیست دروس -->
-            <section id="lessons-tab" class="tab-content active">
-                <h2>انتخاب درس (۵۰ مرحله استاندارد)</h2>
-                <div class="lessons-grid" id="lessons-grid"></div>
-            </section>
+    <main class="container">
 
-            <!-- تب ۲: صفحه تمرین -->
-            <section id="practice-tab" class="tab-content">
-                <div class="stats-bar">
-                    <div>زمان: <span id="time">00:00</span></div>
-                    <div>سرعت: <span id="wpm">0</span> WPM</div>
-                    <div>دقت: <span id="accuracy">100</span>٪</div>
+        <!-- تب اول: فهرست درس‌ها -->
+        <section id="lessons-tab" class="tab-content active">
+            <h2>انتخاب درس</h2>
+            <div id="lessons-grid" class="lessons-grid">
+                <!-- درس‌ها با جاوااسکریپت اینجا ساخته میشن -->
+            </div>
+        </section>
+
+        <!-- تب دوم: محیط تمرین تایپ -->
+        <section id="practice-tab" class="tab-content">
+            <div class="stats-bar">
+                <div class="stat-box">زمان: <span id="time">00:00</span></div>
+                <div class="stat-box">سرعت: <span id="wpm">0</span> WPM</div>
+                <div class="stat-box">دقت: <span id="accuracy">100</span>%</div>
+            </div>
+
+            <!-- کدهای کارتی متن تمرین -->
+            <div id="cards-container" class="cards-container">
+                <!-- کارتها پویا بارگذاری میشن -->
+            </div>
+
+            <p id="hand-hint" class="hand-hint">راهنمای انگشتان: آماده شروع...</p>
+
+            <!-- کیبورد مجازی روی صفحه -->
+            <div class="virtual-keyboard">
+                <div class="keyboard-row">
+                    <div class="v-key" data-key="ض">ض</div>
+                    <div class="v-key" data-key="ص">ص</div>
+                    <div class="v-key" data-key="ث">ث</div>
+                    <div class="v-key" data-key="ق">ق</div>
+                    <div class="v-key" data-key="ف">ف</div>
+                    <div class="v-key" data-key="غ">غ</div>
+                    <div class="v-key" data-key="ع">ع</div>
+                    <div class="v-key" data-key="ه">ه</div>
+                    <div class="v-key" data-key="خ">خ</div>
+                    <div class="v-key" data-key="ح">ح</div>
+                    <div class="v-key" data-key="ج">ج</div>
+                    <div class="v-key" data-key="چ">چ</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="v-key" data-key="ش">ش</div>
+                    <div class="v-key" data-key="س">س</div>
+                    <div class="v-key" data-key="ی">ی</div>
+                    <div class="v-key" data-key="ب">ب</div>
+                    <div class="v-key" data-key="ل">ل</div>
+                    <div class="v-key" data-key="ا">ا</div>
+                    <div class="v-key" data-key="ت">ت</div>
+                    <div class="v-key" data-key="ن">ن</div>
+                    <div class="v-key" data-key="م">م</div>
+                    <div class="v-key" data-key="ک">ک</div>
+                    <div class="v-key" data-key="گ">گ</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="v-key" data-key="ظ">ظ</div>
+                    <div class="v-key" data-key="ط">ط</div>
+                    <div class="v-key" data-key="ز">ز</div>
+                    <div class="v-key" data-key="ر">ر</div>
+                    <div class="v-key" data-key="ذ">ذ</div>
+                    <div class="v-key" data-key="د">د</div>
+                    <div class="v-key" data-key="پ">پ</div>
+                    <div class="v-key" data-key="و">و</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="v-key space-key" data-key=" ">فاصله (Space)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- تب سوم: تمرین هوشمند هوش مصنوعی -->
+        <section id="ai-tab" class="tab-content">
+            <div class="ai-box">
+                <h2>تنظیمات کلید هوش مصنوعی (API Key)</h2>
+                <p>برای ساخت متن‌های تمرینی دلخواه، کلید API خود را وارد کنید:</p>
+                <div class="settings-group">
+                    <select id="aiProvider">
+                        <option value="google">Google Gemini (پیش‌فرض)</option>
+                        <option value="openrouter">OpenRouter</option>
+                        <option value="groq">Groq</option>
+                        <option value="deepseek">DeepSeek</option>
+                    </select>
+                    <input type="password" id="userApiKey" placeholder="کلید API خود را اینجا وارد کنید...">
+                    <button class="btn-primary" onclick="saveUserApiKey()">ذخیره تنظیمات</button>
                 </div>
 
-                <div class="typing-box">
-                    <div id="cards-container" class="cards-container"></div>
-                </div>
+                <hr style="margin: 30px 0; border: 0; border-top: 1px solid #313244;">
 
-                <div class="keyboard-visual">
-                    <div id="hand-hint" class="hand-hint" style="margin-bottom: 10px;">راهنما: دکمه‌ها را با انگشتان صحیح فشار دهید</div>
-                    
-                    <!-- کیبورد مجازی نمایشی -->
-                    <div class="virtual-keyboard">
-                        <div class="keyboard-row">
-                            <span class="v-key" data-key="ض">ض</span><span class="v-key" data-key="ص">ص</span><span class="v-key" data-key="ث">ث</span><span class="v-key" data-key="ق">ق</span><span class="v-key" data-key="ف">ف</span><span class="v-key" data-key="غ">غ</span><span class="v-key" data-key="ع">ع</span><span class="v-key" data-key="ه">ه</span><span class="v-key" data-key="خ">خ</span><span class="v-key" data-key="ح">ح</span><span class="v-key" data-key="ج">ج</span><span class="v-key" data-key="چ">چ</span>
+                <h2>ساخت درس دلخواه با AI 🤖</h2>
+                <p>موضوع مورد علاقه خود را بنویسید تا هوش مصنوعی یک متن تمرینی جدید برایتان بسازد:</p>
+                <div class="settings-group">
+                    <input type="text" id="aiTopicInput" placeholder="مثلاً: برنامه‌نویسی پایتون، کهکشان راه شیری، فوتبال...">
+                    <button class="btn-primary" onclick="handleGenerateTopic()">ساخت متن با AI</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- تب چهارم: پیشرفت و آمار -->
+        <section id="progress-tab" class="tab-content">
+            <div class="progress-card">
+                <h2>آمار کلی عملکرد شما</h2>
+                <div class="progress-stats-grid">
+                    <div class="p-stat">
+                        <h3>درصد پیشرفت کل</h3>
+                        <div class="progress-bar-bg">
+                            <div id="progress-bar" class="progress-bar-fill" style="width: 0%;"></div>
                         </div>
-                        <div class="keyboard-row">
-                            <span class="v-key" data-key="ش">ش</span><span class="v-key" data-key="س">س</span><span class="v-key" data-key="ی">ی</span><span class="v-key" data-key="ب">ب</span><span class="v-key" data-key="ل">ل</span><span class="v-key" data-key="ا">ا</span><span class="v-key" data-key="ت">ت</span><span class="v-key" data-key="ن">ن</span><span class="v-key" data-key="م">م</span><span class="v-key" data-key="ک">ک</span><span class="v-key" data-key="گ">گ</span>
-                        </div>
-                        <div class="keyboard-row">
-                            <span class="v-key" data-key="ظ">ظ</span><span class="v-key" data-key="ط">ط</span><span class="v-key" data-key="ز">ز</span><span class="v-key" data-key="ر">ر</span><span class="v-key" data-key="ذ">ذ</span><span class="v-key" data-key="د">د</span><span class="v-key" data-key="پ">پ</span><span class="v-key" data-key="و">و</span><span class="v-key" style="flex: 3;" data-key=" ">فاصله (Space)</span>
-                        </div>
+                        <span id="progress-text">0% تکمیل شده</span>
                     </div>
-                </div>
-            </section>
-
-            <!-- تب ۳: تمرین هوشمند AI و تنظیمات -->
-            <section id="ai-practice-tab" class="tab-content">
-                <h2>هوش مصنوعی تمرین‌ساز</h2>
-                <p class="section-desc">کلید API سرویس مورد نظر خود (Google Gemini یا دیگر سرویس‌ها) را وارد کنید تا متن تمرینی بسازید.</p>
-
-                <!-- تنظیمات کلید API -->
-                <div class="settings-card">
-                    <h3>🔑 تنظیمات کلید API</h3>
-                    <div class="input-group" style="margin-bottom: 10px;">
-                        <select id="aiProvider" style="padding: 10px; border-radius: 6px; background: #11111b; color: #fff; border: 1px solid #45475a;">
-                            <option value="google">Google Gemini</option>
-                            <option value="openrouter">OpenRouter</option>
-                            <option value="groq">Groq</option>
-                            <option value="deepseek">DeepSeek</option>
-                        </select>
-                        <input type="password" id="userApiKey" placeholder="کلید API خود را وارد کنید..." style="flex: 1;" />
+                    <div class="p-stat">
+                        <h3>درس‌های پاس‌شده</h3>
+                        <p id="completed-count" style="font-size: 1.5rem; font-weight: bold; color: #a6e3a1;">۰ از ۵۰</p>
                     </div>
-                    <button onclick="saveUserApiKey()" style="padding: 8px 15px; border-radius: 6px; background: #a6e3a1; color: #11111b; border: none; font-weight: bold; cursor: pointer;">ذخیره تنظیمات</button>
-                </div>
-
-                <!-- تولید متن با موضوع دلخواه -->
-                <div class="ai-generator-card">
-                    <h3>✍️ تولید متن تمرینی با موضوع دلخواه</h3>
-                    <div class="input-group">
-                        <input type="text" id="aiTopicInput" placeholder="مثلاً: تکنولوژی، برنامه‌نویسی، هوش مصنوعی..." />
-                        <button onclick="handleGenerateTopic()">ساخت متن با AI</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- تب ۴: پیشرفت من -->
-            <section id="progress-tab" class="tab-content">
-                <h2>آمار و عملکرد شما</h2>
-                <div class="progress-stats-box">
-                    <div class="stat-card">
-                        <h3>دروس تکمیل شده</h3>
-                        <p id="completed-count">0 از 50</p>
-                    </div>
-                    <div class="stat-card">
+                    <div class="p-stat">
                         <h3>کل کلیدهای فشرده شده</h3>
-                        <p id="total-keys-typed">0</p>
+                        <p id="total-keys-typed" style="font-size: 1.5rem; font-weight: bold; color: #89b4fa;">۰</p>
                     </div>
-                    <div class="stat-card">
-                        <h3>سطح فعلی</h3>
-                        <p id="user-level" style="color: #a6e3a1;">مبتدی 🥉</p>
+                    <div class="p-stat">
+                        <h3>رتبه فعلی شما</h3>
+                        <p id="user-level" style="font-size: 1.5rem; font-weight: bold; color: #f9e2af;">مبتدی 🥉</p>
                     </div>
                 </div>
-                <div class="progress-bar-container">
-                    <div id="progress-bar" class="progress-bar"></div>
-                </div>
-                <p id="progress-text" style="text-align: center; margin-top: 10px;">0٪ تکمیل شده</p>
+                <button class="btn-danger" onclick="resetProgress()">ریست کردن تمام سوابق</button>
+            </div>
+        </section>
 
-                <button class="reset-btn" onclick="resetProgress()">ریست کردن پیشرفت‌ها</button>
-            </section>
-
-        </main>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
