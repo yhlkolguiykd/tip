@@ -20,10 +20,9 @@ body {
     border-radius: 20px;
     text-align: center;
     width: 100%;
-    max-width: 850px;
+    max-width: 900px;
 }
 
-/* منو */
 .nav-bar {
     display: flex;
     justify-content: center;
@@ -52,14 +51,12 @@ body {
     font-weight: bold;
 }
 
-/* مدیریت نمایش صفحات */
 .tab-content { display: none; }
 .tab-content.active { display: block; }
 
 h1 { font-size: 1.5rem; margin-bottom: 8px; }
 .subtitle { color: #a6adc8; font-size: 0.9rem; margin-bottom: 20px; }
 
-/* شبکه کارت‌های مراحل */
 .lessons-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -98,7 +95,6 @@ h1 { font-size: 1.5rem; margin-bottom: 8px; }
     color: #a6e3a1;
 }
 
-/* آمار و متن تمرین */
 .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -135,40 +131,81 @@ h1 { font-size: 1.5rem; margin-bottom: 8px; }
 .incorrect { color: #f38ba8; background: rgba(243, 139, 168, 0.2); opacity: 1; }
 .current { opacity: 1; color: #f9e2af; border-bottom: 2px solid #f9e2af; }
 
-/* کیبورد و راهنما */
-.keyboard-section { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-.keyboard { display: flex; flex-direction: column; gap: 5px; background: #0a0a10; padding: 12px; border-radius: 12px; }
-.row { display: flex; gap: 4px; }
+/* کیبورد و لایه انگشت‌ها */
+.keyboard-container {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: #0a0a10;
+    padding: 16px;
+    border-radius: 16px;
+    position: relative;
+}
+
+.row { display: flex; gap: 6px; justify-content: center; }
 
 .key {
-    background: #232334; color: #cdd6f4; padding: 8px 0; width: 40px; border-radius: 6px;
-    font-size: 0.9rem; border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #232334;
+    color: #cdd6f4;
+    padding: 12px 0;
+    width: 48px;
+    border-radius: 8px;
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
 }
-.key.space { width: 220px; }
-.home-key { border-bottom: 2px solid #89b4fa; }
-.key.active { background: #cba6f7; color: #11111b; font-weight: bold; }
 
-.hands-guide { display: flex; gap: 60px; margin-top: 5px; }
-.hand { position: relative; width: 120px; height: 80px; background: rgba(255,255,255,0.02); border-radius: 30px 30px 10px 10px; border: 1px dashed rgba(255,255,255,0.1); }
-.finger, .thumb { position: absolute; background: #313244; border-radius: 6px; transition: 0.2s; }
-.finger { width: 14px; height: 40px; top: -20px; }
-.thumb { width: 18px; height: 30px; top: 20px; }
+.key.space { width: 280px; }
+.home-key { border-bottom: 3px solid #89b4fa; }
+.key.active { background: #313244; border-color: #a6e3a1; }
 
-.left-hand .pinky { left: 8px; }
-.left-hand .ring { left: 30px; top: -26px; height: 50px; }
-.left-hand .middle { left: 52px; top: -30px; height: 54px; }
-.left-hand .index { left: 74px; }
-.left-hand .thumb { left: 94px; transform: rotate(25deg); }
+/* انیمیشن پوینت‌های انگشت روی کیبورد */
+.hands-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
 
-.right-hand .thumb { right: 94px; transform: rotate(-25deg); }
-.right-hand .index { right: 74px; }
-.right-hand .middle { right: 52px; top: -30px; height: 54px; }
-.right-hand .ring { right: 30px; top: -26px; height: 50px; }
-.right-hand .pinky { right: 8px; }
+.finger-dot {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(137, 180, 250, 0.85);
+    border: 2px solid #fff;
+    color: #11111b;
+    font-size: 0.65rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    z-index: 10;
+}
 
-.finger.finger-active, .thumb.finger-active { background: #a6e3a1; box-shadow: 0 0 8px rgba(166, 227, 161, 0.8); }
+.finger-dot.active {
+    background: #a6e3a1;
+    transform: scale(1.25);
+    box-shadow: 0 0 15px #a6e3a1;
+    z-index: 20;
+}
 
-/* پیشرفت */
+.hand-hint {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #89b4fa;
+}
+
 .progress-card { background: #0a0a10; padding: 20px; border-radius: 12px; margin-top: 15px; }
 .progress-bar-container { background: #232334; height: 16px; border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
 .progress-bar { background: #a6e3a1; height: 100%; width: 0%; transition: width 0.3s; }
