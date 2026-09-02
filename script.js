@@ -14,12 +14,46 @@ const lessons = [
     "امیدواریم این برنامه تمرینی به شما کمک کند تا به یک تایپیست حرفه‌ای و سریع تبدیل شوید", "تبریک می‌گوییم شما تمام مراحل تمرین تایپ ده انگشتی را با موفقیت و سرعت بالا به پایان رساندید"
 ];
 
-const keyToFingerMap = {
-    'ض': 'l-pinky', 'ش': 'l-pinky', 'ظ': 'l-pinky', 'ص': 'l-ring', 'س': 'l-ring', 'ط': 'l-ring',
-    'ث': 'l-middle', 'ی': 'l-middle', 'ز': 'l-middle', 'ق': 'l-index', 'ب': 'l-index', 'ر': 'l-index',
-    'ف': 'l-index', 'ل': 'l-index', 'ذ': 'l-index', 'ا': 'l-index', 'ع': 'r-index', 'ت': 'r-index',
-    'د': 'r-index', 'غ': 'r-index', 'ن': 'r-index', 'پ': 'r-index', 'ه': 'r-middle', 'م': 'r-middle',
-    'و': 'r-middle', 'خ': 'r-ring', 'ک': 'r-ring', 'ح': 'r-pinky', 'گ': 'r-pinky', 'ج': 'r-pinky', 'چ': 'r-pinky', ' ': 'r-thumb'
+// نگاشت کلیدها به انگشت‌ها + جایگاه خانه اولیه (Home Row)
+const fingerMapping = {
+    'ض': { id: 'l-pinky', home: 'ش', name: 'انگشت کوچک دست چپ' },
+    'ص': { id: 'l-ring', home: 'س', name: 'انگشت حلقه دست چپ' },
+    'ث': { id: 'l-middle', home: 'ی', name: 'انگشت وسط دست چپ' },
+    'ق': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
+    'ف': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
+
+    'ش': { id: 'l-pinky', home: 'ش', name: 'انگشت کوچک دست چپ' },
+    'س': { id: 'l-ring', home: 'س', name: 'انگشت حلقه دست چپ' },
+    'ی': { id: 'l-middle', home: 'ی', name: 'انگشت وسط دست چپ' },
+    'ب': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
+    'ل': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
+
+    'ظ': { id: 'l-pinky', home: 'ش', name: 'انگشت کوچک دست چپ' },
+    'ط': { id: 'l-ring', home: 'س', name: 'انگشت حلقه دست چپ' },
+    'ز': { id: 'l-middle', home: 'ی', name: 'انگشت وسط دست چپ' },
+    'ر': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
+    'ذ': { id: 'l-index', home: 'ب', name: 'انگشت اشاره دست چپ' },
+
+    'غ': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
+    'ع': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
+    'ه': { id: 'r-middle', home: 'ن', name: 'انگشت وسط دست راست' },
+    'خ': { id: 'r-ring', home: 'م', name: 'انگشت حلقه دست راست' },
+    'ح': { id: 'r-pinky', home: 'ک', name: 'انگشت کوچک دست راست' },
+    'ج': { id: 'r-pinky', home: 'ک', name: 'انگشت کوچک دست راست' },
+    'چ': { id: 'r-pinky', home: 'ک', name: 'انگشت کوچک دست راست' },
+
+    'ا': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
+    'ت': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
+    'ن': { id: 'r-middle', home: 'ن', name: 'انگشت وسط دست راست' },
+    'م': { id: 'r-ring', home: 'م', name: 'انگشت حلقه دست راست' },
+    'ک': { id: 'r-pinky', home: 'ک', name: 'انگشت کوچک دست راست' },
+    'گ': { id: 'r-pinky', home: 'ک', name: 'انگشت کوچک دست راست' },
+
+    'د': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
+    'پ': { id: 'r-index', home: 'ت', name: 'انگشت اشاره دست راست' },
+    'و': { id: 'r-middle', home: 'ن', name: 'انگشت وسط دست راست' },
+
+    ' ': { id: 'r-thumb', home: ' ', name: 'انگشت شست' }
 };
 
 let currentLesson = 0;
@@ -28,13 +62,11 @@ let mistakes = 0;
 let startTime = null;
 let completedLessons = JSON.parse(localStorage.getItem('typing_completed') || '[]');
 
-// سوئیچ بین تب‌های هوم، تمرین و پیشرفت
 function switchTab(tabName) {
     const tabs = ['home', 'practice', 'progress'];
     tabs.forEach((tab, index) => {
         const content = document.getElementById(`${tab}-tab`);
         const btn = document.querySelectorAll('.nav-btn')[index];
-        
         if (tab === tabName) {
             content.classList.add('active');
             btn.classList.add('active');
@@ -46,14 +78,13 @@ function switchTab(tabName) {
 
     if (tabName === 'home') renderGrid();
     if (tabName === 'progress') updateProgressUI();
+    if (tabName === 'practice') setTimeout(resetFingersToHome, 100);
 }
 
-// نمایش ۵۰ کارت مرحله در صفحه هوم
 function renderGrid() {
     const grid = document.getElementById('lessons-grid');
     if (!grid) return;
     grid.innerHTML = '';
-    
     lessons.forEach((_, index) => {
         const isDone = completedLessons.includes(index);
         const card = document.createElement('div');
@@ -67,24 +98,20 @@ function renderGrid() {
     });
 }
 
-// انتخاب مرحله از صفحه هوم و رفتن به تمرین
 function selectLesson(index) {
     currentLesson = index;
     switchTab('practice');
     loadLesson();
 }
 
-// آپدیت درصد پیشرفت
 function updateProgressUI() {
     const count = completedLessons.length;
     const percent = Math.round((count / lessons.length) * 100);
-    
     document.getElementById('progress-bar').style.width = `${percent}%`;
     document.getElementById('progress-text').innerText = `${percent}٪ تکمیل شده است`;
     document.getElementById('completed-count').innerText = count;
 }
 
-// ریست پیشرفت
 function resetProgress() {
     if (confirm('آیا می‌خواهی تمام مراحل پاک بشن؟')) {
         completedLessons = [];
@@ -113,24 +140,62 @@ function loadLesson() {
         textDisplay.appendChild(charSpan);
     });
 
+    resetFingersToHome();
     updateVisualGuide(text[0]);
+}
+
+// قرار دادن تمام انگشت‌ها در کلیدهای پایه (Home Row)
+function resetFingersToHome() {
+    const homePositions = {
+        'l-pinky': 'ش', 'l-ring': 'س', 'l-middle': 'ی', 'l-index': 'ب', 'l-thumb': ' ',
+        'r-thumb': ' ', 'r-index': 'ت', 'r-middle': 'ن', 'r-ring': 'م', 'r-pinky': 'ک'
+    };
+
+    Object.keys(homePositions).forEach(fingerId => {
+        moveFingerToKey(fingerId, homePositions[fingerId], false);
+    });
+}
+
+// حرکت نرم انگشت به سمت کلید هدف
+function moveFingerToKey(fingerId, keyChar, isActive = false) {
+    const fingerElement = document.getElementById(fingerId);
+    const keyElement = document.querySelector(`.key[data-key="${keyChar}"]`);
+    
+    if (!fingerElement || !keyElement) return;
+
+    const keyboardContainer = document.querySelector('.keyboard-container');
+    const keyRect = keyElement.getBoundingClientRect();
+    const containerRect = keyboardContainer.getBoundingClientRect();
+
+    const x = keyRect.left - containerRect.left + (keyRect.width / 2) - 18;
+    const y = keyRect.top - containerRect.top + (keyRect.height / 2) - 18;
+
+    fingerElement.style.left = `${x}px`;
+    fingerElement.style.top = `${y}px`;
+
+    if (isActive) {
+        fingerElement.classList.add('active');
+    } else {
+        fingerElement.classList.remove('active');
+    }
 }
 
 function updateVisualGuide(char) {
     document.querySelectorAll('.key').forEach(k => k.classList.remove('active'));
-    const targetKey = char === ' ' ? ' ' : char;
-    const keyElement = document.querySelector(`.key[data-key="${targetKey}"]`);
+    document.querySelectorAll('.finger-dot').forEach(f => f.classList.remove('active'));
+
+    const keyChar = char === ' ' ? ' ' : char;
+    const keyElement = document.querySelector(`.key[data-key="${keyChar}"]`);
     if (keyElement) keyElement.classList.add('active');
 
-    document.querySelectorAll('.finger, .thumb').forEach(f => f.classList.remove('finger-active'));
-    const fingerId = keyToFingerMap[char];
-    if (fingerId) {
-        const fingerElement = document.getElementById(fingerId);
-        if (fingerElement) fingerElement.classList.add('finger-active');
+    const info = fingerMapping[char];
+    if (info) {
+        resetFingersToHome();
+        moveFingerToKey(info.id, keyChar, true);
+        document.getElementById('hand-hint').innerText = `حرف «${char}» -> با ${info.name}`;
     }
 }
 
-// تایپ و ثبت مرحله
 document.addEventListener('keydown', (e) => {
     const practiceTab = document.getElementById('practice-tab');
     if (!practiceTab || !practiceTab.classList.contains('active')) return;
@@ -181,6 +246,5 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// اجرای اول‌باره
 renderGrid();
 loadLesson();
