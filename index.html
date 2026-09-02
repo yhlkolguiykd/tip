@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پروژه پرامپت‌کده: سامانه کامل تایپ ده انگشتی ⚡</title>
+    <title>پروژه پرامپت‌کده: تایپ ده انگشتی دو‌بعدی پیشرفته ⚡</title>
     <style>
         :root {
-            --bg-color: #0b0f17;
-            --card-bg: #141c2e;
-            --text-color: #f1f5f9;
-            --primary-color: #38bdf8;
-            --accent-color: #4ade80;
+            --bg-color: #080b11;
+            --card-bg: #111827;
+            --text-color: #f3f4f6;
+            --primary-color: #0ea5e9;
+            --active-glow: #38bdf8;
             --danger-color: #f43f5e;
-            --border-color: #1e293b;
+            --border-color: #1f2937;
         }
 
         * {
@@ -34,25 +34,9 @@
             padding: 20px 0;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        header h1 {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        header p {
-            font-size: 0.85rem;
-            color: #94a3b8;
-        }
-
         .container {
-            width: 92%;
-            max-width: 820px;
+            width: 95%;
+            max-width: 850px;
         }
 
         .practice-box {
@@ -60,137 +44,153 @@
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
         }
 
-        /* نوار آمار و اطلاعات */
         .stats-bar {
             display: flex;
             justify-content: space-around;
-            background: rgba(0,0,0,0.25);
+            background: rgba(0,0,0,0.3);
             padding: 12px;
             border-radius: 10px;
             margin-bottom: 20px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: bold;
         }
 
-        /* کاردهای نمایش متن */
         .cards-container {
             display: flex;
             justify-content: center;
             gap: 8px;
-            margin: 15px 0;
-            min-height: 60px;
+            margin: 20px 0;
+            min-height: 65px;
             align-items: center;
         }
 
         .char-card {
-            width: 45px;
-            height: 55px;
-            background-color: #1a233a;
+            width: 48px;
+            height: 60px;
+            background-color: #1f2937;
             border: 2px solid var(--border-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
             border-radius: 8px;
         }
 
         .char-card.current {
             border-color: var(--primary-color);
-            background-color: rgba(56, 189, 248, 0.15);
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+            background-color: rgba(14, 165, 233, 0.2);
+            box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
         }
 
         .char-card.incorrect {
             border-color: var(--danger-color);
             color: var(--danger-color);
-            background-color: rgba(244, 63, 94, 0.15);
+            background-color: rgba(244, 63, 94, 0.2);
         }
 
-        .hint-text {
-            text-align: center;
-            margin: 10px 0;
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        /* بخش ویژوالایزر دست‌ها */
-        .simple-hands-container {
+        /* بخش ویژوالایزر دو بعدی گرافیکی دست‌ها */
+        .hands-visualizer {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
+            gap: 40px;
+            margin: 25px 0;
         }
 
-        .simple-hand {
-            background: #0f172a;
+        .hand-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #0d131f;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 12px;
-            width: 220px;
-            text-align: center;
+            padding: 15px;
+            border-radius: 16px;
+            width: 260px;
         }
 
-        .hand-label {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            margin-bottom: 10px;
+        .hand-name {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            margin-bottom: 12px;
             font-weight: bold;
         }
 
-        .simple-fingers {
+        /* ساختار فلت گرافیکی دست (انگشتان بالا + کف دست) */
+        .fingers-top-row {
             display: flex;
+            gap: 6px;
+            width: 100%;
             justify-content: space-between;
-            gap: 4px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
-        .s-finger {
+        .finger {
             flex: 1;
-            height: 50px;
-            background: #1e293b;
+            height: 65px;
+            background-color: #1e293b;
             border: 1px solid #334155;
-            border-radius: 6px;
+            border-radius: 8px 8px 4px 4px;
             display: flex;
             align-items: flex-end;
             justify-content: center;
             padding-bottom: 6px;
             font-size: 0.6rem;
-            color: #64748b;
-            transition: 0.15s;
+            color: #94a3b8;
+            transition: all 0.2s ease;
         }
 
-        .s-thumb {
+        .palm-area {
             width: 100%;
-            height: 24px;
-            background: #1e293b;
+            height: 45px;
+            background-color: #1e293b;
             border: 1px solid #334155;
             border-radius: 6px;
-            font-size: 0.6rem;
-            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            position: relative;
+        }
+
+        .thumb {
+            width: 45px;
+            height: 32px;
+            background-color: #2e3b52;
+            border: 1px solid #475569;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.15s;
+            font-size: 0.65rem;
+            color: #94a3b8;
+            transition: all 0.2s ease;
         }
 
-        .s-finger.active, .s-thumb.active {
+        /* حالت روشن شدن فعال انگشت هنگام تایپ */
+        .finger.active, .thumb.active {
             background-color: var(--primary-color) !important;
-            color: #0b0f17 !important;
-            border-color: #fff !important;
+            color: #080b11 !important;
+            border-color: #ffffff !important;
             font-weight: bold;
-            box-shadow: 0 0 10px var(--primary-color);
-            transform: translateY(-3px);
+            box-shadow: 0 0 15px var(--active-glow);
+            transform: translateY(-4px);
         }
 
-        /* کیبورد مجازی کامل */
+        .hint-text {
+            text-align: center;
+            margin: 15px 0;
+            color: var(--primary-color);
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        /* کیبورد مجازی */
         .virtual-keyboard {
-            background: #080c14;
-            padding: 14px;
+            background: #05070c;
+            padding: 15px;
             border-radius: 12px;
             border: 2px solid var(--border-color);
             display: flex;
@@ -208,23 +208,15 @@
         }
 
         .v-key {
-            background-color: #1b2438;
+            background-color: #1e293b;
             color: #fff;
-            padding: 9px 11px;
+            padding: 10px 12px;
             border-radius: 6px;
             font-size: 0.85rem;
             font-weight: bold;
             min-width: 40px;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.06);
-            transition: 0.1s;
-        }
-
-        /* رنگی شدن کلید روی کیبورد موقع فشردن */
-        .v-key.active-key {
-            background-color: var(--accent-color) !important;
-            color: #0b0f17 !important;
-            transform: scale(0.95);
         }
 
         .space-key {
@@ -235,99 +227,71 @@
 </head>
 <body>
 
-    <header>
-        <h1>پروژه پرامپت‌کده: آموزش جامع تایپ ده انگشتی ⚡</h1>
-        <p>مجموعه کامل: تمرین هوشمند، راهنمای دست‌ها و کیبورد مجازی</p>
-    </header>
-
     <main class="container">
         <div class="practice-box">
-            <!-- بخش آمار -->
             <div class="stats-bar">
                 <div>⏱️ زمان: <span id="time">00:00</span></div>
                 <div>⚡ سرعت: <span id="wpm">0</span> WPM</div>
                 <div>🎯 دقت: <span id="accuracy">100</span>%</div>
             </div>
 
-            <!-- بخش کاردهای کلمات -->
             <div id="cards-container" class="cards-container"></div>
-            <div id="hint-text" class="hint-text">کلید بعدی رو فشار بده...</div>
 
-            <!-- بخش دست‌های راهنما -->
-            <div class="simple-hands-container">
+            <div id="hint-text" class="hint-text">حرف مورد انتظار رو تایپ کن...</div>
+
+            <!-- ویژوالایزر گرافیکی دست چپ و راست -->
+            <div class="hands-visualizer">
                 <!-- دست چپ -->
-                <div class="simple-hand">
-                    <div class="hand-label">دست چپ</div>
-                    <div class="simple-fingers">
-                        <div class="s-finger" id="sf-l-pinky">کوچک</div>
-                        <div class="s-finger" id="sf-l-ring">حلقه</div>
-                        <div class="s-finger" id="sf-l-middle">میانی</div>
-                        <div class="s-finger" id="sf-l-index">اشاره</div>
+                <div class="hand-wrapper">
+                    <div class="hand-name">دست چپ (Left Hand)</div>
+                    <div class="fingers-top-row">
+                        <div class="finger" id="l-pinky">کوچک</div>
+                        <div class="finger" id="l-ring">حلقه</div>
+                        <div class="finger" id="l-middle">میانی</div>
+                        <div class="finger" id="l-index">اشاره</div>
                     </div>
-                    <div class="s-thumb" id="sf-l-thumb">شست</div>
+                    <div class="palm-area">
+                        <span style="font-size:0.6rem; color:#6b7280;">کف دست</span>
+                        <div class="thumb" id="l-thumb">شست</div>
+                    </div>
                 </div>
 
                 <!-- دست راست -->
-                <div class="simple-hand">
-                    <div class="hand-label">دست راست</div>
-                    <div class="simple-fingers">
-                        <div class="s-finger" id="sf-r-index">اشاره</div>
-                        <div class="s-finger" id="sf-r-middle">میانی</div>
-                        <div class="s-finger" id="sf-r-ring">حلقه</div>
-                        <div class="s-finger" id="sf-r-pinky">کوچک</div>
+                <div class="hand-wrapper">
+                    <div class="hand-name">دست راست (Right Hand)</div>
+                    <div class="fingers-top-row">
+                        <div class="finger" id="r-index">اشاره</div>
+                        <div class="finger" id="r-middle">میانی</div>
+                        <div class="finger" id="r-ring">حلقه</div>
+                        <div class="finger" id="r-pinky">کوچک</div>
                     </div>
-                    <div class="s-thumb" id="sf-r-thumb">شست</div>
+                    <div class="palm-area">
+                        <div class="thumb" id="r-thumb">شست</div>
+                        <span style="font-size:0.6rem; color:#6b7280;">کف دست</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- کیبورد مجازی کامل استاندارد -->
+            <!-- کیبورد مجازی -->
             <div class="virtual-keyboard">
                 <div class="keyboard-row">
-                    <div class="v-key" data-char="ض">ض</div>
-                    <div class="v-key" data-char="ص">ص</div>
-                    <div class="v-key" data-char="ث">ث</div>
-                    <div class="v-key" data-char="ق">ق</div>
-                    <div class="v-key" data-char="ف">ف</div>
-                    <div class="v-key" data-char="غ">غ</div>
-                    <div class="v-key" data-char="ع">ع</div>
-                    <div class="v-key" data-char="ه">ه</div>
-                    <div class="v-key" data-char="خ">خ</div>
-                    <div class="v-key" data-char="ح">ح</div>
-                    <div class="v-key" data-char="ج">ج</div>
-                    <div class="v-key" data-char="چ">چ</div>
+                    <div class="v-key">ض</div><div class="v-key">ص</div><div class="v-key">ث</div><div class="v-key">ق</div><div class="v-key">ف</div><div class="v-key">غ</div><div class="v-key">ع</div><div class="v-key">ه</div><div class="v-key">خ</div><div class="v-key">ح</div><div class="v-key">ج</div><div class="v-key">چ</div>
                 </div>
                 <div class="keyboard-row">
-                    <div class="v-key" data-char="ش">ش</div>
-                    <div class="v-key" data-char="س">س</div>
-                    <div class="v-key" data-char="ی">ی</div>
-                    <div class="v-key" data-char="ب">ب</div>
-                    <div class="v-key" data-char="ل">ل</div>
-                    <div class="v-key" data-char="ا">ا</div>
-                    <div class="v-key" data-char="ت">ت</div>
-                    <div class="v-key" data-char="ن">ن</div>
-                    <div class="v-key" data-char="م">م</div>
-                    <div class="v-key" data-char="ک">ک</div>
-                    <div class="v-key" data-char="گ">گ</div>
+                    <div class="v-key">ش</div><div class="v-key">س</div><div class="v-key">ی</div><div class="v-key">ب</div><div class="v-key">ل</div><div class="v-key">ا</div><div class="v-key">ت</div><div class="v-key">ن</div><div class="v-key">م</div><div class="v-key">ک</div><div class="v-key">گ</div>
                 </div>
                 <div class="keyboard-row">
-                    <div class="v-key" data-char="ظ">ظ</div>
-                    <div class="v-key" data-char="ط">ط</div>
-                    <div class="v-key" data-char="ز">ز</div>
-                    <div class="v-key" data-char="ر">ر</div>
-                    <div class="v-key" data-char="ذ">ذ</div>
-                    <div class="v-key" data-char="د">د</div>
-                    <div class="v-key" data-char="پ">پ</div>
-                    <div class="v-key" data-char="و">و</div>
+                    <div class="v-key">ظ</div><div class="v-key">ط</div><div class="v-key">ز</div><div class="v-key">ر</div><div class="v-key">ذ</div><div class="v-key">د</div><div class="v-key">پ</div><div class="v-key">و</div>
                 </div>
                 <div class="keyboard-row">
-                    <div class="v-key space-key" data-char=" ">فاصله (Space)</div>
+                    <div class="v-key space-key">فاصله (Space)</div>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
-        const textToType = "سلام مهدی جان پروژه پرامپت کده آماده است";
+        const textToType = "سلام مهدی عزیز این ویژوالایزر دو بعدی دست هاست";
         let chars = textToType.split('');
         let currentIndex = 0;
         let errorsCount = 0;
@@ -335,19 +299,19 @@
         let timerInterval = null;
         let isStarted = false;
 
-        // نگاشت دقیق انگشتان برای ویژوالایزر
+        // نقشه‌برداری دقیق هر حرف روی دست و انگشت مربوطه
         const fingerMap = {
-            'ض': 'sf-l-pinky', 'ش': 'sf-l-pinky', 'ظ': 'sf-l-pinky',
-            'ص': 'sf-l-ring', 'س': 'sf-l-ring', 'ط': 'sf-l-ring',
-            'ث': 'sf-l-middle', 'ی': 'sf-l-middle', 'ز': 'sf-l-middle',
-            'ق': 'sf-l-index', 'ب': 'sf-l-index', 'ر': 'sf-l-index',
-            'ف': 'sf-l-index', 'ل': 'sf-l-index', 'ذ': 'sf-l-index',
+            'ض': 'l-pinky', 'ش': 'l-pinky', 'ظ': 'l-pinky',
+            'ص': 'l-ring', 'س': 'l-ring', 'ط': 'l-ring',
+            'ث': 'l-middle', 'ی': 'l-middle', 'ز': 'l-middle',
+            'ق': 'l-index', 'ب': 'l-index', 'ر': 'l-index',
+            'ف': 'l-index', 'ل': 'l-index', 'ذ': 'l-index',
             
-            'غ': 'sf-r-index', 'ا': 'sf-r-index', 'د': 'sf-r-index', 'ت': 'sf-r-index',
-            'ه': 'sf-r-middle', 'ن': 'sf-r-middle', 'و': 'sf-r-middle', 'خ': 'sf-r-middle',
-            'م': 'sf-r-ring', 'ح': 'sf-r-ring',
-            'ج': 'sf-r-pinky', 'چ': 'sf-r-pinky', 'ک': 'sf-r-pinky', 'گ': 'sf-r-pinky', 'پ': 'sf-r-pinky',
-            ' ': 'sf-l-thumb'
+            'غ': 'r-index', 'ا': 'r-index', 'د': 'r-index', 'ت': 'r-index',
+            'ه': 'r-middle', 'ن': 'r-middle', 'و': 'r-middle', 'خ': 'r-middle',
+            'م': 'r-ring', 'ح': 'r-ring',
+            'ج': 'r-pinky', 'چ': 'r-pinky', 'ک': 'r-pinky', 'گ': 'r-pinky', 'پ': 'r-pinky',
+            ' ': 'l-thumb' // شست برای اسپیس
         };
 
         function init() {
@@ -370,16 +334,19 @@
         }
 
         function updateVisualizer(char) {
-            document.querySelectorAll('.s-finger, .s-thumb').forEach(el => {
+            // خاموش کردن همه انگشت‌ها و شست‌ها
+            document.querySelectorAll('.finger, .thumb').forEach(el => {
                 el.classList.remove('active');
             });
 
             let targetId = fingerMap[char];
             if (targetId) {
                 let element = document.getElementById(targetId);
-                if (element) element.classList.add('active');
+                if (element) {
+                    element.classList.add('active');
+                }
             }
-            document.getElementById('hint-text').innerText = `حرف مورد انتظار: "${char === ' ' ? 'فاصله' : char}"`;
+            document.getElementById('hint-text').innerText = `کلید بعدی: "${char === ' ' ? 'فاصله' : char}"`;
         }
 
         document.addEventListener('keydown', (e) => {
@@ -392,13 +359,6 @@
                 timerInterval = setInterval(updateTimer, 1000);
             }
 
-            // افکت فشردن کلید روی کیبورد مجازی
-            const keyEl = document.querySelector(`.v-key[data-char="${e.key}"]`);
-            if (keyEl) {
-                keyEl.classList.add('active-key');
-                setTimeout(() => keyEl.classList.remove('active-key'), 150);
-            }
-
             if (e.key === targetChar || (targetChar === ' ' && e.key === ' ')) {
                 currentIndex++;
                 let accuracy = Math.max(0, Math.round(((currentIndex - errorsCount) / currentIndex) * 100));
@@ -406,7 +366,7 @@
 
                 if (currentIndex >= chars.length) {
                     clearInterval(timerInterval);
-                    alert('🎉 فوق‌العاده بود داشم! تمرین با موفقیت به پایان رسید.');
+                    alert('🎉 عالی بود داشم! تمرین با موفقیت تموم شد.');
                     currentIndex = 0;
                     errorsCount = 0;
                 }
